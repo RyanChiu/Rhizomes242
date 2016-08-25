@@ -16,7 +16,11 @@ class AppController extends Controller {
 			if (count($u) == 0) {
 				$this->curuser = null;
 			} else {
-				$this->curuser = $u[0]['Account'];
+				if (is_array($u[0])) {
+					$this->curuser = array_key_exists('Account', $u[0]) ? $u[0]['Account'] : null;
+				} else {
+					$this->curuser = null;
+				}
 			}
 		} else {
 			$this->curuser = null;
