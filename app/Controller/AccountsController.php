@@ -22,6 +22,10 @@ class AccountsController extends AppController {
 				'userModel' => 'Account',
 				'userScope' => array('Account.status' => '1')
 			),
+			'loginAction' => array(
+				'controller' => 'Accounts',
+				'action' => 'login',
+			),
 			'loginRedirect' => array('controller' => 'accounts', 'action' => 'index'),
 			'logoutRedirect' => array('controller' => 'accounts', 'action' => 'login')
 		),
