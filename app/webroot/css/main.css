@@ -323,7 +323,7 @@ a:hover {
 /*for stats, the totals*/
 .totals {
 	background: /*#E6EDF5*/ #ccff22;
-	color: /*#4F76A3*/ white;
+	color: /*#4F76A3*/ black;
 	font-size: 100% !important;
 	font-weight: bold;
 }
