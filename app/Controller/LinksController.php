@@ -233,7 +233,9 @@ class LinksController extends AppController {
 		
 		/*prepare the agents for this view from DB*/
 		/*prepare the sites for the view from DB*/
+		$vags = array();
 		$ags = array();
+		$sags = array();
 		$sites = array();
 		//$exsites = array();
 		$suspsites = $this->Site->find('list',
@@ -247,11 +249,12 @@ class LinksController extends AppController {
 			)
 		);
 		if ($this->curuser['role'] == 0) {//means an administrator
-			$ags = $this->ViewAgent->find('list',
+			$vags = $this->ViewAgent->find('all',
 				array(
 					'fields' =>	array(
 						'id',
-						'username'
+						'username',
+						'officename'
 					),
 					'conditions' => array(
 						'status >=' => 0,
@@ -267,7 +270,7 @@ class LinksController extends AppController {
 				)
 			);
 		} else if ($this->curuser['role'] == 1) {//means an office
-			$ags = $this->ViewAgent->find('list',
+			$vags = $this->ViewAgent->find('all',
 				array(
 					'fields' =>	array(
 						'id',
@@ -301,7 +304,7 @@ class LinksController extends AppController {
 			);
 			*/
 		} else if ($this->curuser['role'] == 2) {//means an agent
-			$ags = $this->Account->find('list',
+			$vags = $this->Account->find('all',
 				array(
 					'fields' =>	array(
 						'id',
@@ -350,8 +353,26 @@ class LinksController extends AppController {
 		}
 		
 		//$sites = array(0 => 'All') + $sites;
-				
+		foreach ($vags as $vag) {
+			$ags += array($vag['ViewAgent']['id'] => $vag['ViewAgent']['username']);
+		}
+		$sagsi = 0;
+		foreach ($vags as $vag) {
+			$sagsi++;
+			$sags += array(
+				$vag['ViewAgent']['id'] => 
+					(
+						$vag['ViewAgent']['username'] 
+							. "____[" 
+							. $vag['ViewAgent']['officename']
+							. " #"
+							. $sagsi
+							. "]"
+					)
+			);
+		}
 		$this->set('ags', $ags);
+		$this->set('sags', $sags);
 		$this->set('sites', $sites);
 		//$this->set('exsites', $exsites);
 		$this->set('suspsites', $suspsites);
