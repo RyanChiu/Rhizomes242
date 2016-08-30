@@ -137,7 +137,7 @@ if (!empty($notes)) {
 	</td>
 </tr>
 <tr>
-	<td width="50%">
+	<td>
 		<table style="width:100%" style="font-size:90%;">
 		<caption style="font-style:italic;">
 		This Week (From <?php echo $weekstart; ?> To <?php echo $weekend; ?>)		
@@ -179,6 +179,7 @@ if (!empty($notes)) {
 		?>
 		</table>
 	</td>
+	<!--  
 	<td>
 		<table style="width:100%" style="font-size:90%;">
 		<caption style="font-style:italic;">
@@ -221,9 +222,10 @@ if (!empty($notes)) {
 		?>
 		</table>
 	</td>
+	-->
 </tr>
 <tr>
-	<td colspan=2>
+	<td>
 		<table style="width:100%" style="font-size:90%;">
 		<caption style="font-style:italic;">All the time</caption>
 		<thead>
