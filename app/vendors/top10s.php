@@ -25,6 +25,7 @@ $_sql_ =
 		sum(sales_number - chargebacks) as sales 
 	FROM stats, accounts, agents, companies   
 	WHERE %s
+		and stats.siteid not in (2, 7, 8, 11)
 		and stats.agentid = accounts.id and agents.id = stats.agentid 
 		and agents.companyid = companies.id 
 		AND agentid > 0 
