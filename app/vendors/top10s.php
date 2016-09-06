@@ -30,7 +30,7 @@ $_sql_ =
 		and agents.companyid = companies.id 
 		AND agentid > 0 
 	GROUP BY agentid  ORDER BY `sales` desc  LIMIT 10;";
-$sql = sprintf($_sql_, 0, $today, "convert(trxtime, date) >= '2016-08-14 00:00:00' and convert(trxtime, date) <= '$today'");
+$sql = sprintf($_sql_, 0, $today, "convert(trxtime, date) >= '2016-08-14' and convert(trxtime, date) <= '$today'");
 $rs = mysql_query("delete from top10s where flag = 0", $zconn->dblink)
 	or die ("Something wrong with: " . mysql_error() . "\n");
 $rs = mysql_query("insert into top10s " . $sql, $zconn->dblink)
