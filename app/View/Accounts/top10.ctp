@@ -24,7 +24,7 @@ echo $this->Form->create(
 				'id' => 'selPeriod',
 				'label' => '', 'type' => 'select',
 				'options' => $periods,
-				'selected' => $start . ',' . $end,
+				'selected' => isset($start)? ($start . ',' . $end) : null,
 				'style' => 'width:210px;'
 			)
 		);
@@ -74,8 +74,8 @@ if (!empty($rs)) {
 	</div>
 <?php
 }
-echo $this->Form->input('Top10.start', array('type' => 'hidden', 'id' => 'iptStart', 'value' => $start));
-echo $this->Form->input('Top10.end', array('type' => 'hidden', 'id' => 'iptEnd', 'value' => $end));
+echo $this->Form->input('Top10.start', array('type' => 'hidden', 'id' => 'iptStart', 'value' => isset($start) ? $start : 0));
+echo $this->Form->input('Top10.end', array('type' => 'hidden', 'id' => 'iptEnd', 'value' => isset($end) ? $end : 0));
 echo $this->Form->end();
 ?>
 
