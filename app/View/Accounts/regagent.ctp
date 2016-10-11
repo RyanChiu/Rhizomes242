@@ -282,3 +282,33 @@ echo $this->Form->input('Account.online', array('type' => 'hidden', 'value' => '
 echo $this->Form->input('Agent.id', array('type' => 'hidden'));
 echo $this->Form->end();
 ?>
+
+<!-- fancybox popup tips -->
+<div style="display:none">
+	<a id="tips_link" href="#tips_for_creating">show tips</a>
+</div>
+<div style="display:none">
+	<div id="tips_for_creating" 
+		style="width:500px;background-color:#FFFFCC;padding:8px;">
+		<font style="font-weight:bold;color:red;">MANAGER, AFTER AGENT IS CREATED,</font> <b>PLEASE GO TO:</b><br/>
+		1. MAIN MENU: <br/>
+		2. APPROVE NEW AGENT; <br/>
+		3. CLICK <?php echo $this->Html->image('iconActivate.png', array('border' => 0, 'width' => 16, 'height' => 16)); ?> TO APROVE <br/>
+		4. AGENT RID TAKES 1 HOUR TO ACTIVATE AFTER CREATION, <br/>
+		5. AGENT MUST BE APPOREVED TO LOG IN.
+	</div>
+</div>
+<script type="text/javascript">
+jQuery(document).ready(function() {
+	jQuery("a#tips_link").fancybox({
+		'type': 'inline',
+		'margin': 0,
+		'padding': 0,
+		'overlayOpacity': 0.6,
+		'overlayColor': '#0A0A0A',
+		'showCloseButton': true,
+		'modal': false
+	});
+	jQuery("a#tips_link").click();
+})
+</script>
