@@ -45,7 +45,7 @@ function __checkAll() {
 	<th><b><?php echo $this->ExPaginator->sort('Account.role', 'Role'); ?></b></th>
 	<th><b><?php echo $this->ExPaginator->sort('Account.regtime', 'Registered'); ?></b></th>
 	<th><b><?php echo $this->ExPaginator->sort('Account.status', 'Status'); ?></b></th>
-	<th><b>Operation</b></th>
+	<th><b>Approve</b></th>
 </tr>
 </thead>
 <?php
