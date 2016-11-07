@@ -11,7 +11,7 @@
 	define("BBRD_CHS", "5,6");
 	define("ADC_CHS", "10");
 	define("BLDS_CHS", "11,12,13,14");
-	define("NES_CHS", "15");
+	define("NES_CHS", "15,16");
 	/*
 	 * routines area
 	 */
