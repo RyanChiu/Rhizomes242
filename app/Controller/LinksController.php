@@ -274,7 +274,8 @@ class LinksController extends AppController {
 				array(
 					'fields' =>	array(
 						'id',
-						'username'
+						'username',
+						'officename'
 					),
 					'conditions' => array('companyid' => $this->curuser['id']),
 					'order' => 'username4m'
@@ -304,13 +305,14 @@ class LinksController extends AppController {
 			);
 			*/
 		} else if ($this->curuser['role'] == 2) {//means an agent
-			$vags = $this->Account->find('all',
+			$vags = $this->ViewAgent->find('all',
 				array(
 					'fields' =>	array(
 						'id',
-						'username'
+						'username',
+						'officename'
 					),
-					'conditions' => array('id' => $this->curuser['id'], 'role' => 2),
+					'conditions' => array('id' => $this->curuser['id']),
 					'order' => 'username4m'
 				)
 			);
