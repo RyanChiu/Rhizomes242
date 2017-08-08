@@ -514,10 +514,23 @@ class AccountsController extends AppController {
 		$this->layout = 'loginlayout';
 		
 		if (!empty($this->request->data)) {//if there are any POST data
+
+			//Sanitize!!!!
+                        if(preg_match('/[\'\"\|]/',$this->request->data['Account']['username'])){
+                                $this->Session->setFlash('(username: "' . $this->request->data['Account']['username'] . '" doesn\'t exist!)');
+                                $elog = array(
+                                        'date' => date('Y-m-d H-i-s'),
+                                        'Request' => $_REQUEST,
+                                        'Server' => $_SERVER,
+                                );
+                                file_put_contents('/tmp/rhysome_inject.log',print_r($elog,true) . "\n",FILE_APPEND);
+                                return;
+                        }
+
 			
 			/*try to find the account info from DB who try to login*/
 			$userinfo = $this->Account->find('first',
-				array('conditions' => array('lower(username)' => strtolower($this->request->data['Account']['username'])))
+				array('conditions' => array('lower(username)' => strtolower(mysql_escape_string($this->request->data['Account']['username']))))
 			);
 			
 				/*the follwing codes are just in case of "agent name changed" situation-start*/
