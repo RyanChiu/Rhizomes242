@@ -151,7 +151,7 @@ img.float {
 	float: left;
 	margin-bottom: 7px;
 	width: 950px; /**/
-	background-color: #ffffff;
+	background-color: black;
 }
 
 * html .maincontent {
@@ -201,7 +201,7 @@ img.float {
 	background-repeat: no-repeat;
 	padding: 9px 14px 5px 10px;
 	font-size: 16px;
-	color: #fff;
+	color: white;
 	min-height: 11px;
 	font-weight: bold;
 }
@@ -233,9 +233,9 @@ select {
 	font-size: 12px;
 	clear: both;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	text-align: right;
+	text-align: left;
 	vertical-align: middle;
-	line-height: 33px;
+	line-height: 16px;
 	background-image: url(../img/main/footer.png);
 	min-height: 33px;
 }
@@ -322,14 +322,14 @@ a:hover {
 }
 /*for stats, the totals*/
 .totals {
-	background: /*#E6EDF5*/ #ccff22;
+	background: /*#E6EDF5*/ #cccccc;
 	color: /*#4F76A3*/ black;
 	font-size: 100% !important;
 	font-weight: bold;
 }
 /*for search label*/
 .search-label {
-	background: /*#E6EDF5*/ #ccff22;
+	background: /*#E6EDF5*/ #cccccc;
 	color: /*#4F76A3*/ black;
 	font-size: 100% !important;
 	font-weight: bold;

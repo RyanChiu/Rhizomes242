@@ -15,7 +15,7 @@ echo $scripts_for_layout;
 
 ?>
 </head>
-<body bgcolor="#ffffff">
+<body style="background:white;">
 	<div class="wrapper">
 		<!-- Start Border-->
 		<div id="border">
@@ -24,26 +24,28 @@ echo $scripts_for_layout;
 			</div>
 			
 			<!-- Start log in table layout -->
-			<table style="border:0">
+			<table style="border:0;background:white;">
 				<tbody>
 					<tr>
-						<td rowspan=2 style="vertical-align:top;">
+						<td  style="vertical-align:top;">
 							<?php 
 							echo $this->Html->image(
-								'main/bamboo.jpg', array('style' => 'border:0px;height:170px;margin-left:45px;')
-							);
-							?>
-						</td>
-						<td>
-							<?php 
-							echo $this->Html->image(
-								'main/banner.jpg', array('style' => 'border:0px;height:120px;')
+								'GLOBALNETTXT.jpg', array('style' => 'border:0;')
 							);
 							?>
 						</td>
 					</tr>
 					<tr>
-						<td style="text-align:left;width:100%;">
+						<td>
+							<?php 
+							echo $this->Html->image(
+								'HEADER.jpg', array('style' => 'border:0;width:960px;')
+							);
+							?>
+						</td>
+					</tr>
+					<tr>
+						<td style="width:100%;">
 							<?php echo $content_for_layout; ?>
 						</td>
 					</tr>
@@ -55,11 +57,18 @@ echo $scripts_for_layout;
 		<!-- End Border -->
 		<!-- Start Footer -->
 		<div id="footer">
-			<div style="color:#99cc66;font-size:1;float:left;">
-				2333 Dean Path, Edinburgh, EH3 7DX, UK
+			<div style="background:black;color:white;padding:6px;">
+			Our affiliate program is based on a years of success in the adult industry advertising. 
+			Our understanding of the affilaite needs, Years of marketing experience has allowed us 
+			to create the most advanced Internet affiliate program in the industry. 
+			<a href="www.globalnetadvertising.com">www.globalnetadvertising.com</a> takes affiliate 
+			marketing programs to the next level.
 			</div>
-			<div style="color:#99cc66;font-size:1;float:right;">
-				Copyright &copy; 2016 www.TheRhizomes.com All Rights Reserved.
+			<div style="background:white;color:black;font-size:1;font-weight:bold;">
+			<center>
+				<br/>De Kleetlaan 12a 2331 Diegem Brussels Belgium<br/>
+				Copyright &copy; 2016 <a href="www.globalnetadvertising.com">www.globalnetadvertising.com</a> All Rights Reserved.
+			</center>
 			</div>
 		</div>
 		<!-- End Footer -->

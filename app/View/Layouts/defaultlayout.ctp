@@ -21,7 +21,7 @@ echo $this->Html->css('main');
 echo $this->Html->css('tables');
 
 /*for jQuery datapicker*/
-echo $this->Html->css('jQuery/Datepicker/green');
+echo $this->Html->css('jQuery/Datepicker/dp_gray');
 echo $this->Html->script('jQuery/Datepicker/jquery-1.3.2.min');
 echo $this->Html->script('jQuery/Datepicker/jquery-ui-1.7.custom.min');
 
@@ -62,26 +62,14 @@ echo $scripts_for_layout;
 			<!-- Start Header -->
 			<div class="header" style="align-text:center">
 				<div>
-					<div style="float:left;">
-						<?php 
-						echo $this->Html->image(
-							'main/bamboo.jpg', 
-							array(
-								'style' => 'border:0px;height:120px;margin-left:189px;'
-							)
-						);
-						?>
-					</div>
-					<div style="float:left;">
-						<?php 
-						echo $this->Html->image(
-							'main/banner.jpg', 
-							array(
-								'style' => 'border:0px;height:120px;'
-							)
-						);
-						?>
-					</div>
+				<?php 
+				echo $this->Html->image(
+					'GLOBALNETTXT.jpg', 
+					array(
+						'style' => 'border:0px;width:100%;height:90px;'
+					)
+				);
+				?>
 				</div>
 			</div>
 			<!-- End Header -->
@@ -671,11 +659,18 @@ echo $scripts_for_layout;
 		<!-- End Border -->
 		<!-- Start Footer -->
 		<div id="footer">
-			<div style="color:#99cc66;font-size:1;float:left;">
-				2333 Dean Path, Edinburgh, EH3 7DX, UK
+			<div style="background:black;color:white;padding:6px;">
+			Our affiliate program is based on a years of success in the adult industry advertising. 
+			Our understanding of the affilaite needs, Years of marketing experience has allowed us 
+			to create the most advanced Internet affiliate program in the industry. 
+			<a href="www.globalnetadvertising.com">www.globalnetadvertising.com</a> takes affiliate 
+			marketing programs to the next level.
 			</div>
-			<div style="color:#99cc66;font-size:1;float:right;">
-				Copyright &copy; 2016 www.TheRhizomes.com All Rights Reserved.
+			<div style="background:white;color:black;font-size:1;font-weight:bold;padding-bottom:12px;">
+			<center>
+				<br/>De Kleetlaan 12a 2331 Diegem Brussels Belgium<br/>
+				Copyright &copy; 2016 <a href="www.globalnetadvertising.com">www.globalnetadvertising.com</a> All Rights Reserved.
+			</center>
 			</div>
 		</div>
 		<!-- End Footer -->

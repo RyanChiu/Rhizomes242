@@ -8,7 +8,7 @@ echo $this->Form->create(null, array('url' => array('controller' => 'accounts', 
 <table style="border:0;width:100%;">
 	<tr>
 		<td align="right">
-			<b><font style="color:#99cc66;margin-right:6px;" size="2">User Name:</font></b>
+			<b><font style="color:#0066ff;margin-left:145px;" size="2">User Name:</font></b>
 		</td>
 		<td align="left">
 			<?php
@@ -21,7 +21,7 @@ echo $this->Form->create(null, array('url' => array('controller' => 'accounts', 
 	</tr>
 	<tr>
 		<td align="right">
-			<b><font style="color:#99cc66;margin-right:6px;" size="2">Password:</font></b>
+			<b><font style="color:#0066ff;margin-left:145px;" size="2">Password:</font></b>
 		</td>
 		<td align="left">
 			<?php
@@ -34,7 +34,7 @@ echo $this->Form->create(null, array('url' => array('controller' => 'accounts', 
 	</tr>
 	<tr>
 		<td align="right">
-			<b><font style="color:#99cc66;margin-right:6px;" size="2">Captcha:</font></b>
+			<b><font style="color:#0066ff;margin-left:145px;" size="2">Captcha:</font></b>
 		</td>
 		<td align="left">
 			<div style="float:left;margin-right:10px;">
@@ -85,19 +85,19 @@ echo $this->Form->create(null, array('url' => array('controller' => 'accounts', 
 		</td>
 	</tr>
 	<tr>
-		<td colspan=2 style="padding-left:70px;color:#99cc66;">Example: 2+4=6, the captcha answer is 6.</td>
+		<td colspan=2 style="padding-left:356px;color:#0066ff;">Example: 2+4=6, the captcha answer is 6.</td>
 	</tr>
 	<tr>
-		<td colspan="2" style="padding-left:70px;">
+		<td colspan="2" style="padding-left:0;">
 		<br/>
-		<div style="width:220px;height:45px;">
+		<div style="width:100%;height:35px;text-align:center;">
 		<?php
-		echo $this->Html->image("ninjastar.png", array('style' => "border:0;margin-top:7px;float:left;"));
-		echo $this->Form->submit('login-button.png', array('style' => 'border:0px;width:160px;height:45px;float:left;margin-left:20px;'));
+		echo $this->Form->submit('Log in', array('style' => 'border:0;width:150px;color:#0066ff;font-size:16px;background:white;text-decoration:underline;'));
 		?>
 		</div>
 		</td>
 	</tr>
+	<!--
 	<tr>
 		<td  colspan="2" style="padding-left:70px;">
 			<br/> 
@@ -109,11 +109,12 @@ echo $this->Form->create(null, array('url' => array('controller' => 'accounts', 
 			);
 			?>
 			<br/><br/>
-			<font color="#99cc66">Contact your manager, to retrieve your password,</font>
-			<br/>
-			<font color="#99cc66">we do not have agent's REAL email address.</font>
+			<?php
+			echo $this->Html->image("main/money.png", array('style' => "border:0;margin-top:7px;width:450px;float:left;"));
+			?>
 		</td>
 	</tr>
+	-->
 </table>
 <?php
 echo $this->Form->end();

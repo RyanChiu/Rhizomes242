@@ -6,7 +6,7 @@
 table, th, td {
 	border: 1px solid /*#D4E0EE*/#3d3d3d;
 	border-collapse: collapse;
-	color: /*#555*/#ffffff;
+	color: /*#555*/black;
 }
 
 caption {
@@ -14,7 +14,7 @@ caption {
 	font-weight: bold;
 	margin: 5px;
 	text-align: left;
-	color: #ffffff;
+	color: black;
 }
 
 td, th {
@@ -23,7 +23,7 @@ td, th {
 
 thead th {
 	text-align: center;
-	background: /*#E6EDF5*/#ccff00;
+	background: /*#E6EDF5*/#bbbbbb;
 	color: /*#4F76A3*/black;
 	font-size: 100% !important;
 }
@@ -32,9 +32,9 @@ tbody th {
 	font-weight: bold;
 }
 
-tbody tr { background: #161616; }
+tbody tr { background: #eeeeee; }
 
-tbody tr.odd { background: #202020; }
+tbody tr.odd { background: #dddddd; }
 
 table th a:link {
 	color: /*#718ABE*/black;
