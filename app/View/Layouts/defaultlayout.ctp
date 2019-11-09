@@ -111,7 +111,7 @@ echo $scripts_for_layout;
 						?>
 						<li>
 						<?php
-						echo $this->Html->link('<span><font>NEWS</font></span>',
+						echo $this->Html->link('<span><font>ALERTS</font></span>',
 							array('controller' => 'accounts', 'action' => 'addnews'),
 							array('rel' => 'dropmenu_admin_news', 'escape' => false),
 							false
@@ -134,7 +134,7 @@ echo $scripts_for_layout;
 						?>
 						<li>
 						<?php
-						echo $this->Html->link('<span><font>OFFICE</font></span>',
+						echo $this->Html->link('<span><font>TEAM</font></span>',
 							array('controller' => 'accounts', 'action' => 'lstcompanies', 'id' => -1),
 							array('rel' => 'dropmenu_admin_company', 'escape' => false),
 							false
@@ -156,7 +156,7 @@ echo $scripts_for_layout;
 						?>
 						<li>
 						<?php
-						echo $this->Html->link('<span><font>AGENT</font></span>',
+						echo $this->Html->link('<span><font>SELLER</font></span>',
 							array('controller' => 'accounts', 'action' => 'lstagents', 'id' => -1),
 							array('rel' => 'dropmenu_admin_agent', 'escape' => false),
 							false
@@ -180,7 +180,7 @@ echo $scripts_for_layout;
 						?>
 						<li>
 						<?php
-						echo $this->Html->link('<span><font>AGENT</font></span>',
+						echo $this->Html->link('<span><font>SELLER</font></span>',
 							array('controller' => 'accounts', 'action' => 'lstagents', 'id' => $userinfo['id']),
 							array('rel' => 'dropmenu_com_agent', 'escape' => false),
 							false);
@@ -200,7 +200,7 @@ echo $scripts_for_layout;
 						?>
 						<li>
 						<?php
-						echo $this->Html->link('<span><font>APPROVE NEW AGENT</font></span>',
+						echo $this->Html->link('<span><font>NEW MEMBERS</font></span>',
 							array('controller' => 'accounts', 'action' => 'lstnewmembers'),
 							array('escape' => false), 
 							false);
@@ -375,7 +375,7 @@ echo $scripts_for_layout;
 						?>
 						<li>
 						<?php 
-						echo $this->Html->link('<span><font>HOW TO SELL</font></span>',
+						echo $this->Html->link('<span><font>LEADS</font></span>',
 							"#",
 							array('rel' => 'dropmenu_toolbox_admin', 'escape' => false),
 							false
@@ -393,7 +393,7 @@ echo $scripts_for_layout;
 						?>
 						<li>
 						<?php 
-						echo $this->Html->link('<span><font>HOW TO SELL</font></span>',
+						echo $this->Html->link('<span><font>LEADS</font></span>',
 							"#",
 							array('rel' => 'dropmenu_toolbox_normal', 'escape' => false),
 							false
@@ -451,7 +451,7 @@ echo $scripts_for_layout;
 				<div id="dropmenu_admin_agent" class="dropmenudiv_e"
 					style="width: 130px;">
 					<?php
-					echo $this->Html->link('<font><b>Manage Agent</b></font>',
+					echo $this->Html->link('<font><b>Manage Seller</b></font>',
 						array('controller' => 'accounts', 'action' => 'lstagents', 'id' => -1),
 						array('escape' => false), 
 						false
@@ -461,7 +461,7 @@ echo $scripts_for_layout;
 				<div id="dropmenu_admin_company" class="dropmenudiv_e"
 					style="width: 135px;">
 					<?php
-					echo $this->Html->link('<font><b>Manage Office</b></font>',
+					echo $this->Html->link('<font><b>Manage Team</b></font>',
 						array('controller' => 'accounts', 'action' => 'lstcompanies', 'id' => -1),
 						array('escape' => false), 
 						false
@@ -493,7 +493,7 @@ echo $scripts_for_layout;
 				<div id="dropmenu_com_agent" class="dropmenudiv_e"
 					style="width: 130px;">
 					<?php
-					echo $this->Html->link('<font><b>Manage Agent</b></font>',
+					echo $this->Html->link('<font><b>Manage Seller</b></font>',
 						array('controller' => 'accounts', 'action' => 'lstagents', 'id' => $userinfo['id']),
 						array('escape' => false), 
 						false
