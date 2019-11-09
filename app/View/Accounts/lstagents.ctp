@@ -1,4 +1,4 @@
-<h1>Agents</h1>
+<h1>Sellers</h1>
 <?php
 /*
 echo '<br/>';

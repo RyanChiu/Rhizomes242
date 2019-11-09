@@ -1,4 +1,4 @@
-<h1>Update Office</h1>
+<h1>Update A Team</h1>
 <?php
 $userinfo = $this->Session->read('Auth.User.Account');
 echo $this->Form->create(

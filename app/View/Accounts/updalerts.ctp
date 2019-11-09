@@ -1,4 +1,4 @@
-<h1>Update Alerts</h1>
+<h1>Update A Popup</h1>
 <?php
 //echo print_r($results, true);
 $userinfo = $this->Session->read('Auth.User.Account');
@@ -7,7 +7,7 @@ echo $this->Form->create(null, array('url' => array('controller' => 'accounts', 
 <table style="width:100%">
 	<tr>
 		<td align="center">
-		Alerts
+		Content
 		</td>
 		<td>
 		<div style="float:left">

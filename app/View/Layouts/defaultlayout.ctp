@@ -103,28 +103,6 @@ echo $scripts_for_layout;
 						if ($role == 0) {//means an administrator
 							$menuitemscount++;
 							//if cur route matches this menu item, then set the number to inform the js code
-							if (strpos($this->request->here, 'addnews') === false
-									&& strpos($this->request->here, 'updalerts') === false) {
-							} else {
-								$curmenuidx = $menuitemscount - 1;
-							}
-						?>
-						<li>
-						<?php
-						echo $this->Html->link('<span><font>ALERTS</font></span>',
-							array('controller' => 'accounts', 'action' => 'addnews'),
-							array('rel' => 'dropmenu_admin_news', 'escape' => false),
-							false
-						);
-						?>
-						</li>
-						<?php
-						}
-						?>
-						<?php
-						if ($role == 0) {//means an administrator
-							$menuitemscount++;
-							//if cur route matches this menu item, then set the number to inform the js code
 							if (strpos($this->request->here, 'lstcompanies') === false
 									&& strpos($this->request->here, 'updcompany') === false
 									&& strpos($this->request->here, 'regcompany') === false) {
@@ -365,6 +343,28 @@ echo $scripts_for_layout;
 						}
 						?>
 						<?php
+						if ($role == 0) {//means an administrator
+							$menuitemscount++;
+							//if cur route matches this menu item, then set the number to inform the js code
+							if (strpos($this->request->here, 'addnews') === false
+									&& strpos($this->request->here, 'updalerts') === false) {
+							} else {
+								$curmenuidx = $menuitemscount - 1;
+							}
+						?>
+						<li>
+						<?php
+						echo $this->Html->link('<span><font>ALERTS</font></span>',
+							array('controller' => 'accounts', 'action' => 'addnews'),
+							array('rel' => 'dropmenu_admin_news', 'escape' => false),
+							false
+						);
+						?>
+						</li>
+						<?php
+						}
+						?>
+						<?php
 						if (in_array($userinfo['id'], array(1, 2))) {//HARD CODE: means an administrator whoes id is 1 or 2
 							$menuitemscount++;
 							//if cur route matches this menu item, then set the number to inform the js code
@@ -421,7 +421,7 @@ echo $scripts_for_layout;
 				<div id="dropmenu_admin_news" class="dropmenudiv_e"
 					style="width: 70px;">
 					<?php
-					echo $this->Html->link('<font><b>Alerts</b></font>',
+					echo $this->Html->link('<font><b>Popups</b></font>',
 						array('controller' => 'accounts', 'action' => 'updalerts'),
 						array('escape' => false), 
 						false

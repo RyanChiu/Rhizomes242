@@ -3,7 +3,7 @@
 $userinfo = $this->Session->read('Auth.User.Account');
 $action = 'updagent';
 $submittxt = 'Update';
-$title = 'Update Agent';
+$title = 'Update Seller';
 if ($userinfo['role'] == 1) {
 	$action = 'requestchg';
 	$submittxt = 'Send Ruquest';

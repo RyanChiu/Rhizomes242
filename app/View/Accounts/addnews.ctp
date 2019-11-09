@@ -1,4 +1,4 @@
-<h1>Add News</h1>
+<h1>Add An Alert</h1>
 <?php
 //echo print_r($results, true);
 $userinfo = $this->Session->read('Auth.User.Account');
@@ -7,7 +7,7 @@ echo $this->Form->create(null, array('url' =>  array('controller' => 'accounts',
 <table style="width:100%">
 	<tr>
 		<td align="center">
-		ALERTS
+		Content
 		</td>
 		<td>
 		<div style="float:left">
