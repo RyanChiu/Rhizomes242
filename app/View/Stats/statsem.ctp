@@ -19,7 +19,7 @@ switch ($bywhat) {
 ?>
 
 <?php
-echo $this->element('timezoneblock');
+//echo $this->element('timezoneblock');
 ?>
 
 <?php
