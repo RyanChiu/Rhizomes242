@@ -12,7 +12,7 @@ $userinfo = $this->Session->read('Auth.User.Account');
 <h1>Click Logs</h1>
 
 <?php
-echo $this->element('timezoneblock');
+//echo $this->element('timezoneblock');
 ?>
 
 <div style="width:100%;margin-top:5px;" id="search">
