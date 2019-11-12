@@ -39,7 +39,7 @@ echo $scripts_for_layout;
 						<td>
 							<?php 
 							echo $this->Html->image(
-								'HEADER.jpg', array('style' => 'border:0;width:960px;')
+								'HEADER.jpg', array('style' => 'border:0;width:100%;')
 							);
 							?>
 						</td>
