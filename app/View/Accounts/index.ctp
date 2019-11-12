@@ -81,7 +81,7 @@ if (!empty($archdata)) {
 <br/>
 
 <?php
-echo $this->element('timezoneblock');
+//echo $this->element('timezoneblock');
 ?>
 
 <br/>
