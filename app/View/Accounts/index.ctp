@@ -6,7 +6,7 @@ $userinfo = $this->Session->read('Auth.User.Account');
 <div style="float:left;"><h1>Home</h1></div>
 <div style="float:left;margin-left:10px;">
 <?php
-if ($userinfo['role'] == 0) {
+if (false && $userinfo['role'] == 0) {
 	echo $this->Html->link(
 		/*$this->Html->image('archive.jpg',
 			array('border' => 0, 'width' => 25, 'height' => 25, 'alt' => 'Archive this bulletin.')
