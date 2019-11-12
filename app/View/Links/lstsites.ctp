@@ -2,19 +2,18 @@
 $userinfo = $this->Session->read('Auth.User.Account');
 ?>
 <h1>Sites</h1>
-<br/>
-<div style="margin-bottom:3px">
-<?php
-echo $this->Form->button('Add Site',
-	array(
-		'onclick' => 'javascript:location.href=\''
-			. $this->Html->url(array('controller' => 'links', 'action' => 'addsite')) . '\'',
-		'style' => 'width:160px;'
-	)
-);
-?>
-</div>
 <table style="width:100%">
+	<caption>
+	<?php
+	echo $this->Form->button('Add Site',
+		array(
+			'onclick' => 'javascript:location.href=\''
+				. $this->Html->url(array('controller' => 'links', 'action' => 'addsite')) . '\'',
+			'style' => 'width:160px;'
+		)
+	);
+	?>
+	</caption>
 	<thead>
 	<tr>
 		<th><?php echo $this->ExPaginator->sort('ViewSite.hostname', 'Campaigns') . '<br/><font size="1">(for admin only)</font>'; ?></th>

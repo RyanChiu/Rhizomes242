@@ -573,9 +573,9 @@ echo $scripts_for_layout;
 						<b><font color="red"><?php echo $this->Session->flash(); ?> </font> </b>
 					</center>
 					<div class="content-top">
-						<div style="float: right; text-align: right;">
+						<div style="float:left;text-align:left;padding:39px 0 0 13px;position:relative;height:0;width:0;font-weight:bold;color:darkred;">
 							<?php
-							//echo $this->Html->image('iconLips.png', array('width' => '40px'));
+							echo "USER:" . $userinfo['username'];
 							?>
 						</div>
 						<div
@@ -585,7 +585,7 @@ echo $scripts_for_layout;
 								readonly="readonly"
 								onmouseover="jQuery('#divTimezoneTip').slideDown();"
 								onmouseout="jQuery('#divTimezoneTip').slideUp();" />
-							<div><font color="red">EST-EDT: Stats Time zone</font></div>
+							<div><font color="darkred">EST-EDT: Stats Time zone</font></div>
 							<div><a href="https://www.dateandtime.com">https://www.dateandtime.com</a></div>
 						</div>
 						<div

@@ -2,7 +2,7 @@
 //echo print_r($rs, true);
 $userinfo = $this->Session->read('Auth.User.Account');
 ?>
-<div>
+<div style="float:left;">
 <div style="float:left;"><h1>Home</h1></div>
 <div style="float:left;margin-left:10px;">
 <?php
@@ -20,7 +20,7 @@ if (false && $userinfo['role'] == 0) {
 </div>
 <div style="float:left;margin:0px 0px 5px 60px;;font-size:10px;">
 <?php
-if (!empty($archdata)) {
+if (false && !empty($archdata)) {
 	$i = 0;
 	echo '| ';
 	foreach ($archdata as $arch) {
