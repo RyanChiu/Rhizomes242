@@ -8,11 +8,11 @@ echo $this->Html->scriptBlock(
 <h1>Log in/out Logs</h1>
 
 <?php
-echo $this->element('timezoneblock');
+//echo $this->element('timezoneblock');
 ?>
 
 <?php
-$userinfo = $this->Session->read('Auth.Account');
+$userinfo = $this->Session->read('Auth.User.Account');
 ?>
 
 <?php

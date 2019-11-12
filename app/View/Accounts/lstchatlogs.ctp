@@ -13,7 +13,7 @@ $userinfo = $this->Session->read('Auth.User.Account');
 <h1>Chat Logs</h1>
 
 <?php
-echo $this->element('timezoneblock');
+//echo $this->element('timezoneblock');
 ?>
 
 <?php

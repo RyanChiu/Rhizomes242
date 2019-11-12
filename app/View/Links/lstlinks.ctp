@@ -4,17 +4,6 @@ App::import('Vendor', 'extrakits');
 $userinfo = $this->Session->read('Auth.User.Account');
 ?>
 <h1>Link Codes</h1>
-<br/>
-<div style="float:right">
-<?php
-if ($userinfo['role'] == 0) {//means an administrator
-	echo $this->Html->link(
-		'Configure Sites...',
-		array('controller' => 'links', 'action' => 'lstsites')
-	);
-}
-?>
-</div>
 <!--  
 <small>(You're from:<?php //echo __getclientip(); ?>, and you'll be <?php //echo __isblocked(__getclientip()) ? 'blocked.' : 'passed.'; ?>)</small>
 -->
@@ -23,7 +12,14 @@ echo $this->Form->create(null, array('url' => array('controller' => 'links', 'ac
 ?>
 <table style="width:100%">
 <caption>
-	Please get your link(s)
+	<?php
+	if ($userinfo['role'] == 0) {//means an administrator
+		echo $this->Html->link(
+			'Configure Sites...',
+			array('controller' => 'links', 'action' => 'lstsites')
+		);
+	}
+	?>
 	<br/>
 	<font style="color:red;">
 	<?php
