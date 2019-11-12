@@ -118,6 +118,9 @@ if (!empty($notes)) {
 </table>
 
 <!-- show the top selling list -->
+<?php
+if (false) {
+?>
 <br/>
 <table style="width:100%">
 <caption><font size="5" color="#bb2222">Best sellers</font></caption>
@@ -267,6 +270,9 @@ if (!empty($notes)) {
 	</td>
 </tr>
 </table>
+<?php
+}
+?>
 
 <!-- ## for accounts overview
 <table style="width:100%">
