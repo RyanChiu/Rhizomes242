@@ -731,9 +731,9 @@ echo $scripts_for_layout;
 				YOUR
 				<?php echo '"' . implode("\", \"", $excludedsites) . '"'; ?>
 				LINKS HAVE BEEN SUSPENDED, PLEASE CONTACT <a
-					href="mailto:SUPPORT@TheRhizomes.com"><font color="red">THE RHIZOMES
-						SUPPORT</font> </a> FOR MORE INFO.<br /> <a
-					href="mailto:SUPPORT@TheRhizomes.com"><font color="red">SUPPORT@TheRhizomes.com</font>
+					href="mailto:SUPPORT@GlobalNetAdvertising.com"><font color="red">THE 
+						GLOBALNETADVERTISING SUPPORT</font> </a> FOR MORE INFO.<br /> <a
+					href="mailto:SUPPORT@GlobalNetAdvertising.com"><font color="red">SUPPORT@GlobalNetAdvertising.com</font>
 				</a>
 			</p>
 			<div style="margin: 12px 2px 2px 2px; font-weight: bolder;">REASONS

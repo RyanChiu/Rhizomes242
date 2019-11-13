@@ -105,8 +105,8 @@
  * thus not recommended for production applications.
  */
 	//Configure::write('App.baseUrl', env('SCRIPT_NAME'));
-	Configure::write('App.base', '/TheRhizomes');
-	Configure::write('App.baseUrl', '/TheRhizomes');
+	Configure::write('App.base', '/GNA');
+	Configure::write('App.baseUrl', '/GNA');
 
 /**
  * To configure CakePHP to use a particular domain URL
