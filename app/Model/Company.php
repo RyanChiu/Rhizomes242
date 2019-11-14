@@ -9,7 +9,7 @@ class Company extends AppModel {
 			),
 			'officenameRule_2' => array(
 				'rule' => 'isUnique',
-				'message' => 'Sorry, this "Office Name" has already been taken.' 
+				'message' => 'Sorry, this "Team Name" has already been taken.' 
 			)
 		),
 		'man1stname' => array(
