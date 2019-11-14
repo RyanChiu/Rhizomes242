@@ -471,12 +471,12 @@ echo $scripts_for_layout;
 				<div id="dropmenu_toolbox_admin" class="dropmenudiv_e"
 					style="width: 180px;">
 					<?php
-					echo $this->Html->link('<font><b>Update Cams-2</b></font>',
+					echo $this->Html->link('<font><b>Update 1</b></font>',
 						array('controller' => 'accounts', 'action' => 'updtoolbox', 'site' => 7),
 						array('escape' => false), 
 						false
 					);
-					echo $this->Html->link('<font><b>Update LC-Dating</b></font>',
+					echo $this->Html->link('<font><b>Update 2</b></font>',
 						array('controller' => 'accounts', 'action' => 'updtoolbox', 'site' => 2),
 						array('escape' => false), 
 						false
