@@ -11,7 +11,7 @@ echo $this->Form->create(
 <table style="width:100%;border:0;">
 	<caption>Fields marked with an asterisk (*) are required.</caption>
 	<tr>
-		<td width="222">Office Name : </td>
+		<td width="222">Team Name : </td>
 		<td>
 		<div style="float:left">
 		<?php
@@ -69,7 +69,7 @@ echo $this->Form->create(
 		</td>
 	</tr>
 	<tr>
-		<td>Username for this Office : </td>
+		<td>User for this Team : </td>
 		<td>
 		<div style="float:left">
 		<?php
@@ -80,7 +80,7 @@ echo $this->Form->create(
 		</td>
 	</tr>
 	<tr>
-		<td>Password : </td>
+		<td>Pass : </td>
 		<td>
 		<div style="float:left">
 		<?php
@@ -91,7 +91,7 @@ echo $this->Form->create(
 		</td>
 	</tr>
 	<tr>
-		<td>Confirm password : </td>
+		<td>Confirm Pass : </td>
 		<td>
 		<div style="float:left">
 		<?php
@@ -143,7 +143,7 @@ echo $this->Form->create(
 		</td>
 	</tr>
 	<tr>
-		<td>Agent Notes : </td>
+		<td>Seller Notes : </td>
 		<td>
 		<?php
 		echo $this->Form->input('Company.agentnotes', array('label' => '', 'rows' => '9', 'cols' => '60'));

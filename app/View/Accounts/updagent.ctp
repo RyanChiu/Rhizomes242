@@ -7,7 +7,7 @@ $title = 'Update Seller';
 if ($userinfo['role'] == 1) {
 	$action = 'requestchg';
 	$submittxt = 'Send Ruquest';
-	$title = 'Request For Updating Agent';
+	$title = 'Request For Updating Seller';
 }
 ?>
 <h1><?php echo $title; ?></h1>
@@ -23,7 +23,7 @@ if ($userinfo['role'] == 1) {
 <table style="width:100%">
 	<caption>Fields marked with an asterisk (*) are required.</caption>
 	<tr>
-		<td width="248px">Office : </td>
+		<td width="248px">Team : </td>
 		<td>
 		<div style="float:left">
 		<?php
@@ -104,7 +104,7 @@ if ($userinfo['role'] == 1) {
 		</td>
 	</tr>
 	<tr>
-		<td>Username : </td>
+		<td>User : </td>
 		<td>
 		<div style="float:left">
 		<?php
@@ -119,7 +119,7 @@ if ($userinfo['role'] == 1) {
 		</td>
 	</tr>
 	<tr>
-		<td>Password : </td>
+		<td>Pass : </td>
 		<td>
 		<div style="float:left">
 		<?php
@@ -130,7 +130,7 @@ if ($userinfo['role'] == 1) {
 		</td>
 	</tr>
 	<tr>
-		<td>Confirm Password : </td>
+		<td>Confirm Pass : </td>
 		<td>
 		<div style="float:left">
 		<?php

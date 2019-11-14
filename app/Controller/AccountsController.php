@@ -401,7 +401,7 @@ class AccountsController extends AppController {
 					'conditions' => array('id' => $aginfo['Agent']['companyid'])
 				)
 			);
-			$this->set('notes', '<font size="3"><b>Office news&nbsp;&nbsp;</b></font>' . $cominfo['Company']['agentnotes']);
+			$this->set('notes', '<font size="3"><b>Team news&nbsp;&nbsp;</b></font>' . $cominfo['Company']['agentnotes']);
 		}
 		
 		/*
@@ -557,7 +557,7 @@ class AccountsController extends AppController {
 					);
 					if ($cpinfo['Account']['status'] == 0) {
 						$this->Session->setFlash(
-							"(Your office is suspended right now, please contact your administrator.)",
+							"(Your team is suspended right now, please contact your administrator.)",
 							'default',
 							array('class' => 'suspended-warning')
 						);
@@ -567,7 +567,7 @@ class AccountsController extends AppController {
 					}
 					if ($cpinfo['Account']['status'] == -1) {
 						$this->Session->setFlash(
-								"(Your office is not approved for the moment, please contact your administrator.)",
+								"(Your team is not approved for the moment, please contact your administrator.)",
 								'default',
 								array('class' => 'suspended-warning')
 						);
@@ -1043,7 +1043,7 @@ class AccountsController extends AppController {
 
 					/*redirect to some page*/
 					$this->Session->setFlash(
-						'Office "'
+						'Team "'
 						. $this->request->data['Account']['username']
 						. '" added.'
 						. ($exdone ? '' : '<br><i>(Site associating failed.)</i>')
@@ -1221,7 +1221,7 @@ class AccountsController extends AppController {
 					*/
 					
 					/*redirect to some page*/ 
-					$this->Session->setFlash('Agent "' 
+					$this->Session->setFlash('Seller "' 
 					  . $this->request->data['Account']['username'] . '" added.' 
 					  . ($exdone ? '' : '<br><i>(Site associating failed.)</i>') 
 					);
@@ -1354,7 +1354,7 @@ class AccountsController extends AppController {
 					}
 					
 					/*redirect to some page*/
-					$this->Session->setFlash('Office "'
+					$this->Session->setFlash('Team "'
 						. $this->request->data['Account']['username'] . '" updated.'
 						. ($exdone ? '' : '<br><i>(Site associating failed.)</i>')
 					);
@@ -1556,7 +1556,7 @@ class AccountsController extends AppController {
 					
 					 
 					/*redirect to some page*/ 
-					$this->Session->setFlash('Agent "' 
+					$this->Session->setFlash('Seller "' 
 					  . $this->request->data['Account']['username'] . '" updated.' 
 					  . ($exdone ? '' : '<br/><i>(Site associating failed.)</i>')
 					  . ($mpchgdone ? '' : '<br/><i>(Mappings changing failed.)</i>')
@@ -1987,12 +1987,12 @@ class AccountsController extends AppController {
 					);
 					
 					$content = "Request for:\n\n" 
-						. "Office(*):" . $data['Agent']['companyshadow'] . "\n"
+						. "Team(*):" . $data['Agent']['companyshadow'] . "\n"
 						. "First Name(*):" . $data['Agent']['ag1stname'] . "\n"
 						. "Last Name(*):" . $data['Agent']['aglastname'] . "\n"
 						. "Email(*):" . $data['Agent']['email'] . "\n"
-						. "Username(*):" . $data['Account']['username'] . "\n"
-						. "Password(*):" . $data['Account']['originalpwd'] . "\n"
+						. "User(*):" . $data['Account']['username'] . "\n"
+						. "Pass(*):" . $data['Account']['originalpwd'] . "\n"
 						. "Street Name & Number:" . $data['Agent']['street'] . "\n"
 						. "City:" . $data['Agent']['city'] . "\n"
 						. "State & Zip:" . $data['Agent']['state'] . "\n"
@@ -2004,13 +2004,13 @@ class AccountsController extends AppController {
 					/*send the message*/
 					$issent = false;
 					if ($data['Requestchg']['type'] == 'reg') {//means an adding request
-						$subject = "Request For New Agent";
-						$content .= "\n\n(Request from office manager \"" . $data['Requestchg']['offiname']
+						$subject = "Request For New Seller";
+						$content .= "\n\n(Request from team manager \"" . $data['Requestchg']['offiname']
 							. "\", with email address \"" . $data['Requestchg']['from'] . "\").";
 						$issent = $this->__sendemail($subject, $content, "SUPPORT@GlobalNetAdvertising.com", "NOREPLY@GlobalNetAdvertising.com");
 					} else if ($data['Requestchg']['type'] == 'upd') {//means an updating request
-						$subject = "Request For Updating Agent";
-						$content .= "\n\n(Request from office manager \"" . $data['Requestchg']['offiname']
+						$subject = "Request For Updating Seller";
+						$content .= "\n\n(Request from team manager \"" . $data['Requestchg']['offiname']
 							. "\", with email address \"" . $data['Requestchg']['from'] . "\").";
 						$issent = $this->__sendemail($subject, $content, "SUPPORT@GlobalNetAdvertising.com", "NOREPLY@GlobalNetAdvertising.com");
 					}
@@ -2032,7 +2032,7 @@ class AccountsController extends AppController {
 		$this->layout = 'defaultlayout';
 		
 		if ($this->Auth->user('Account.role') != 2) {// if not an agent
-			$this->Session->setFlash('Only agent could submit chat logs.');
+			$this->Session->setFlash('Only seller could submit chat logs.');
 			$this->redirect(array('controller' => 'accounts', 'action' => 'index'));	
 		}
 		if (!empty($this->request->data)) {
@@ -2053,8 +2053,8 @@ class AccountsController extends AppController {
 						'conditions' => array('id' => $this->request->data['ChatLog']['siteid'])
 					)
 				);
-				$subject = 'Office:' . $r['ViewAgent']['officename']
-					. ' Agent:' . $r['ViewAgent']['username']
+				$subject = 'Team:' . $r['ViewAgent']['officename']
+					. ' Seller:' . $r['ViewAgent']['username']
 					. ' -- Chat Log';
 				$content = "Client:" . $this->request->data['ChatLog']['clientusername'] . "\n"
 					. "Conversation:(" . $r0['Site']['sitename'] . ")\n"
@@ -2291,7 +2291,7 @@ class AccountsController extends AppController {
 			)
 		);
 		if (empty($r)) {
-			$this->Session->setFlash("No such agent!");
+			$this->Session->setFlash("No such a seller!");
 			$this->render('/accounts/go', 'errorlayout');
 			return;
 		}
@@ -2363,7 +2363,7 @@ class AccountsController extends AppController {
 			)
 		);
 		if (empty($r)) {
-			$this->Session->setFlash("Agent does not exist, please try again.");
+			$this->Session->setFlash("Seller does not exist, please try again.");
 			return;
 		}
 		$agentid = $r['ViewLiteAgent']['id'];
@@ -2394,7 +2394,7 @@ class AccountsController extends AppController {
 		$this->Account->id = $r['ViewLiteAgent']['companyid'];
 		$r = $this->Account->read();
 		if ($r['Account']['status'] == 0 ) {
-			$this->Session->setFlash("Sorry, your office are suspended for the moment.");
+			$this->Session->setFlash("Sorry, your team are suspended for the moment.");
 			return;
 		}
 		
