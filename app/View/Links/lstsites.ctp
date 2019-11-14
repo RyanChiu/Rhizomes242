@@ -17,7 +17,7 @@ $userinfo = $this->Session->read('Auth.User.Account');
 	<thead>
 	<tr>
 		<th><?php echo $this->ExPaginator->sort('ViewSite.hostname', 'Campaigns') . '<br/><font size="1">(for admin only)</font>'; ?></th>
-		<th><?php echo $this->ExPaginator->sort('ViewSite.sitename', 'Site Name') . '<br/><font size="1">(for office or agent)</font>'; ?></th>
+		<th><?php echo $this->ExPaginator->sort('ViewSite.sitename', 'Site Name') . '<br/><font size="1">(for team or seller)</font>'; ?></th>
 		<th><?php echo $this->ExPaginator->sort('ViewSite.type', 'Site Type'); ?></th>
 		<?php
 		if ($userinfo['id'] == 2) {

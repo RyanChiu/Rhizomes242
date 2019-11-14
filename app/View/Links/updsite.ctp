@@ -19,7 +19,7 @@ echo $this->Form->create(null, array('url' => array('controller' => 'links', 'ac
 		</td>
 	</tr>
 	<tr>
-		<td>Site Name:<font size="1">(for office or agent)</font></td>
+		<td>Site Name:<font size="1">(for team or seller)</font></td>
 		<td>
 		<div style="float:left">
 		<?php

@@ -24,7 +24,7 @@ echo $this->Form->create(null, array('url' => array('controller' => 'links', 'ac
 <?php echo $this->Html->image('iconSearch.png', array('style' => 'width:16px;height:16px;')) . 'Search'; ?>
 </caption>
 <tr>
-	<td class="search-label" style="width:105px;">Office:</td>
+	<td class="search-label" style="width:105px;">Team:</td>
 	<td>
 		<div style="float:left;margin-right:20px;">
 		<?php
@@ -62,7 +62,7 @@ echo $this->Form->create(null, array('url' => array('controller' => 'links', 'ac
 		?>
 		</div>
 	</td>
-	<td class="search-label" style="width:65px;">Agent:</td>
+	<td class="search-label" style="width:65px;">Seller:</td>
 	<td>
 		<div style="float:left;margin-right:20px;">
 		<?php
@@ -156,14 +156,14 @@ echo $this->Form->end();
 <table style="width:100%">
 <caption>
 Start Date:<?php echo $startdate; ?>&nbsp;&nbsp;End Date:<?php echo $enddate; ?>&nbsp;&nbsp;|&nbsp;&nbsp;
-Office:<?php echo $coms[$selcom]; ?>&nbsp;&nbsp;Agent:<?php echo $ags[$selagent]; ?>
+Team:<?php echo $coms[$selcom]; ?>&nbsp;&nbsp;Seller:<?php echo $ags[$selagent]; ?>
 <br/>
 <font color="red" size="2"><b>(Click on IP to see an address for a world map, where your link was opened.)</b></font>
 </caption>
 <thead>
 <tr>
-	<th><b><?php echo $this->ExPaginator->sort('ViewClickout.officename', 'Office'); ?></b></th>
-	<th><b><?php echo $this->ExPaginator->sort('ViewClickout.username', 'Agent'); ?></b></th>
+	<th><b><?php echo $this->ExPaginator->sort('ViewClickout.officename', 'Team'); ?></b></th>
+	<th><b><?php echo $this->ExPaginator->sort('ViewClickout.username', 'Seller'); ?></b></th>
 	<th><b><?php echo $this->ExPaginator->sort('ViewClickout.sitename', 'Site'); ?></b></th>
 	<th><b><?php echo $this->ExPaginator->sort('ViewClickout.typename', 'Type'); ?></b></th>
 	<th><b>Link</b></th>
