@@ -25,7 +25,7 @@ echo $this->Form->create(null, array('url' =>  array('controller' => 'accounts',
 <?php echo $this->Html->image('iconSearch.png', array('style' => 'width:16px;height:16px;')) . 'Search'; ?>
 </caption>
 <tr>
-	<td class="search-label">Office:</td>
+	<td class="search-label">Team:</td>
 	<td>
 		<div style="float:left;margin-right:20px;">
 		<?php
@@ -63,7 +63,7 @@ echo $this->Form->create(null, array('url' =>  array('controller' => 'accounts',
 		?>
 		</div>
 	</td>
-	<td class="search-label">Agent:</td>
+	<td class="search-label">Seller:</td>
 	<td>
 		<div style="float:left;margin-right:20px;">
 		<?php
@@ -160,8 +160,8 @@ if (!empty($rs)) {
 	<table style="width:100%">
 	<thead>
 	<tr>
-		<th><b><?php echo $this->ExPaginator->sort('ViewChatLog.officename', 'Office'); ?></b></th>
-		<th><b><?php echo $this->ExPaginator->sort('ViewChatLog.username4m', 'Agent'); ?></b></th>
+		<th><b><?php echo $this->ExPaginator->sort('ViewChatLog.officename', 'Team'); ?></b></th>
+		<th><b><?php echo $this->ExPaginator->sort('ViewChatLog.username4m', 'Seller'); ?></b></th>
 		<th><b><?php echo $this->ExPaginator->sort('ViewChatLog.sitename', 'Site'); ?></b></th>
 		<th><b><?php echo $this->ExPaginator->sort('ViewChatLog.clientusername', 'Client Name'); ?></b></th>
 		<th><b><?php echo 'Conversation'; ?></b></th>

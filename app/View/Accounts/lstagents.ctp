@@ -35,7 +35,7 @@ echo $this->Form->create(
 		<?php
 		if ($userinfo['role'] == 0) {
 		?>
-		<td class="search-label" style="width:145px;">Office:</td>
+		<td class="search-label" style="width:145px;">Team:</td>
 		<?php
 		} else {
 		?>
@@ -200,9 +200,9 @@ if (in_array($userinfo['role'], array(0, 1))) {//means an administrator or an of
 	);
 	?>
 	</b></th>
-	<th><b><?php echo $this->ExPaginator->sort('ViewAgent.username4m', 'Username'); ?></b></th>
-	<th><b><?php echo $this->ExPaginator->sort('ViewAgent.originalpwd', 'Password'); ?></b></th>
-	<th><b><?php echo $this->ExPaginator->sort('ViewAgent.officename', 'Office'); ?></b></th>
+	<th><b><?php echo $this->ExPaginator->sort('ViewAgent.username4m', 'User'); ?></b></th>
+	<th><b><?php echo $this->ExPaginator->sort('ViewAgent.originalpwd', 'Pass'); ?></b></th>
+	<th><b><?php echo $this->ExPaginator->sort('ViewAgent.officename', 'Team'); ?></b></th>
 	<th><b><?php echo $this->ExPaginator->sort('ViewAgent.regtime', 'Registered'); ?></b></th>
 	<th><b><?php echo $this->ExPaginator->sort('ViewAgent.lastlogintime', 'Last Login'); ?></b></th>
 	<th><b><?php echo $this->ExPaginator->sort('ViewAgent.logintimes', 'Login Times'); ?></b></th>
