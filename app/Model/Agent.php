@@ -4,7 +4,7 @@ class Agent extends AppModel {
 	var $validate = array(
 		'companyid' => array(
 			'rule' => array('comparison', 'is greater', 0),
-			'message' => 'Please choose an office.'
+			'message' => 'Please choose an team.'
 		),
 		'ag1stname' => array(
 			'rule' => 'notEmpty'
