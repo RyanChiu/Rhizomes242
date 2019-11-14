@@ -41,11 +41,11 @@ function __checkAll() {
 	);
 	?>
 	</b></th>
-	<th><b><?php echo $this->ExPaginator->sort('Account.username4m', 'Username'); ?></b></th>
+	<th><b><?php echo $this->ExPaginator->sort('Account.username4m', 'User'); ?></b></th>
 	<th><b><?php echo $this->ExPaginator->sort('Account.role', 'Role'); ?></b></th>
 	<th><b><?php echo $this->ExPaginator->sort('Account.regtime', 'Registered'); ?></b></th>
 	<th><b><?php echo $this->ExPaginator->sort('Account.status', 'Status'); ?></b></th>
-	<th><b>Approve</b></th>
+	<th><b>Allow</b></th>
 </tr>
 </thead>
 <?php
