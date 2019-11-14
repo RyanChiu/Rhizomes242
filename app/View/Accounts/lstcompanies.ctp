@@ -21,7 +21,7 @@ echo $this->Form->create(
 	<?php echo $this->Html->image('iconSearch.png', array('style' => 'width:16px;height:16px;')) . 'Search'; ?>
 	</caption>
 	<tr>
-		<td class="search-label" style="width:105px;">Username:</td>
+		<td class="search-label" style="width:105px;">User:</td>
 		<td>
 		<div style="float:left;width:275px;">
 		<?php echo $this->Form->input('ViewCompany.username', array('label' => '', 'style' => 'width:260px;')); ?>
@@ -87,7 +87,7 @@ function __checkAll() {
 
 <div style="margin-bottom:3px">
 <?php
-echo $this->Form->button('Add Office',
+echo $this->Form->button('Add Team',
 	array(
 		'onclick' => 'javascript:location.href=\''
 			. $this->Html->url(array('controller' => 'accounts', 'action' => 'regcompany')) . '\'',
@@ -109,14 +109,14 @@ echo $this->Form->button('Add Office',
 	);
 	?>
 	</b></th>
-	<th><b><?php echo $this->ExPaginator->sort('ViewCompany.officename', 'Office'); ?></b></th>
-	<th><b><?php echo $this->ExPaginator->sort('ViewCompany.agenttotal', 'Total Agents'); ?></b></th>
-	<th><b><?php echo $this->ExPaginator->sort('ViewCompany.username4m', 'Username'); ?></b></th>
-	<th><b><?php echo $this->ExPaginator->sort('ViewCompany.originalpwd', 'Password'); ?></b></th>
+	<th><b><?php echo $this->ExPaginator->sort('ViewCompany.officename', 'Team'); ?></b></th>
+	<th><b><?php echo $this->ExPaginator->sort('ViewCompany.agenttotal', 'Total Sellers'); ?></b></th>
+	<th><b><?php echo $this->ExPaginator->sort('ViewCompany.username4m', 'User'); ?></b></th>
+	<th><b><?php echo $this->ExPaginator->sort('ViewCompany.originalpwd', 'Pass'); ?></b></th>
 	<th><b><?php echo $this->ExPaginator->sort('ViewCompany.manemail', 'Email'); ?></b></th>
 	<th><b><?php echo $this->ExPaginator->sort('ViewCompany.regtime', 'Registered'); ?></b></th>
 	<th><b><?php echo $this->ExPaginator->sort('ViewCompany.status', 'Status'); ?></b></th>
-	<th><b>Operation</b></th>
+	<th><b>Action</b></th>
 </tr>
 </thead>
 <?php
@@ -151,7 +151,7 @@ foreach ($rs as $r):
 	echo $this->Html->link(
 		$r['ViewCompany']['agenttotal'] . '&nbsp;' . $this->Html->image('iconList.gif', array('border' => 0)),
 		array('controller' => 'accounts', 'action' => 'lstagents', 'id' => $r['ViewCompany']['companyid']),
-		array('title' => 'Click to the agents.', 'escape' => false),
+		array('title' => 'Click to the sellers.', 'escape' => false),
 		false
 	);
 	?>
@@ -196,7 +196,7 @@ foreach ($rs as $r):
 	echo $this->Html->link(
 		$this->Html->image($iconEye, array('border' => 0, 'width' => 20, 'height' => 20)) . '&nbsp;',
 		array('controller' => 'accounts', 'action' => 'activatem', 'ids' => $r['ViewCompany']['companyid'], 'status' => $statusEye, 'from' => 0),
-		array('title' => 'Click to ' . $styleEye . ' the office.', 'escape' => false),
+		array('title' => 'Click to ' . $styleEye . ' the team.', 'escape' => false),
 		"Are you sure to " . $styleEye . " this one?"
 	);
 	?>
