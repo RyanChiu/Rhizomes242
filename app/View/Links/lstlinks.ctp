@@ -41,7 +41,7 @@ echo $this->Form->create(null, array('url' => array('controller' => 'links', 'ac
 	<td width="40%" align="center">
 	<?php
 	echo $this->Form->input('ViewAgent.id',
-		array('options' => $sags, 'style' => 'width:290px;', 'label' => 'Agent:', 'type' => 'select')
+		array('options' => $sags, 'style' => 'width:290px;', 'label' => 'Seller:', 'type' => 'select')
 	);
 	?>
 	</td>

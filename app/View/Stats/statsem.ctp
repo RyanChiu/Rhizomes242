@@ -4,10 +4,10 @@ switch ($bywhat) {
 		echo '<h1>Stats (By Date)</h1>';
 		break;
 	case 1:
-		echo '<h1>Stats (By Office)</h1>';
+		echo '<h1>Stats (By Team)</h1>';
 		break;
 	case 2:
-		echo '<h1>Stats (By Agent)</h1>';
+		echo '<h1>Stats (By Seller)</h1>';
 		break;
 	case 3:
 		echo '<h1>Stats (Details)</h1>';
@@ -73,15 +73,15 @@ if (!empty($rs)) {
 	echo 'Site:' . $sites[$selsite];
 	echo ', Type:' . $types[$seltype];
 	if ($userinfo['role'] == 0) {//means an administrator
-		echo ', Office:';
+		echo ', Team:';
 		if (!empty($selcoms) && $selcoms[0] != 0) {
 			foreach ($selcoms as $selcom) {echo $coms[$selcom] . ' ';};
 		} else {
 			echo 'All';
 		}
-		echo ', Agent:' . $ags[$selagent];
+		echo ', Seller:' . $ags[$selagent];
 	} else if ($userinfo['role'] == 1) {//means an office
-		echo ', Agent:' . $ags[$selagent];
+		echo ', Seller:' . $ags[$selagent];
 	} else if ($userinfo['role'] == 2) {//means an agent
 	}
 	echo ')';
@@ -124,16 +124,16 @@ if (!empty($rs)) {
 				echo '<th>' . $this->ExPaginator->sort('ViewTStats.trxtime', 'Date') . '</th>';
 				break;
 			case 1:
-				echo '<th>' . $this->ExPaginator->sort('ViewTStats.officename', 'Office Name') . '</th>';
+				echo '<th>' . $this->ExPaginator->sort('ViewTStats.officename', 'Team') . '</th>';
 				break;
 			case 2:
-				echo '<th>' . $this->ExPaginator->sort('ViewTStats.username4m', 'Agent') . '</th>';
-				echo '<th>' . $this->ExPaginator->sort('ViewTStats.officename', 'Office Name') . '</th>';
+				echo '<th>' . $this->ExPaginator->sort('ViewTStats.username4m', 'Seller') . '</th>';
+				echo '<th>' . $this->ExPaginator->sort('ViewTStats.officename', 'Team') . '</th>';
 				break;
 			case 3:
 				echo '<th>' . $this->ExPaginator->sort('ViewTStats.trxtime', 'Date') . '</th>';
-				echo '<th>' . $this->ExPaginator->sort('ViewTStats.officename', 'Office Name') . '</th>';
-				echo '<th>' . $this->ExPaginator->sort('ViewTStats.username4m', 'Agent') . '</th>';
+				echo '<th>' . $this->ExPaginator->sort('ViewTStats.officename', 'Team') . '</th>';
+				echo '<th>' . $this->ExPaginator->sort('ViewTStats.username4m', 'Seller') . '</th>';
 				break;
 			default:
 				echo '<th></th>';
