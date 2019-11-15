@@ -1644,7 +1644,8 @@ class AccountsController extends AppController {
 			'ViewCompany' => array(
 				'limit' => $this->__limit,
 				'conditions' => $conditions,
-				'order' => 'regtime desc'
+				//'order' => 'regtime desc'
+				'order' => 'officename'
 			)
 		);
 		
