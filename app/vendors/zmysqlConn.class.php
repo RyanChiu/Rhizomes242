@@ -11,7 +11,7 @@ class zmysqlConn
 	{
 		$this->dblink = mysql_connect($host, $username, $password)
 			or dir ("Something wrong with: " . mysql_error());
-		mysql_select_db("rhizomescake", $this->dblink)
+		mysql_select_db("rzmcake242", $this->dblink)
 			or die ("Something wrong with: " . mysql_error());
 	}
 }
