@@ -385,6 +385,7 @@ echo $scripts_for_layout;
 								$curmenuidx = $menuitemscount - 1;
 							}
 						?>
+						<!--
 						<li>
 						<?php 
 						echo $this->Html->link('<span><font>HOW TO SELL</font></span>',
@@ -394,6 +395,7 @@ echo $scripts_for_layout;
 						);
 						?>
 						</li>
+						-->
 						<?php 
 						} else {
 							$menuitemscount++;
@@ -403,6 +405,7 @@ echo $scripts_for_layout;
 								$curmenuidx = $menuitemscount - 1;
 							}
 						?>
+						<!--
 						<li>
 						<?php 
 						echo $this->Html->link('<span><font>HOW TO SELL</font></span>',
@@ -412,6 +415,7 @@ echo $scripts_for_layout;
 						);
 						?>
 						</li>
+						-->
 						<?php 
 						}
 						?>
