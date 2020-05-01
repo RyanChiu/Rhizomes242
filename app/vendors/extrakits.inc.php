@@ -6,11 +6,13 @@
 	 * say CAMS2_CHS is for site with abbreviation "cams2".
 	 * THE CONSTANT VALUE is a set of numbers seperated by ",".
 	 */
+	/*
 	define("CAMS2_CHS", "0,1,2,3,8,9");
 	define("CAMS3_CHS", "4,5,6,7");
 	define("BBRD_CHS", "5,6");
 	define("ADC_CHS", "10");
 	define("BLDS_CHS", "11,12,13,14");
+	*/
 	define("NES_CHS", "15,16,17,18");
 	/*
 	 * routines area
