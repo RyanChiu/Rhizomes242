@@ -359,7 +359,7 @@
 					and a.agentid = n.id and n.username = '$agent'
 				ORDER BY typeid";
 			$rs = mysql_query($sql, $conn->dblink);
-			echo $sql; echo "\n[select]\n"; //for debug
+			//echo $sql; echo "\n[select]\n"; //for debug
 			$chsfrombbr = explode(",", $_chs_);;// !!! MUST MAKE SURE ABOUT THIS ARRAY WITH BBR
 			$i = 0;
 			$chs_exist = false;
@@ -412,14 +412,14 @@
 						if (mysql_query($sql, $conn->dblink) === false) {
 							$err = mysql_error();
 						}
-						echo "$sql\n($i/$ch)[insert]\n"; $i++; if ($i >= count($chsfrombbr)) break; else continue; //for debug;
+						//echo "$sql\n($i/$ch)[insert]\n"; $i++; if ($i >= count($chsfrombbr)) break; else continue; //for debug;
 					} else {
 						error_log(
 							"do nothing, cause transactionid '$trxid' already exists.\n",
 							3,
 							$logpath
 						);
-						echo "do nothing:($i/$ch)\n"; $i++; if ($i >= count($chsfrombbr)) break; else continue; //for debug;
+						//echo "do nothing:($i/$ch)\n"; $i++; if ($i >= count($chsfrombbr)) break; else continue; //for debug;
 					}
 				}
 				$i++;
