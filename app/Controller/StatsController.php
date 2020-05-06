@@ -245,7 +245,7 @@ class StatsController extends AppController {
 				'order' => 'sitename'
 			)
 		);
-		$sites = array('-1' => '-CHOOSE A SITE-') + $sites;
+		$sites = array('0' => 'All') + $sites;
 		
 		$types = $this->Type->find('list',
 			array(
@@ -312,7 +312,7 @@ class StatsController extends AppController {
 	function ___prepparms_4statsby_only(
 		&$startdate, &$enddate, &$selsite, &$seltype, &$selcoms, &$selagent
 	) {
-		$selsite = -1;
+		$selsite = 0;
 		if (!empty($this->request->data)) {
 			$selsite = $this->request->data['Stats']['siteid'];
 		} else if (array_key_exists('siteid', $this->passedArgs)) {
@@ -392,6 +392,69 @@ class StatsController extends AppController {
 		}
 	}
 	
+	function ___prepare_into_t_stats($sites, $selsite, $group, $where, $groupby, $runid, $conn) {
+		$sites4loop = [];
+		foreach ($sites as $sid => $sname) {
+			if ($sid > 0) {
+				$sites4loop[$sid] = $sname;
+			}
+		}
+		if ($selsite > 0) {
+			unset($sites4loop);
+			$sites4loop[$selsite] = "couldbeanyofsitenames";
+		}
+		$sql = "";
+		foreach ($sites4loop as $sid => $sname) {
+			$sql = "insert into t_stats "
+				. "select convert(trxtime, date),"
+				. "agentid,"
+				. "companyid,"
+				. "siteid,"
+				. "sum(raws),"
+				. "sum(uniques),"
+				. "sum(chargebacks),"
+				. "sum(signups),"
+				. "sum(frauds),"
+				. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 0, 1), sales_number, 0)) as sales_type1,"
+				. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 1, 1), sales_number, 0)) as sales_type2,"
+				. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 2, 1), sales_number, 0)) as sales_type3,"
+				. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 3, 1), sales_number, 0)) as sales_type4,"
+				. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 4, 1), sales_number, 0)) as sales_type5,"
+				. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 5, 1), sales_number, 0)) as sales_type6,"
+				. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 6, 1), sales_number, 0)) as sales_type7,"
+				. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 7, 1), sales_number, 0)) as sales_type8,"
+				. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 8, 1), sales_number, 0)) as sales_type9,"
+				. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 9, 1), sales_number, 0)) as sales_type10,"
+				. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 0, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type1_payout," 
+				. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 0, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type1_earning,"
+				. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 1, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type2_payout," 
+				. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 1, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type2_earning,"
+				. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 2, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type3_payout," 
+				. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 2, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type3_earning,"
+				. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 3, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type4_payout," 
+				. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 3, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type4_earning,"
+				. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 4, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type5_payout,"
+				. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 4, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type5_earning,"
+				. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 5, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type6_payout,"
+				. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 5, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type6_earning,"
+				. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 6, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type7_payout,"
+				. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 6, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type7_earning,"
+				. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 7, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type8_payout,"
+				. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 7, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type8_earning,"
+				. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 8, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type9_payout,"
+				. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 8, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type9_earning,"
+				. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 9, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type10_payout,"
+				. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $sid order by id limit 9, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type10_earning,"
+				. $runid . ", " . $group
+				. " from stats "
+				. $where . " and siteid = $sid"
+				. $groupby;
+			$result = mysql_query($sql, $conn->dblink);
+		}
+
+		return $sql . "(($selsite))";
+	}
+
 	function __statsby($group) {
 		$this->layout = "defaultlayout";
 		
@@ -406,26 +469,33 @@ class StatsController extends AppController {
 
 		/*prepare addons for the conditions & group by*/
 		$gbaddons = '';
+		$_gbaddons = [];
 		$order = 'trxtime desc';
 		switch ($group) {
 			case 1:
 				$gbaddons = 'convert(trxtime, date)';
+				array_push($_gbaddons, 'trxtime');
 				$order = 'trxtime desc, username4m asc';
 				break;
 			case 2:
 				$gbaddons = 'companyid';
+				array_push($_gbaddons, 'companyid');
 				$order = 'officename asc, trxtime desc';
 				break;
 			case 3:
 				$gbaddons = 'agentid';
+				array_push($_gbaddons, 'agentid');
 				$order = 'username4m asc, trxtime desc';
 				break;
 			case 4:
 				$gbaddons = 'convert(trxtime, date), companyid, agentid';
+				array_push($_gbaddons, 'trxtime');
+				array_push($_gbaddons, 'companyid');
+				array_push($_gbaddons, 'agentid');
 				$order = 'trxtime desc, username4m asc';
 				break;
 		}
-		$groupby = ' group by siteid, ' . $gbaddons;
+		$groupby = ' group by ' . $gbaddons;
 		$orderby = ' order by ' . $order;		
 			
 		$conn = new zmysqlConn();
@@ -446,21 +516,22 @@ class StatsController extends AppController {
 						$enddate = $tmp[1];
 						$where = ' where trxtime >= "' . $startdate . ' 00:00:00"'
 							. ' and trxtime <= "' . $enddate . ' 23:59:59"';
-						$selsite = -1; // HARD CODE HERE: means no default site
+						$selsite = 0;
 						$types = $this->Type->find('list',
 							array(
-								'fields' => array('id', 'typename'),
-								'conditions' => array('siteid' => $selsite)
+								'fields' => array('id', 'typename')
 							)
 						);
 						$types = array('0' => 'All') + $types;
 						$this->set(compact('types'));
 						$seltype = 0;
-						$where .= ' and siteid = ' . $selsite;
+						if ($selsite != 0) {
+							$where .= ' and siteid = ' . $selsite;
+						}
 					} else {
 						$where = ' where trxtime >= "' . $startdate . ' 00:00:00"'
 							. ' and trxtime <= "' . $enddate . ' 23:59:59"';
-						if ($selsite != -1)
+						if ($selsite != 0)
 							$where .= ' and siteid = ' . $selsite;
 						if ($seltype != 0)
 							$where .= ' and typeid = ' . $seltype;
@@ -483,52 +554,7 @@ class StatsController extends AppController {
 					}
 					$sql = 'delete from t_stats where run_id = ' . $this->__runid . ' and group_by = ' . $group;
 					$result = mysql_query($sql, $conn->dblink);
-					$sql = "insert into t_stats "
-						. "select convert(trxtime, date),"
-						. "agentid,"
-						. "companyid,"
-						. "siteid,"
-						. "sum(raws),"
-						. "sum(uniques),"
-						. "sum(chargebacks),"
-						. "sum(signups),"
-						. "sum(frauds),"
-						. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 0, 1), sales_number, 0)) as sales_type1,"
-						. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 1, 1), sales_number, 0)) as sales_type2,"
-						. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 2, 1), sales_number, 0)) as sales_type3,"
-						. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 3, 1), sales_number, 0)) as sales_type4,"
-						. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 4, 1), sales_number, 0)) as sales_type5,"
-						. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 5, 1), sales_number, 0)) as sales_type6,"
-						. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 6, 1), sales_number, 0)) as sales_type7,"
-						. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 7, 1), sales_number, 0)) as sales_type8,"
-						. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 8, 1), sales_number, 0)) as sales_type9,"
-						. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 9, 1), sales_number, 0)) as sales_type10,"
-						. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 0, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type1_payout," 
-						. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 0, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type1_earning,"
-						. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 1, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type2_payout," 
-						. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 1, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type2_earning,"
-						. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 2, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type3_payout," 
-						. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 2, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type3_earning,"
-						. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 3, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type4_payout," 
-						. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 3, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type4_earning,"
-						. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 4, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type5_payout,"
-						. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 4, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type5_earning,"
-						. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 5, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type6_payout,"
-						. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 5, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type6_earning,"
-						. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 6, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type7_payout,"
-						. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 6, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type7_earning,"
-						. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 7, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type8_payout,"
-						. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 7, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type8_earning,"
-						. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 8, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type9_payout,"
-						. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 8, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type9_earning,"
-						. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 9, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type10_payout,"
-						. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 9, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type10_earning,"
-						. $this->__runid . ", " . $group
-						. " from stats "
-						. $where . $groupby;
-					$result = mysql_query($sql, $conn->dblink);
-					
-					//$this->Session->setFlash($sql);//for debug
+					$sql = $this->___prepare_into_t_stats($sites, $selsite, $group, $where, $groupby, $this->__runid, $conn);
 					
 					$this->Session->write('conditions_stats',
 						array(
@@ -577,52 +603,7 @@ class StatsController extends AppController {
 			$where = $this->___getwhere_4statsby_only();
 			$sql = 'delete from t_stats where run_id = ' . $this->__runid . ' and group_by = ' . $group;
 			$result = mysql_query($sql, $conn->dblink);
-			$sql = "insert into t_stats "
-				. "select convert(trxtime, date),"
-				. "agentid,"
-				. "companyid,"
-				. "siteid,"
-				. "sum(raws),"
-				. "sum(uniques),"
-				. "sum(chargebacks),"
-				. "sum(signups),"
-				. "sum(frauds),"
-				. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 0, 1), sales_number, 0)) as sales_type1,"
-				. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 1, 1), sales_number, 0)) as sales_type2,"
-				. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 2, 1), sales_number, 0)) as sales_type3,"
-				. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 3, 1), sales_number, 0)) as sales_type4,"
-				. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 4, 1), sales_number, 0)) as sales_type5,"
-				. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 5, 1), sales_number, 0)) as sales_type6,"
-				. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 6, 1), sales_number, 0)) as sales_type7,"
-				. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 7, 1), sales_number, 0)) as sales_type8,"
-				. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 8, 1), sales_number, 0)) as sales_type9,"
-				. "sum(if(typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 9, 1), sales_number, 0)) as sales_type10,"
-				. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 0, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type1_payout," 
-				. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 0, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type1_earning,"
-				. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 1, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type2_payout," 
-				. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 1, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type2_earning,"
-				. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 2, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type3_payout," 
-				. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 2, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type3_earning,"
-				. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 3, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type4_payout," 
-				. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 3, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type4_earning,"
-				. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 4, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type5_payout,"
-				. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 4, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type5_earning,"
-				. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 5, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type6_payout,"
-				. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 5, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type6_earning,"
-				. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 6, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type7_payout,"
-				. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 6, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type7_earning,"
-				. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 7, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type8_payout,"
-				. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 7, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type8_earning,"
-				. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 8, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type9_payout,"
-				. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 8, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type9_earning,"
-				. "(SELECT price FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 9, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type10_payout,"
-				. "(SELECT earning FROM fees where (typeid = (SELECT id FROM types WHERE siteid = $selsite order by id limit 9, 1)) and (stats.trxtime >= start and stats.trxtime <= end)) as sales_type10_earning,"
-				. $this->__runid . ", " . $group
-				. " from stats "
-				. $where . $groupby;
-			$result = mysql_query($sql, $conn->dblink);
-			
-			//$this->Session->setFlash($sql);//for debug
+			$sql = $this->___prepare_into_t_stats($sites, $selsite, $group, $where, $groupby, $this->__runid, $conn);
 			
 			$startdate = $this->request->data['Stats']['startdate'];
 			$enddate = $this->request->data['Stats']['enddate'];
@@ -671,58 +652,73 @@ class StatsController extends AppController {
 			'sales_type9' => 0, 'sales_type10' => 0,
 			'net' => 0, 'payouts' => 0, 'earnings' => 0
 		);
+		array_push($_gbaddons, 'run_id');
+		$fields = array(
+			'run_id',
+			'group_by',
+			'trxtime',
+			'siteid',
+			'companyid',
+			'officename',
+			'agentid',
+			'username',
+			'ag1stname',
+			'aglastname',
+			'sum(raws) as raws',
+			'sum(uniques) as uniques',
+			'sum(chargebacks) as chargebacks',
+			'sum(signups) as signups',
+			'sum(frauds) as frauds',
+			'sum(sales_type1) as sales_type1',
+			'sum(sales_type2) as sales_type2',
+			'sum(sales_type3) as sales_type3',
+			'sum(sales_type4) as sales_type4',
+			'sum(sales_type5) as sales_type5',
+			'sum(sales_type6) as sales_type6',
+			'sum(sales_type7) as sales_type7',
+			'sum(sales_type8) as sales_type8',
+			'sum(sales_type9) as sales_type9',
+			'sum(sales_type10) as sales_type10',
+			'sum(net) as net',
+			'sum(payouts) as payouts',
+			'sum(earnings) as earnings'
+		);
 		$rs = $this->ViewTStats->find('all',
 			array(
-				'fields' => array(
-					'run_id',
-					'sum(raws) as raws',
-					'sum(uniques) as uniques',
-					'sum(chargebacks) as chargebacks',
-					'sum(signups) as signups',
-					'sum(frauds) as frauds',
-					'sum(sales_type1) as sales_type1',
-					'sum(sales_type2) as sales_type2',
-					'sum(sales_type3) as sales_type3',
-					'sum(sales_type4) as sales_type4',
-					'sum(sales_type5) as sales_type5',
-					'sum(sales_type6) as sales_type6',
-					'sum(sales_type7) as sales_type7',
-					'sum(sales_type8) as sales_type8',
-					'sum(sales_type9) as sales_type9',
-					'sum(sales_type10) as sales_type10',
-					'sum(net) as net',
-					'sum(payouts) as payouts',
-					'sum(earnings) as earnings'
-				),
+				'fields' => $fields,
 				'conditions' => array('run_id' => $this->__runid, 'group_by' => $group),
-				'group' => 'run_id'
+				'group' => $_gbaddons
 			)
 		);
 		if (!empty($rs)) {
-			$totals['raws'] = $rs[0][0]['raws'];
-			$totals['uniques'] = $rs[0][0]['uniques'];
-			$totals['chargebacks'] = $rs[0][0]['chargebacks'];
-			$totals['signups'] = $rs[0][0]['signups'];
-			$totals['frauds'] = $rs[0][0]['frauds'];
-			$totals['sales_type1'] = $rs[0][0]['sales_type1'];
-			$totals['sales_type2'] = $rs[0][0]['sales_type2'];
-			$totals['sales_type3'] = $rs[0][0]['sales_type3'];
-			$totals['sales_type4'] = $rs[0][0]['sales_type4'];
-			$totals['sales_type5'] = $rs[0][0]['sales_type5'];
-			$totals['sales_type6'] = $rs[0][0]['sales_type6'];
-			$totals['sales_type7'] = $rs[0][0]['sales_type7'];
-			$totals['sales_type8'] = $rs[0][0]['sales_type8'];
-			$totals['sales_type9'] = $rs[0][0]['sales_type9'];
-			$totals['sales_type10'] = $rs[0][0]['sales_type10'];
-			$totals['net'] = $rs[0][0]['net'];
-			$totals['payouts'] = $rs[0][0]['payouts'];
-			$totals['earnings'] = $rs[0][0]['earnings'];
+			foreach ($rs as $rvts) {//debug($rvts);
+				$totals['raws'] += $rvts[0]['raws'];
+				$totals['uniques'] += $rvts[0]['uniques'];
+				$totals['chargebacks'] += $rvts[0]['chargebacks'];
+				$totals['signups'] += $rvts[0]['signups'];
+				$totals['frauds'] += $rvts[0]['frauds'];
+				$totals['sales_type1'] += $rvts[0]['sales_type1'];
+				$totals['sales_type2'] += $rvts[0]['sales_type2'];
+				$totals['sales_type3'] += $rvts[0]['sales_type3'];
+				$totals['sales_type4'] += $rvts[0]['sales_type4'];
+				$totals['sales_type5'] += $rvts[0]['sales_type5'];
+				$totals['sales_type6'] += $rvts[0]['sales_type6'];
+				$totals['sales_type7'] += $rvts[0]['sales_type7'];
+				$totals['sales_type8'] += $rvts[0]['sales_type8'];
+				$totals['sales_type9'] += $rvts[0]['sales_type9'];
+				$totals['sales_type10'] += $rvts[0]['sales_type10'];
+				$totals['net'] += $rvts[0]['net'];
+				$totals['payouts'] += $rvts[0]['payouts'];
+				$totals['earnings'] += $rvts[0]['earnings'];
+			}
 		}
 		$this->set('totals', $totals);
 		/*pagination things*/
 		$this->paginate = array(
 			'ViewTStats' => array(
+				'fields' => $fields,
 				'conditions' => array('run_id' => $this->__runid, 'group_by' => $group),
+				'group' => $_gbaddons,
 				'order' => $order,
 				'limit' => $this->__limit
 			)

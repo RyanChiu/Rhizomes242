@@ -23,7 +23,7 @@ echo $this->element('timezoneblock');
 ?>
 
 <?php
-//echo print_r($rs, true);
+//debug($rs);
 $userinfo = $this->Session->read('Auth.User.Account');
 ?>
 <br/>
@@ -255,27 +255,27 @@ if (!empty($rs)) {
 	);
 	$i = 0;
 	foreach ($rs as $r) {
-		$pagetotals['raws'] += $r['ViewTStats']['raws'];
-		$pagetotals['uniques'] += $r['ViewTStats']['uniques'];
-		$pagetotals['chargebacks'] += $r['ViewTStats']['chargebacks'];
-		$pagetotals['signups'] += $r['ViewTStats']['signups'];
-		$pagetotals['frauds'] += $r['ViewTStats']['frauds'];
-		$pagetotals['sales_type1'] += $r['ViewTStats']['sales_type1'];
-		$pagetotals['sales_type2'] += $r['ViewTStats']['sales_type2'];
-		$pagetotals['sales_type3'] += $r['ViewTStats']['sales_type3'];
-		$pagetotals['sales_type4'] += $r['ViewTStats']['sales_type4'];
-		$pagetotals['sales_type5'] += $r['ViewTStats']['sales_type5'];
-		$pagetotals['sales_type6'] += $r['ViewTStats']['sales_type6'];
-		$pagetotals['sales_type7'] += $r['ViewTStats']['sales_type7'];
-		$pagetotals['sales_type8'] += $r['ViewTStats']['sales_type8'];
-		$pagetotals['sales_type9'] += $r['ViewTStats']['sales_type9'];
-		$pagetotals['sales_type10'] += $r['ViewTStats']['sales_type10'];
-		$pagetotals['net'] += $r['ViewTStats']['net'];
-		$pagetotals['payouts'] += $r['ViewTStats']['payouts'];
-		$pagetotals['earnings'] += $r['ViewTStats']['earnings'];
+		$pagetotals['raws'] += $r[0]['raws'];
+		$pagetotals['uniques'] += $r[0]['uniques'];
+		$pagetotals['chargebacks'] += $r[0]['chargebacks'];
+		$pagetotals['signups'] += $r[0]['signups'];
+		$pagetotals['frauds'] += $r[0]['frauds'];
+		$pagetotals['sales_type1'] += $r[0]['sales_type1'];
+		$pagetotals['sales_type2'] += $r[0]['sales_type2'];
+		$pagetotals['sales_type3'] += $r[0]['sales_type3'];
+		$pagetotals['sales_type4'] += $r[0]['sales_type4'];
+		$pagetotals['sales_type5'] += $r[0]['sales_type5'];
+		$pagetotals['sales_type6'] += $r[0]['sales_type6'];
+		$pagetotals['sales_type7'] += $r[0]['sales_type7'];
+		$pagetotals['sales_type8'] += $r[0]['sales_type8'];
+		$pagetotals['sales_type9'] += $r[0]['sales_type9'];
+		$pagetotals['sales_type10'] += $r[0]['sales_type10'];
+		$pagetotals['net'] += $r[0]['net'];
+		$pagetotals['payouts'] += $r[0]['payouts'];
+		$pagetotals['earnings'] += $r[0]['earnings'];
 	?>
 	<tr<?php echo ($i % 2 == 0 ? '' : ' class="odd"'); ?>>
-		<td><font size="1"><?php echo ($i + 1 + $limit * ($this->Paginator->current() - 1)); ?></font></td>
+	<td><font size="1"><?php echo ($i + 1/* + $limit * ($this->Paginator->current() - 1)*/); ?></font></td>
 		<?php
 		switch ($bywhat) {
 			case 0:
@@ -338,31 +338,31 @@ if (!empty($rs)) {
 				break;
 		}
 		?>
-		<td><?php echo $r['ViewTStats']['raws']; ?></td>
-		<td><?php echo $r['ViewTStats']['uniques']; ?></td>
-		<td><?php echo $r['ViewTStats']['signups']; ?></td>
-		<td><?php echo $r['ViewTStats']['frauds']; ?></td>
-		<td><?php echo $r['ViewTStats']['chargebacks']; ?></td>
-		<td><?php echo $r['ViewTStats']['sales_type10']; ?></td>
-		<td><?php echo $r['ViewTStats']['sales_type9']; ?></td>
-		<td><?php echo $r['ViewTStats']['sales_type8']; ?></td>
-		<td><?php echo $r['ViewTStats']['sales_type7']; ?></td>
-		<td><?php echo $r['ViewTStats']['sales_type6']; ?></td>
-		<td><?php echo $r['ViewTStats']['sales_type5']; ?></td>
-		<td><?php echo $r['ViewTStats']['sales_type4']; ?></td>
-		<td><?php echo $r['ViewTStats']['sales_type3']; ?></td>
-		<td><?php echo $r['ViewTStats']['sales_type2']; ?></td>
-		<td><?php echo $r['ViewTStats']['sales_type1']; ?></td>
-		<td><?php echo $r['ViewTStats']['net']; ?></td>
+		<td><?php echo $r[0]['raws']; ?></td>
+		<td><?php echo $r[0]['uniques']; ?></td>
+		<td><?php echo $r[0]['signups']; ?></td>
+		<td><?php echo $r[0]['frauds']; ?></td>
+		<td><?php echo $r[0]['chargebacks']; ?></td>
+		<td><?php echo $r[0]['sales_type10']; ?></td>
+		<td><?php echo $r[0]['sales_type9']; ?></td>
+		<td><?php echo $r[0]['sales_type8']; ?></td>
+		<td><?php echo $r[0]['sales_type7']; ?></td>
+		<td><?php echo $r[0]['sales_type6']; ?></td>
+		<td><?php echo $r[0]['sales_type5']; ?></td>
+		<td><?php echo $r[0]['sales_type4']; ?></td>
+		<td><?php echo $r[0]['sales_type3']; ?></td>
+		<td><?php echo $r[0]['sales_type2']; ?></td>
+		<td><?php echo $r[0]['sales_type1']; ?></td>
+		<td><?php echo $r[0]['net']; ?></td>
 		<?php
 		if ($_show_pay_) {
 		?>
-		<td><?php echo '$' . $r['ViewTStats']['earnings']; ?></td>
-		<td><?php echo '$' . $r['ViewTStats']['payouts']; ?></td>
+		<td><?php echo '$' . $r[0]['earnings']; ?></td>
+		<td><?php echo '$' . $r[0]['payouts']; ?></td>
 		<?php
 		} else if ($userinfo['role'] == -1) {
 		?>
-		<td><?php echo '$' . ($r['ViewTStats']['earnings'] - $r['ViewTStats']['payouts'])?></td>
+		<td><?php echo '$' . ($r[0]['earnings'] - $r[0]['payouts'])?></td>
 		<?php
 		}
 		?>
