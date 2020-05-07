@@ -16,6 +16,7 @@
 	define("NED_CHS", "19,20,21");
 	define("JSH_CHS", "22,23");
 	define("LCS_CHS", "24,25");
+	define("MCS_CHS", "26,27");
 	/*
 	 * routines area
 	 */
