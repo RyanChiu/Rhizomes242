@@ -1,5 +1,6 @@
 <?php
 App::import('Vendor', 'extrakits');
+App::import('Vendor', 'zmysqlConn');
 ?>
 <?php
 class LinksController extends AppController {
@@ -97,7 +98,8 @@ class LinksController extends AppController {
 		}
 		$this->paginate = array(
 			'ViewType' => array(
-				'conditions' => $conditions
+				'conditions' => $conditions,
+				'order' => 'id, start'
 				//'limit' => $this->__limit
 			)
 		);
@@ -110,9 +112,16 @@ class LinksController extends AppController {
 		//TEMPORARILY DISABLED
 		//$this->render("tempdisinfo");
 
+		$pep = [0, 0];
+		$start = '0001-01-01 00:00:00';
 		if (array_key_exists('id', $this->request->params['named'])){
 			$id = $this->request->params['named']['id'];
+			$pep[0] = $this->request->params['named']['payout'];
+			$pep[1] = $this->request->params['named']['earning'];
+			$start = $this->request->params['named']['start'];
 		}
+		$this->set(compact('pep'));
+		$this->set(compact('start'));
 		
 		if (empty($this->request->data)) {
 			$this->Type->id = $id;
@@ -125,12 +134,46 @@ class LinksController extends AppController {
 			if (empty($this->request->data['Type']['url'])) {
 				$this->request->data['Type']['url'] = null;
 			}
-			if ($this->Type->save($this->request->data)) {
-				$this->ViewType->id = $this->request->data['Type']['id'];
-				$data = $this->ViewType->read();
-				$this->Session->setFlash('Type saved.');
+			$pep[0] = $this->request->data['Fee']['price'];
+			$pep[1] = $this->request->data['Fee']['earning'];
+			$start = $this->request->data['Fee']['start'];
+			$start0 = $this->request->data['Fee']['start0'];
+			$sqls = ['', ''];
+			$conn = new zmysqlConn();
+			if ($start < $start0) {
+				$this->Session->setFlash('New "Start From" time should not be earlier.NOTHING CHANGED!');
 				$this->redirect(array('controller' => 'links', 'action' => 'lsttypes', 'id' => $data['ViewType']['siteid']));
+				return;
+			} else if ($start > $start0) {
+				$end = date("Y-m-d H:i:s", strtotime("-1 seconds", strtotime($start)));
+				//1st, modify the last one to be "end with $start - 1sec"
+				$sqls[0] = "update fees set end = '$end'" 
+					. " where typeid = " . $this->request->data['Type']['id']
+					. " and end = '3999-01-01 00:00:00';";
+				//2nd, insert one with the new period from $start
+				$sqls[1] = 'insert into fees (typeid, price, earning, start, end) values ('
+					. $this->request->data['Type']['id'] . ', '
+					. $pep[0] . ', ' . $pep[1]
+					. ', "' . $start . '", "3999-01-01 00:00:00");';
+				$result = mysql_query($sqls[0], $conn->dblink);
+				$result = $result && mysql_query($sqls[1], $conn->dblink);
+			} else {
+				$sqls[0] = sprintf(
+					"update fees set price = %s, earning = %s" 
+					. " where typeid = " . $this->request->data['Type']['id'],
+					$pep[0], $pep[1]
+				);
+				$result = mysql_query($sqls[0], $conn->dblink);
 			}
+
+			if ($this->Type->save($this->request->data) && $result !== false) {
+				$this->Session->setFlash('Type and Fee(s) saved.');
+			} else {
+				$this->Session->setFlash('Failed to save Type and Fee(s).' /* . mysql_error() //for debug */);
+			}
+			$this->ViewType->id = $this->request->data['Type']['id'];
+			$data = $this->ViewType->read();
+			$this->redirect(array('controller' => 'links', 'action' => 'lsttypes', 'id' => $data['ViewType']['siteid']));
 		}
 	}
 	

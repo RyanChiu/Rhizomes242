@@ -46,13 +46,12 @@ echo $this->Form->create(null, array('url' => array('controller' => 'links', 'ac
 		<div style="float:left"><font color="red">*</font></div>
 		</td>
 	</tr>
-	<!--
 	<tr>
 		<td width="15%">Payout:</td>
 		<td>
 		<div style="float:left">
 		<?php
-		echo $this->Form->input('Type.price', array('label' => '', 'style' => 'width:590px;'));
+		echo $this->Form->input('Fee.price', array('value' => $pep[0], 'label' => '', 'type' => 'number', 'style' => 'width:590px;'));
 		?>
 		</div>
 		<div style="float:left"><font color="red">*</font></div>
@@ -63,13 +62,25 @@ echo $this->Form->create(null, array('url' => array('controller' => 'links', 'ac
 		<td>
 		<div style="float:left">
 		<?php
-		echo $this->Form->input('Type.earning', array('label' => '', 'style' => 'width:590px;'));
+		echo $this->Form->input('Fee.earning', array('value' => $pep[1], 'label' => '', 'type' => 'number', 'style' => 'width:590px;'));
 		?>
 		</div>
 		<div style="float:left"><font color="red">*</font></div>
 		</td>
 	</tr>
-	-->
+	<tr>
+		<td width="15%">Start From:</td>
+		<td>
+		<div style="float:left">
+		<?php
+		echo $this->Form->input('Fee.start0', array('type' => 'hidden', 'value' => $start));
+		echo $this->Form->input('Fee.start', array('type' => 'text', 'value' => $start, 'label' => '', 'style' => 'width:230px;'));
+		?>
+		</div>
+		<div style="float:left"><font color="red">*</font></div>
+		</td>
+	</tr>
+
 	<tr>
 		<td>
 		<?php
