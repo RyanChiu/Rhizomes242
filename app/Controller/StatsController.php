@@ -686,7 +686,7 @@ class StatsController extends AppController {
 		$rs = $this->ViewTStats->find('all',
 			array(
 				'fields' => $fields,
-				'conditions' => array('run_id' => $this->__runid, 'group_by' => $group),
+				'conditions' => array('run_id' => $this->__runid, 'group_by' => $group, 'status > 0'),
 				'group' => $_gbaddons
 			)
 		);
@@ -717,7 +717,7 @@ class StatsController extends AppController {
 		$this->paginate = array(
 			'ViewTStats' => array(
 				'fields' => $fields,
-				'conditions' => array('run_id' => $this->__runid, 'group_by' => $group),
+				'conditions' => array('run_id' => $this->__runid, 'group_by' => $group, 'status > 0'),
 				'group' => $_gbaddons,
 				'order' => $order,
 				'limit' => $this->__limit
