@@ -507,9 +507,9 @@ class StatsController extends AppController {
 			if (!(array_key_exists('page', $this->passedArgs) || array_key_exists('sort', $this->passedArgs))) {
 				//if it's not paginating, then it should be drilling down
 				if ($this->Session->check('conditions_stats')
-					/*|| (array_key_exists('clear', $this->passedArgs) && $this->passedArgs['clear'] == -2)*/) {
+					|| (array_key_exists('clear', $this->passedArgs) && $this->passedArgs['clear'] == -2)) {
 					
-					if (array_key_exists('clear', $this->passedArgs) && $this->passedArgs['clear'] == -2) {
+					if (array_key_exists('clear', $this->passedArgs) && $this->passedArgs['clear'] == -1) {
 						$tmp_periods = array_keys($periods);
 						$tmp = explode(",", $tmp_periods[3]);
 						$startdate = $tmp[0];
