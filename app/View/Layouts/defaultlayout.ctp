@@ -257,7 +257,7 @@ echo $scripts_for_layout;
 						<li>
 						<?php
 						echo $this->Html->link('<span><font>STATS</font></span>',
-							array('controller' => 'stats', 'action' => 'statsdate'/*, 'clear' => -2*/),
+							array('controller' => 'stats', 'action' => 'statsdate', 'clear' => -2),
 							array('escape' => false), 
 							false
 						);
