@@ -517,6 +517,7 @@ class StatsController extends AppController {
 						$where = ' where trxtime >= "' . $startdate . ' 00:00:00"'
 							. ' and trxtime <= "' . $enddate . ' 23:59:59"';
 						$selsite = 0;
+						$seltype = 0;
 						$types = $this->Type->find('list',
 							array(
 								'fields' => array('id', 'typename')
@@ -524,10 +525,11 @@ class StatsController extends AppController {
 						);
 						$types = array('0' => 'All') + $types;
 						$this->set(compact('types'));
-						$seltype = 0;
+						/*
 						if ($selsite != 0) {
 							$where .= ' and siteid = ' . $selsite;
 						}
+						*/
 					} else {
 						$where = ' where trxtime >= "' . $startdate . ' 00:00:00"'
 							. ' and trxtime <= "' . $enddate . ' 23:59:59"';
