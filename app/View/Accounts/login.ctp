@@ -5,10 +5,11 @@
 <?php
 echo $this->Form->create(null, array('url' => array('controller' => 'accounts', 'action' => 'login')));
 ?>
+<br/><br/><br/>
 <table style="border:0;width:100%;">
 	<tr>
 		<td align="right">
-			<b><font style="color:#99cc66;margin-right:6px;" size="2">User Name:</font></b>
+			<b><font style="color:#e1ce4e;margin-right:6px;" size="2">USER ID:</font></b>
 		</td>
 		<td align="left">
 			<?php
@@ -21,7 +22,7 @@ echo $this->Form->create(null, array('url' => array('controller' => 'accounts', 
 	</tr>
 	<tr>
 		<td align="right">
-			<b><font style="color:#99cc66;margin-right:6px;" size="2">Password:</font></b>
+			<b><font style="color:#e1ce4e;margin-right:6px;" size="2">PASS:</font></b>
 		</td>
 		<td align="left">
 			<?php
@@ -34,7 +35,7 @@ echo $this->Form->create(null, array('url' => array('controller' => 'accounts', 
 	</tr>
 	<tr>
 		<td align="right">
-			<b><font style="color:#99cc66;margin-right:6px;" size="2">Captcha:</font></b>
+			<b><font style="color:#e1ce4e;margin-right:6px;" size="2">NOT BOT:</font></b>
 		</td>
 		<td align="left">
 			<div style="float:left;margin-right:10px;">
@@ -84,12 +85,14 @@ echo $this->Form->create(null, array('url' => array('controller' => 'accounts', 
 			</div>
 		</td>
 	</tr>
+	<!--
 	<tr>
 		<td colspan=2 style="padding-left:70px;color:#99cc66;">Example: 2+4=6, the captcha answer is 6.</td>
 	</tr>
+	-->
 	<tr>
 		<td colspan="2" style="padding-left:70px;">
-		<br/>
+		<br/><br/><br/>
 		<div style="width:220px;height:45px;">
 		<?php
 		echo $this->Html->image("ninjastar.png", array('style' => "border:0;margin-top:7px;float:left;"));
@@ -102,16 +105,18 @@ echo $this->Form->create(null, array('url' => array('controller' => 'accounts', 
 		<td  colspan="2" style="padding-left:70px;">
 			<br/> 
 			<?php
+			/*
 			echo $this->Html->link(
 					'<b><font size="2">Lost your password?</font></b>',
 					array('controller' => 'accounts', 'action' => 'forgotpwd'),
 					array('escape' => false), false
 			);
+			*/
 			?>
 			<br/><br/>
-			<font color="#99cc66">Contact your manager, to retrieve your password,</font>
+			<!--<font color="#99cc66">Contact your manager, to retrieve your password,</font>-->
 			<br/>
-			<font color="#99cc66">we do not have agent's REAL email address.</font>
+			<!--<font color="#99cc66">we do not have agent's REAL email address.</font>-->
 		</td>
 	</tr>
 </table>

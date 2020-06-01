@@ -24,7 +24,7 @@ class LinksController extends AppController {
 	
 	/*callbacks*/
 	function beforeFilter() {
-		$this->set('title_for_layout', 'The Rhizomes.[LINKS]');
+		$this->set('title_for_layout', 'The Crushed Potato.[LINKS]');
 		if ($this->Session->check("Auth")) {
 			$u = $this->Session->read("Auth");
 			$u = array_values($u);

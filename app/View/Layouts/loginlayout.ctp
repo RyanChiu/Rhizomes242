@@ -30,14 +30,14 @@ echo $scripts_for_layout;
 						<td rowspan=2 style="vertical-align:top;">
 							<?php 
 							echo $this->Html->image(
-								'main/bamboo.jpg', array('style' => 'border:0px;height:170px;margin-left:45px;')
+								'main/potatoes.gif', array('style' => 'border:0px;height:170px;margin-left:45px;')
 							);
 							?>
 						</td>
 						<td>
 							<?php 
 							echo $this->Html->image(
-								'main/banner.jpg', array('style' => 'border:0px;height:120px;')
+								'main/crushedpotato.jpg', array('style' => 'border:0px;height:60px;')
 							);
 							?>
 						</td>
@@ -55,11 +55,11 @@ echo $scripts_for_layout;
 		<!-- End Border -->
 		<!-- Start Footer -->
 		<div id="footer">
-			<div style="color:#99cc66;font-size:1;float:left;">
-				2333 Dean Path, Edinburgh, EH3 7DX, UK
+			<div style="color:white;font-size:1;float:left;">
+				378 Fleet Street, London, EC4A 2AG
 			</div>
-			<div style="color:#99cc66;font-size:1;float:right;">
-				Copyright &copy; 2016 www.TheRhizomes.com All Rights Reserved.
+			<div style="color:white;font-size:1;float:right;">
+				Copyright &copy; 2016 www.CrushedPotato.com All Rights Reserved.
 			</div>
 		</div>
 		<!-- End Footer -->

@@ -85,7 +85,7 @@ class DATABASE_CONFIG {
 		'host' => 'localhost',
 		'login' => 'marijana',
 		'password' => 'cc123qwe',
-		'database' => 'rzmcake242',
+		'database' => 'potato',
 		'prefix' => '',
 	);
 
