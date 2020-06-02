@@ -60,28 +60,16 @@ echo $scripts_for_layout;
 		<!-- Start Border-->
 		<div id="border">
 			<!-- Start Header -->
-			<div class="header" style="align-text:center">
-				<div>
-					<div style="float:left;">
-						<?php 
-						echo $this->Html->image(
-							'main/bamboo.jpg', 
-							array(
-								'style' => 'border:0px;height:120px;margin-left:189px;'
-							)
-						);
-						?>
-					</div>
-					<div style="float:left;">
-						<?php 
-						echo $this->Html->image(
-							'main/banner.jpg', 
-							array(
-								'style' => 'border:0px;height:120px;'
-							)
-						);
-						?>
-					</div>
+			<div class="header" style="align-text:center;">
+				<div style="width:100%;">
+					<?php 
+					echo $this->Html->image(
+						'main/crushedpotato.jpg', 
+						array(
+							'style' => 'border:0px;height:80px;'
+						)
+					);
+					?>
 				</div>
 			</div>
 			<!-- End Header -->
