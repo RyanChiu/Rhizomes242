@@ -667,7 +667,7 @@ echo $scripts_for_layout;
 				378 Fleet Street, London, EC4A 2AG
 			</div>
 			<div style="color:white;font-size:1;float:right;">
-				Copyright &copy; 2016 www.CrushedPotato.com All Rights Reserved.
+				Copyright &copy; 2091-2020 www.CrushedPotato.com All Rights Reserved.
 			</div>
 		</div>
 		<!-- End Footer -->
