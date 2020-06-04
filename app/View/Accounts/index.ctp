@@ -153,28 +153,30 @@ if (!empty($notes)) {
 		<?php
 		$i = 0;
 		foreach ($weekrs as $r) {
-			$i++;
+			if ($r['Top10']['sales'] > 0) {
+				$i++;
 		?>
-		<tr <?php echo $i <= 3 ? 'style="font-weight:bold;"' : ''; ?>>
-			<td align="center"><?php echo $i; ?></td>
-			<td align="center"><?php echo $r['Top10']['sales'] > 0 ? $r['Top10']['officename'] : $r['Top10']['officename']; ?></td>
-			<td align="center">
-				<font style="font-size: 9pt;">
-				<?php
-				echo $r['Top10']['sales'] > 0 ? $r['Top10']['username'] : $r['Top10']['username'];
-				?>
-				</font>
-				<font style="font-size: 10pt;">(
-				<?php
-				//$showname = $r['Top10']['ag1stname'] . " " . $r['Top10']['aglastname'];
-				$showname = $r['Top10']['ag1stname'];
-				echo strlen($showname) > 20 ? (substr($showname, 0, 17) . "...") : $showname;
-				?>
-				)</font>
-			</td>
-			<td align="center"><?php echo $r['Top10']['sales'] > 0 ? $r['Top10']['sales'] : '0'; ?></td>
-		</tr>
+				<tr <?php echo $i <= 3 ? 'style="font-weight:bold;"' : ''; ?>>
+					<td align="center"><?php echo $i; ?></td>
+					<td align="center"><?php echo $r['Top10']['sales'] > 0 ? $r['Top10']['officename'] : $r['Top10']['officename']; ?></td>
+					<td align="center">
+						<font style="font-size: 9pt;">
+						<?php
+						echo $r['Top10']['sales'] > 0 ? $r['Top10']['username'] : $r['Top10']['username'];
+						?>
+						</font>
+						<font style="font-size: 10pt;">(
+						<?php
+						//$showname = $r['Top10']['ag1stname'] . " " . $r['Top10']['aglastname'];
+						$showname = $r['Top10']['ag1stname'];
+						echo strlen($showname) > 20 ? (substr($showname, 0, 17) . "...") : $showname;
+						?>
+						)</font>
+					</td>
+					<td align="center"><?php echo $r['Top10']['sales'] > 0 ? $r['Top10']['sales'] : '0'; ?></td>
+				</tr>
 		<?php
+			}
 		}
 		?>
 		</table>
@@ -196,28 +198,30 @@ if (!empty($notes)) {
 		<?php
 		$i = 0;
 		foreach ($monthrs as $r) {
-			$i++;
+			if ($r['Top10']['sales'] > 0) {
+				$i++;
 		?>
-		<tr <?php echo $i <= 3 ? 'style="font-weight:bold;"' : ''; ?>>
-			<td align="center"><?php echo $i; ?></td>
-			<td align="center"><?php echo $r['Top10']['sales'] > 0 ? $r['Top10']['officename'] : $r['Top10']['officename']; ?></td>
-			<td align="center">
-				<font style="font-size: 9pt;">
-				<?php
-				echo $r['Top10']['sales'] > 0 ? $r['Top10']['username'] : $r['Top10']['username'];
-				?>
-				</font>
-				<font style="font-size: 10pt;">(
-				<?php
-				//$showname = $r['Top10']['ag1stname'] . " " . $r['Top10']['aglastname'];
-				$showname = $r['Top10']['ag1stname'];
-				echo strlen($showname) > 20 ? (substr($showname, 0, 17) . "...") : $showname;
-				?>
-				)</font>
-			</td>
-			<td align="center"><?php echo $r['Top10']['sales'] > 0 ? $r['Top10']['sales'] : '0'; ?></td>
-		</tr>
+				<tr <?php echo $i <= 3 ? 'style="font-weight:bold;"' : ''; ?>>
+					<td align="center"><?php echo $i; ?></td>
+					<td align="center"><?php echo $r['Top10']['sales'] > 0 ? $r['Top10']['officename'] : $r['Top10']['officename']; ?></td>
+					<td align="center">
+						<font style="font-size: 9pt;">
+						<?php
+						echo $r['Top10']['sales'] > 0 ? $r['Top10']['username'] : $r['Top10']['username'];
+						?>
+						</font>
+						<font style="font-size: 10pt;">(
+						<?php
+						//$showname = $r['Top10']['ag1stname'] . " " . $r['Top10']['aglastname'];
+						$showname = $r['Top10']['ag1stname'];
+						echo strlen($showname) > 20 ? (substr($showname, 0, 17) . "...") : $showname;
+						?>
+						)</font>
+					</td>
+					<td align="center"><?php echo $r['Top10']['sales'] > 0 ? $r['Top10']['sales'] : '0'; ?></td>
+				</tr>
 		<?php
+			}
 		}
 		?>
 		</table>
@@ -239,28 +243,30 @@ if (!empty($notes)) {
 		<?php
 		$i = 0;
 		foreach ($rs as $r) {
-			$i++;
+			if ($r['Top10']['sales'] > 0) {
+				$i++;
 		?>
-		<tr <?php echo $i <= 3 ? 'style="font-weight:bold;"' : ''; ?>>
-			<td align="center"><?php echo $i; ?></td>
-			<td align="center"><?php echo $r['Top10']['sales'] > 0 ? $r['Top10']['officename'] : $r['Top10']['officename']; ?></td>
-			<td align="center">
-				<font style="font-size: 9pt;">
-				<?php
-				echo $r['Top10']['sales'] > 0 ? $r['Top10']['username'] : $r['Top10']['username'];
-				?>
-				</font>
-				<font style="font-size: 10pt;">(
-				<?php
-				//$showname = $r['Top10']['ag1stname'] . " " . $r['Top10']['aglastname'];
-				$showname = $r['Top10']['ag1stname'];
-				echo strlen($showname) > 20 ? (substr($showname, 0, 17) . "...") : $showname;
-				?>
-				)</font>
-			</td>
-			<td align="center"><?php echo $r['Top10']['sales'] > 0 ? $r['Top10']['sales'] : '0'; ?></td>
-		</tr>
+				<tr <?php echo $i <= 3 ? 'style="font-weight:bold;"' : ''; ?>>
+					<td align="center"><?php echo $i; ?></td>
+					<td align="center"><?php echo $r['Top10']['sales'] > 0 ? $r['Top10']['officename'] : $r['Top10']['officename']; ?></td>
+					<td align="center">
+						<font style="font-size: 9pt;">
+						<?php
+						echo $r['Top10']['sales'] > 0 ? $r['Top10']['username'] : $r['Top10']['username'];
+						?>
+						</font>
+						<font style="font-size: 10pt;">(
+						<?php
+						//$showname = $r['Top10']['ag1stname'] . " " . $r['Top10']['aglastname'];
+						$showname = $r['Top10']['ag1stname'];
+						echo strlen($showname) > 20 ? (substr($showname, 0, 17) . "...") : $showname;
+						?>
+						)</font>
+					</td>
+					<td align="center"><?php echo $r['Top10']['sales'] > 0 ? $r['Top10']['sales'] : '0'; ?></td>
+				</tr>
 		<?php
+			}
 		}
 		?>
 		</table>
