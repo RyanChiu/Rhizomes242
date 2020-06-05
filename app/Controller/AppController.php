@@ -3,7 +3,7 @@ App::import('Vendor', 'extrakits');
 ?>
 <?php
 class AppController extends Controller {
-	var $uses = array('Admin', 'Agent', 'Site', 'SiteExcluding', 'TerminalCookie');
+	var $uses = array('Admin', 'Agent', 'Site', 'SiteExcluding', 'TerminalCookie', 'ViewNewMember');
 	var $curuser = null;
 	var $__locatekey = 'GTYHNBvfr4567ujm';
 	/*
@@ -92,6 +92,11 @@ class AppController extends Controller {
 		/*
 		 * setting cookies part--end
 		 */
+		
+		/*
+		 * set numbers for the "NEW STAFF"
+		 */
+		$this->set("newCounts", $this->ViewNewMember->find('count'));
 		
 		parent::beforeFilter();
 	}

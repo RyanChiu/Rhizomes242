@@ -197,10 +197,14 @@ echo $scripts_for_layout;
 							} else {
 								$curmenuidx = $menuitemscount - 1;
 							}
+							$menuItemApprove = '<span><font>APPROVE NEW AGENT</font></span>';
+							if ($newCounts != 0) {
+								$menuItemApprove .= '<span id="spanNewStaff" style="color:red;font-size:9px;margin-left:9px;">[' . $newCounts . ']</span>';
+							}
 						?>
 						<li>
 						<?php
-						echo $this->Html->link('<span><font>APPROVE NEW AGENT</font></span>',
+						echo $this->Html->link($menuItemApprove,
 							array('controller' => 'accounts', 'action' => 'lstnewmembers'),
 							array('escape' => false), 
 							false);
@@ -770,6 +774,22 @@ echo $scripts_for_layout;
 			});
 			jQuery("a#attentions_link").click();
 		});
+
+				/* blink the badge of the "new staff" numbers */
+				<?php
+                if ($newCounts != 0) {
+                ?>
+                function blink(selector){
+                	jQuery(selector).fadeOut(1200, function(){
+	                	jQuery(this).fadeIn(1200, function(){
+	                    	blink(this);
+	                    });
+                    });
+                }
+                blink("#spanNewStaff");
+                <?php
+                }
+                ?>
 	</script>
 	<?php
 	}
