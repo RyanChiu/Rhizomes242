@@ -23,7 +23,7 @@ while ($row = mysql_fetch_assoc($rs)) {
 	echo "--==import " . $fn . " start.==--\n";
 	$output = array();
 	//echo "php " . $path_parts["dirname"] . "/commdrv_links.php " . $fn . " " . $row["id"] . "\n";
-	exec("php " . $path_parts["dirname"] . "/commdrv_links.php " . $fn . " " . $row["id"], $output);
+	exec("php5.6 " . $path_parts["dirname"] . "/commdrv_links.php " . $fn . " " . $row["id"], $output);
 	echo implode("\n", $output) . "\n";
 	echo "--==import " . $fn . " end.==--(" . date('Y-m-d H:i:s') . ")\n";
 }
