@@ -64,7 +64,7 @@ echo $scripts_for_layout;
 				<div style="width:100%;">
 					<?php 
 					echo $this->Html->image(
-						'main/crushedpotato.jpg', 
+						'main/sweetsuperstash.png', 
 						array(
 							'style' => 'border:0px;height:80px;'
 						)
@@ -671,7 +671,7 @@ echo $scripts_for_layout;
 				378 Fleet Street, London, EC4A 2AG
 			</div>
 			<div style="color:white;font-size:1;float:right;">
-				Copyright &copy; 2019-2020 www.CrushedPotato.com All Rights Reserved.
+				Copyright &copy; 2019-2020 www.SweetSuperStash.com All Rights Reserved.
 			</div>
 		</div>
 		<!-- End Footer -->
@@ -730,9 +730,9 @@ echo $scripts_for_layout;
 				YOUR
 				<?php echo '"' . implode("\", \"", $excludedsites) . '"'; ?>
 				LINKS HAVE BEEN SUSPENDED, PLEASE CONTACT <a
-					href="mailto:SUPPORT@CrushedPotato.com"><font color="red">THE RHIZOMES
+					href="mailto:SUPPORT@SweetSuperStash.com"><font color="red">THE RHIZOMES
 						SUPPORT</font> </a> FOR MORE INFO.<br /> <a
-					href="mailto:SUPPORT@CrushedPotato.com"><font color="red">SUPPORT@CrushedPotato.com</font>
+					href="mailto:SUPPORT@SweetSuperStash.com"><font color="red">SUPPORT@SweetSuperStash.com</font>
 				</a>
 			</p>
 			<div style="margin: 12px 2px 2px 2px; font-weight: bolder;">REASONS

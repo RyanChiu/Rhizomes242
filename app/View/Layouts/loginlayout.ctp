@@ -30,14 +30,14 @@ echo $scripts_for_layout;
 						<td rowspan=2 style="vertical-align:top;">
 							<?php 
 							echo $this->Html->image(
-								'main/potatoes.gif', array('style' => 'border:0px;height:170px;margin-left:45px;')
+								'main/DUCK.gif', array('style' => 'border:0px;height:170px;margin-left:45px;')
 							);
 							?>
 						</td>
 						<td>
 							<?php 
 							echo $this->Html->image(
-								'main/crushedpotato.jpg', array('style' => 'border:0px;height:60px;')
+								'main/sweetsuperstash.png', array('style' => 'border:0px;height:60px;')
 							);
 							?>
 						</td>
@@ -59,7 +59,7 @@ echo $scripts_for_layout;
 				378 Fleet Street, London, EC4A 2AG
 			</div>
 			<div style="color:white;font-size:1;float:right;">
-				Copyright &copy; 2019-2020 www.CrushedPotato.com All Rights Reserved.
+				Copyright &copy; 2019-2020 www.SweetSuperStash.com All Rights Reserved.
 			</div>
 		</div>
 		<!-- End Footer -->

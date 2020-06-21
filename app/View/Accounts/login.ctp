@@ -9,7 +9,7 @@ echo $this->Form->create(null, array('url' => array('controller' => 'accounts', 
 <table style="border:0;width:100%;">
 	<tr>
 		<td align="right">
-			<b><font style="color:#e1ce4e;margin-right:6px;" size="2">USER ID:</font></b>
+			<b><font style="color:#FC8024;margin-right:6px;" size="2">USER ID:</font></b>
 		</td>
 		<td align="left">
 			<?php
@@ -22,7 +22,7 @@ echo $this->Form->create(null, array('url' => array('controller' => 'accounts', 
 	</tr>
 	<tr>
 		<td align="right">
-			<b><font style="color:#e1ce4e;margin-right:6px;" size="2">PASS:</font></b>
+			<b><font style="color:#FC8024;margin-right:6px;" size="2">PASS:</font></b>
 		</td>
 		<td align="left">
 			<?php
@@ -35,7 +35,7 @@ echo $this->Form->create(null, array('url' => array('controller' => 'accounts', 
 	</tr>
 	<tr>
 		<td align="right">
-			<b><font style="color:#e1ce4e;margin-right:6px;" size="2">NOT BOT:</font></b>
+			<b><font style="color:#FC8024;margin-right:6px;" size="2">NOT BOT:</font></b>
 		</td>
 		<td align="left">
 			<div style="float:left;margin-right:10px;">

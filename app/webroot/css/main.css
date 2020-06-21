@@ -214,7 +214,7 @@ img.float {
 /* ------------------------- Start Headings ---------------------*/
 h1 {
 	font-size: 16px;
-	color: #e1ce4e;
+	color: #f4a768;
 }
 /* ------------------------- End Headings ---------------------*/
 input {
@@ -322,14 +322,14 @@ a:hover {
 }
 /*for stats, the totals*/
 .totals {
-	background: /*#E6EDF5*/ #e1ce4e;
+	background: /*#E6EDF5*/ #FC8024;
 	color: /*#4F76A3*/ black;
 	font-size: 100% !important;
 	font-weight: bold;
 }
 /*for search label*/
 .search-label {
-	background: /*#E6EDF5*/ #e1ce4e;
+	background: /*#E6EDF5*/ #FC8024;
 	color: /*#4F76A3*/ black;
 	font-size: 100% !important;
 	font-weight: bold;

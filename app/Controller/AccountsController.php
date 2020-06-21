@@ -143,16 +143,16 @@ class AccountsController extends AppController {
 	
 	var $emailErr = "not filled.";
 	function __sendemail($subject = 'empty', $content = 'empty',
-		$from = 'SUPPORT@CrushedPotato.com',
-		$mailto = 'SUPPORT@CrushedPotato.com',
-		$replyto = 'SUPPORT@CrushedPotato.com') {
+		$from = 'SUPPORT@SweetSuperStash.com',
+		$mailto = 'SUPPORT@SweetSuperStash.com',
+		$replyto = 'SUPPORT@SweetSuperStash.com') {
 		App::uses('CakeEmail', 'Network/Email');
 		$cakeEmail = new CakeEmail(
 			array(
 				'port'=>'25',
 				'timeout'=>'60',
 				'host' => 'smtpout.asia.secureserver.net',
-				'username'=>'SUPPORT@CrushedPotato.com',
+				'username'=>'SUPPORT@SweetSuperStash.com',
 				'password'=>'NCC123',
 				'transport' => 'Smtp'
 			)
@@ -175,7 +175,7 @@ class AccountsController extends AppController {
 			'port'=>'25',
 			'timeout'=>'60',
 			'host' => 'smtpout.asia.secureserver.net',
-			'username'=>'SUPPORT@CrushedPotato.com',
+			'username'=>'SUPPORT@SweetSuperStash.com',
 			'password'=>'NCC123.'
 		);
 		$this->Email->from = '<' . $from . '>';
@@ -742,7 +742,7 @@ class AccountsController extends AppController {
 						'Your The Crushed Potato Password',
 						"Hi,\nYour The Crushed Potato password is:" . $r['Account']['originalpwd'] . "\n"
 						. "\nThanks,\nThe Crushed Potato webmaster.",//must use " instead of ' at this $content parameter
-						'SUPPORT@CrushedPotato.com',
+						'SUPPORT@SweetSuperStash.com',
 						$_r['Company']['manemail']
 					);
 					if ($issent) {
@@ -775,7 +775,7 @@ class AccountsController extends AppController {
 						'Your The Crushed Potato Password',
 						"Hi,\nYour The Crushed Potato password is:" . $r['Account']['originalpwd'] . "\n"
 						. "\nThanks,\nThe Crushed Potato webmaster.",//must use " instead of ' at this $content parameter
-						'SUPPORT@CrushedPotato.com',
+						'SUPPORT@SweetSuperStash.com',
 						$_r['Agent']['email']
 					);
 					if ($issent) {
@@ -809,8 +809,8 @@ class AccountsController extends AppController {
 			$issent = $this->__sendemail(
 				"[User name: " . $this->request->data['FakeContactUs']['username'] . "] " . $this->request->data['FakeContactUs']['subject'],
 				"From:" . $this->request->data['FakeContactUs']['email'] . "\n\n" . $this->request->data['FakeContactUs']['message'],
-				"SUPPORT@CrushedPotato.com",
-				"SUPPORT@CrushedPotato.com",
+				"SUPPORT@SweetSuperStash.com",
+				"SUPPORT@SweetSuperStash.com",
 				$this->request->data['FakeContactUs']['email']
 			);
 			$redirecturl = '';
@@ -1036,8 +1036,8 @@ class AccountsController extends AppController {
 						. $this->request->data['Account']['username']
 						. "' created, please check it out.",
 						"empty",
-						"SUPPORT@CrushedPotato.com",
-						"NOREPLY@CrushedPotato.com"
+						"SUPPORT@SweetSuperStash.com",
+						"NOREPLY@SweetSuperStash.com"
 					);
 					*/
 
@@ -1215,8 +1215,8 @@ class AccountsController extends AppController {
 							. $this->request->data['Account']['username'] 
 							. "' created, please check it out.",
 						"empty",
-						"SUPPORT@CrushedPotato.com",
-						"NOREPLY@CrushedPotato.com"
+						"SUPPORT@SweetSuperStash.com",
+						"NOREPLY@SweetSuperStash.com"
 					);
 					*/
 					
@@ -2007,12 +2007,12 @@ class AccountsController extends AppController {
 						$subject = "Request For New Agent";
 						$content .= "\n\n(Request from office manager \"" . $data['Requestchg']['offiname']
 							. "\", with email address \"" . $data['Requestchg']['from'] . "\").";
-						$issent = $this->__sendemail($subject, $content, "SUPPORT@CrushedPotato.com", "NOREPLY@CrushedPotato.com");
+						$issent = $this->__sendemail($subject, $content, "SUPPORT@SweetSuperStash.com", "NOREPLY@SweetSuperStash.com");
 					} else if ($data['Requestchg']['type'] == 'upd') {//means an updating request
 						$subject = "Request For Updating Agent";
 						$content .= "\n\n(Request from office manager \"" . $data['Requestchg']['offiname']
 							. "\", with email address \"" . $data['Requestchg']['from'] . "\").";
-						$issent = $this->__sendemail($subject, $content, "SUPPORT@CrushedPotato.com", "NOREPLY@CrushedPotato.com");
+						$issent = $this->__sendemail($subject, $content, "SUPPORT@SweetSuperStash.com", "NOREPLY@SweetSuperStash.com");
 					}
 					
 					if ($issent) {
@@ -2064,10 +2064,10 @@ class AccountsController extends AppController {
 				/*
 				$mailto = ''
 					//. strtolower($r['ViewAgent']['officename']) . '_qa@cleanchattersinc.com';
-					. 'SUPPORT@CrushedPotato.com';
+					. 'SUPPORT@SweetSuperStash.com';
 				if ($this->__sendemail(
 						$subject, $content,
-						'SUPPORT@CrushedPotato.com',
+						'SUPPORT@SweetSuperStash.com',
 						$mailto
 					) != true) {
 					$fmsg = '(Failed to email out.<0>)';
@@ -2075,8 +2075,8 @@ class AccountsController extends AppController {
 				*/
 				if ($this->__sendemail(
 						$subject, $content,
-						'SUPPORT@CrushedPotato.com',
-						'NOREPLY@CrushedPotato.com'
+						'SUPPORT@SweetSuperStash.com',
+						'NOREPLY@SweetSuperStash.com'
 					) != true) {
 					$fmsg = '(Failed to email out.<1>)';
 				};
