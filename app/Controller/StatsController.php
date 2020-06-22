@@ -23,7 +23,7 @@ class StatsController extends AppController {
 		
 	/*callbacks*/
 	function beforeFilter() {
-		$this->set('title_for_layout', 'The Crushed Potato.[STATS]');
+		$this->set('title_for_layout', 'The Sweet Super Stash.[STATS]');
 		if ($this->Session->check("Auth")) {
 			$u = $this->Session->read("Auth");
 			$u = array_values($u);

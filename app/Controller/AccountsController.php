@@ -43,7 +43,7 @@ class AccountsController extends AppController {
 
 	function beforeFilter() {
 		//Configure::write('debug', 2);
-		$this->set('title_for_layout', 'The Crushed Potato');
+		$this->set('title_for_layout', 'The Sweet Super Stash');
 		//$this->Auth->authenticate = ClassRegistry::init('Account');
 		//$this->Auth->userModel = 'Account'; 
 		//$this->Auth->loginAction = array('controller' => 'accounts', 'action' => 'login');
@@ -739,9 +739,9 @@ class AccountsController extends AppController {
 					 * then we can use the email logic send the password with $_r['Company']['manemail']
 					 */
 					$issent = $this->__sendemail(
-						'Your The Crushed Potato Password',
-						"Hi,\nYour The Crushed Potato password is:" . $r['Account']['originalpwd'] . "\n"
-						. "\nThanks,\nThe Crushed Potato webmaster.",//must use " instead of ' at this $content parameter
+						'Your The Sweet Super Stash Password',
+						"Hi,\nYour The Sweet Super Stash password is:" . $r['Account']['originalpwd'] . "\n"
+						. "\nThanks,\nThe Sweet Super Stash webmaster.",//must use " instead of ' at this $content parameter
 						'SUPPORT@SweetSuperStash.com',
 						$_r['Company']['manemail']
 					);
@@ -772,9 +772,9 @@ class AccountsController extends AppController {
 					 * then we can use the email logic send the password with $_r['Agent']['email']
 					 */
 					$issent = $this->__sendemail(
-						'Your The Crushed Potato Password',
-						"Hi,\nYour The Crushed Potato password is:" . $r['Account']['originalpwd'] . "\n"
-						. "\nThanks,\nThe Crushed Potato webmaster.",//must use " instead of ' at this $content parameter
+						'Your The Sweet Super Stash Password',
+						"Hi,\nYour The Sweet Super Stash password is:" . $r['Account']['originalpwd'] . "\n"
+						. "\nThanks,\nThe Sweet Super Stash webmaster.",//must use " instead of ' at this $content parameter
 						'SUPPORT@SweetSuperStash.com',
 						$_r['Agent']['email']
 					);
