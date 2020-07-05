@@ -357,9 +357,19 @@ class StatsController extends AppController {
 				$selagent = $conds['selagent'];
 			}
 		}
-		$startdate = $enddate = date("Y-m-d", strtotime(date('Y-m-d') . " Sunday"));
-		$startdate = date("Y-m-d", strtotime($enddate . " - 7 days"));
-		$enddate = date("Y-m-d", strtotime($startdate . " + 6 days"));
+		
+		$__lastday = null;
+		if (date("D") == "Sun") {
+			$__lastday = date("Y-m-d", strtotime($__lastday . " + 6 days"));
+		} else {
+			$__lastday = date("Y-m-d", strtotime($__lastday . " - 1 days"));
+		}
+		$startdate = date("Y-m-d", strtotime($__lastday . " - 6 days"));
+		$enddate = $__lastday;
+		
+		//$startdate = $enddate = date("Y-m-d", strtotime(date('Y-m-d') . " Sunday"));
+		//$startdate = date("Y-m-d", strtotime($enddate . " - 7 days"));
+		//$enddate = date("Y-m-d", strtotime($startdate . " + 6 days"));
 		/*
 		if (date('Y-m-d') <= date('Y-m-15')) {
 			$startdate = date('Y-m-01');
