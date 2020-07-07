@@ -358,28 +358,26 @@ class StatsController extends AppController {
 			}
 		}
 		
-		$__lastday = null;
 		if (date("D") == "Sun") {
 			$__lastday = date("Y-m-d", strtotime($__lastday . " + 6 days"));
+			$startdate = date("Y-m-d", strtotime($__lastday . " - 6 days"));
+			$enddate = $__lastday;
 		} else {
-			$__lastday = date("Y-m-d", strtotime($__lastday . " - 1 days"));
+			if (date('Y-m-d') <= date('Y-m-15')) {
+				$startdate = date('Y-m-01');
+				$enddate = date('Y-m-' . date('d'));
+			} else {
+				$lastday = date('d');
+				$startdate = date('Y-m-16');
+				$enddate = date('Y-m-' . $lastday);
+			}
 		}
-		$startdate = date("Y-m-d", strtotime($__lastday . " - 6 days"));
-		$enddate = $__lastday;
+		
 		
 		//$startdate = $enddate = date("Y-m-d", strtotime(date('Y-m-d') . " Sunday"));
 		//$startdate = date("Y-m-d", strtotime($enddate . " - 7 days"));
 		//$enddate = date("Y-m-d", strtotime($startdate . " + 6 days"));
-		/*
-		if (date('Y-m-d') <= date('Y-m-15')) {
-			$startdate = date('Y-m-01');
-			$enddate = date('Y-m-' . date('d'));
-		} else {
-			$lastday = date('d');
-			$startdate = date('Y-m-16');
-			$enddate = date('Y-m-' . $lastday);
-		}
-		*/
+		
 		if (!empty($this->request->data)) {
 			$startdate = $this->request->data['Stats']['startdate'];
 		} else if (array_key_exists('startdate', $this->passedArgs)) {
