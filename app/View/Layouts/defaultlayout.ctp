@@ -199,7 +199,7 @@ echo $scripts_for_layout;
 							}
 							$menuItemApprove = '<span><font>APPROVE NEW AGENT</font></span>';
 							if ($newCounts != 0) {
-								$menuItemApprove .= '<span id="spanNewStaff" style="color:red;font-size:9px;margin-left:9px;">[' . $newCounts . ']</span>';
+								$menuItemApprove .= '<span id="spanNewStaff" class="roundedRectangle" style="padding:0 4px 0 3px;margin-left:3px;">' . ($newCounts) . '</span>';
 							}
 						?>
 						<li>
