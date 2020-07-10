@@ -358,20 +358,14 @@ class StatsController extends AppController {
 			}
 		}
 		
+		$__lastday = date("Y-m-d", strtotime(date('Y-m-d') . " Sunday"));
 		if (date("D") == "Sun") {
 			$__lastday = date("Y-m-d", strtotime($__lastday . " + 6 days"));
-			$startdate = date("Y-m-d", strtotime($__lastday . " - 6 days"));
-			$enddate = $__lastday;
 		} else {
-			if (date('Y-m-d') <= date('Y-m-15')) {
-				$startdate = date('Y-m-01');
-				$enddate = date('Y-m-' . date('d'));
-			} else {
-				$lastday = date('d');
-				$startdate = date('Y-m-16');
-				$enddate = date('Y-m-' . $lastday);
-			}
+			$__lastday = date("Y-m-d", strtotime($__lastday . " - 1 days"));
 		}
+		$startdate = date("Y-m-d", strtotime($__lastday . " - 6 days"));
+		$enddate = $__lastday;
 		
 		
 		//$startdate = $enddate = date("Y-m-d", strtotime(date('Y-m-d') . " Sunday"));
