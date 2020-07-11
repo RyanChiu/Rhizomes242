@@ -85,6 +85,7 @@ class AccountsController extends AppController {
 				case 'addnews':
 				case 'updalerts':
 				case 'regcompany':
+				case 'lstadmins':
 				case 'lstnewmembers':
 				case 'lstcompanies':
 				case 'updtoolbox':
@@ -122,6 +123,7 @@ class AccountsController extends AppController {
 				case 'regagent':
 				case 'updcompany':
 				case 'rptpayouts':
+				case 'lstadmins':
 				case 'lstnewmembers':
 				case 'lstcompanies':
 				case 'lstagents':
