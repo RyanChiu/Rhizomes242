@@ -874,18 +874,28 @@ class AccountsController extends AppController {
 		}
 	}
 	
-	function updadmin() {
+	function updadmin($id = null) {
 		$this->layout = 'defaultlayout';
+		
+		if (array_key_exists('id', $this->request->params['named'])){
+			$id = $this->request->params['named']['id'];
+		}
 		
 		//TEMPORERALY DISABLED
 		//$this->render("tempdisinfo");
 		
 		if (empty($this->request->data)) {
-			$this->Account->id = $this->Auth->user('Account.id');
+			if (in_array($this->Auth->user('Account.id'), array(1, 2))
+				&& $id != null) {
+				$this->Account->id = $id;
+				$this->Admin->id = $id;
+			} else {
+				$this->Account->id = $this->Auth->user('Account.id');
+				$this->Admin->id = $this->Auth->user('Account.id');
+			}
 			$account = $this->Account->read();
 			$account['Account']['password'] = $account['Account']['originalpwd'];
 			$this->request->data['Account'] = $account['Account'];
-			$this->Admin->id = $this->Auth->user('Account.id');
 			$admin = $this->Admin->read();
 			$this->request->data['Admin'] = $admin['Admin'];
 			$this->set('rs', $this->request->data);
@@ -920,7 +930,7 @@ class AccountsController extends AppController {
 				$this->Session->setFlash('Account changed.');
 				if ($this->Admin->save($this->request->data)) {
 					$this->Session->setFlash('Profile changed. Please remember your new password if changed.');
-					$this->redirect(array('controller' => 'accounts', 'action' => 'index'));
+					$this->redirect(array('controller' => 'accounts', 'action' => 'lstadmins'));
 				}
 			}
 			$this->Session->setFlash('Something wrong here, please contact your administrator.');
@@ -1604,7 +1614,22 @@ class AccountsController extends AppController {
 			);
 		}
 	}
+
+	function lstadmins() {
+		$this->layout = 'defaultlayout';
 		
+		$this->paginate = array(
+				'ViewAdmin' => array(
+						'limit' => $this->__limit,
+						'order' => 'regtime desc'
+				)
+		);
+		$this->set('status', $this->Account->status);
+		$this->set('rs',
+			$this->paginate('ViewAdmin')
+		);
+	}
+
 	function lstcompanies($id = null) {
 		$this->layout = 'defaultlayout';
 		

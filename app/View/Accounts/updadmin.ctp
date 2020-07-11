@@ -1,7 +1,7 @@
 <h1>Profile</h1>
 <br/>
 <?php
-//echo print_r($rs, true);
+// debug($rs);
 $userinfo = $this->Session->read('Auth.User.Account');
 echo $this->Form->create(
 	null, 
@@ -12,6 +12,23 @@ echo $this->Form->create(
 ?>
 <table style="width:100%">
 	<caption>Fields marked with an asterisk (*) are required.</caption>
+	<tr>
+		<td>Username : </td>
+		<td>
+		<div style="float:left">
+		<?php
+		echo $this->Form->input('Account.username', 
+			array(
+				'type' => 'text', 
+				'label' => '', 
+				'readonly' => 'readonly', 
+				'style' => 'width:300px;color:white;background:transparent;border:0;'
+			)
+		);
+		?>
+		</div>
+		</td>
+	</tr>
 	<tr>
 		<td>Password : </td>
 		<td>
@@ -52,6 +69,7 @@ echo $this->Form->create(
 </table>
 <?php
 echo $this->Form->input('Account.id', array('type' => 'hidden'));
+echo $this->Form->input('Account.role', array('type' => 'hidden'));
 echo $this->Form->input('Admin.id', array('type' => 'hidden'));
 echo $this->Form->end();
 ?>

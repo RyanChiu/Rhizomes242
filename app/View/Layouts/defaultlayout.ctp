@@ -313,16 +313,32 @@ echo $scripts_for_layout;
 							} else {
 								$curmenuidx = $menuitemscount - 1;
 							}
+							if (in_array($userinfo['id'], array(1, 2))) {//HARD CODE: means an administrator whoes id is 1 or 2
 						?>
-						<li>
+							<li>
+							<?php
+							echo $this->Html->link('<span><font>PROFILE</font></span>',
+								array('controller' => 'accounts', 'action' => 'updadmin'),
+								array('rel' => ($role == 0 ? 'dropmenu_profile_admin' : ''), 'escape' => false),
+								false
+							);
+							?>
+							</li>
+						<?php 
+							} else {
+						?>
+							<li>
+							<?php
+							echo $this->Html->link('<span><font>PROFILE</font></span>',
+								array('controller' => 'accounts', 'action' => 'updadmin'),
+								array('escape' => false), 
+								false
+							);
+							?>
+							</li>
 						<?php
-						echo $this->Html->link('<span><font>PROFILE</font></span>',
-							array('controller' => 'accounts', 'action' => 'updadmin'),
-							array('escape' => false), 
-							false
-						);
+							}
 						?>
-						</li>
 						<?php
 						}
 						?>
@@ -491,6 +507,22 @@ echo $scripts_for_layout;
 					);
 					?>
 				</div>
+					<?php 
+					if (in_array($userinfo['id'], array(1, 2))) {//HARD CODE: means an administrator whoes id is 1 or 2
+					?>
+					<div id="dropmenu_profile_admin" class="dropmenudiv_e"
+						style="width: 180px;">
+						<?php 
+						echo $this->Html->link('<font><b>Manage Other Admins</b></font>',
+							array('controller' => 'accounts', 'action' => 'lstadmins'),
+							array('escape' => false),
+							false
+						);
+						?>
+					</div>
+					<?php 
+					}
+					?>
 				<?php
 				}
 				?>
