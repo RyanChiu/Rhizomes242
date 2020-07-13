@@ -62,6 +62,24 @@ echo $this->Form->create(
 		<div style="float:left"><font color="red">*</font></div>
 		</td>
 	</tr>
+	<?php 
+	if (in_array($userinfo['id'], array(1, 2))
+		&& !in_array($rs['Account']['id'], array(1, 2))) {
+	?>
+	<tr>
+		<td>
+		<label>Earning visible :</label>
+		<?php
+		echo $this->Form->checkbox('Account.level');
+		?>
+		</td>
+		<td>
+		<div style="float:left"><font color="red">*</font></div>
+		</td>
+	</tr>
+	<?php 
+	}
+	?>
 	<tr>
 		<td></td>
 		<td><?php echo $this->Form->submit('Update', array('style' => 'width:112px;')); ?></td>
@@ -73,3 +91,9 @@ echo $this->Form->input('Account.role', array('type' => 'hidden'));
 echo $this->Form->input('Admin.id', array('type' => 'hidden'));
 echo $this->Form->end();
 ?>
+
+<script type="text/javascript">
+jQuery(":checkbox").attr({
+	style: "border: 0px; width: 16px; margin-left: 2px; vertical-align: middle;"
+});
+</script>

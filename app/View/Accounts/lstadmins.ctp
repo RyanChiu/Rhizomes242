@@ -11,6 +11,7 @@
 		<th><b><?php echo $this->ExPaginator->sort('ViewAdmin.originalpwd', 'Password'); ?></b></th>
 		<th><b><?php echo $this->ExPaginator->sort('ViewAdmin.email', 'Email'); ?></b></th>
 		<th><b><?php echo $this->ExPaginator->sort('ViewAdmin.regtime', 'Registered'); ?></b></th>
+		<th><b><?php echo $this->ExPaginator->sort('ViewAdmin.regtime', 'Earnings'); ?></b></th>
 		<th><b><?php echo $this->ExPaginator->sort('ViewAdmin.status', 'Status'); ?></b></th>
 		<th><b>Operation</b></th>
 	</tr>
@@ -25,6 +26,7 @@ foreach ($rs as $r):
 		<td><?php echo $r['ViewAdmin']['originalpwd']; ?></td>
 		<td><?php echo $r['ViewAdmin']['email']; ?></td>
 		<td><?php echo $r['ViewAdmin']['regtime']; ?></td>
+		<td><?php echo $r['ViewAdmin']['level'] == 1 ? 'Visible' : 'Invisible'; ?></td>
 		<td><?php echo $status[$r['ViewAdmin']['status']]; ?></td>
 		<td align="center">
 		<?php

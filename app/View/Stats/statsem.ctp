@@ -49,8 +49,9 @@ $userinfo = $this->Session->read('Auth.User.Account');
 <br/>
 
 <?php
-// $_show_pay_ = ($userinfo['role'] == 0 && in_array($userinfo['id'], array(1, 2, 3)));
 $_show_pay_ = ($userinfo['role'] == 0);
+$_show_earn_ = ($userinfo['role'] == 0 
+	&& (in_array($userinfo['id'], array(1, 2)) || $userinfo['level'] == 1));
 if (!empty($rs)) {
 ?>
 <table style="width:100%">
@@ -232,9 +233,13 @@ if (!empty($rs)) {
 		<br/><i style="font-size:12px;">Sale</i>
 		</th>
 		<?php
-		if ($_show_pay_) {
+		if ($_show_earn_) {
 		?>
 		<th><?php echo $this->ExPaginator->sort('ViewTStats.earnings', 'Earnings'); ?></th>
+		<?php 
+		}
+		if ($_show_pay_) {
+		?>
 		<th><?php echo $this->ExPaginator->sort('ViewTStats.payouts', 'Payouts'); ?></th>
 		<?php
 		} else if ($userinfo['role'] == -1) {
@@ -355,9 +360,13 @@ if (!empty($rs)) {
 		<td><?php echo $r[0]['sales_type1']; ?></td>
 		<td><?php echo $r[0]['net']; ?></td>
 		<?php
-		if ($_show_pay_) {
+		if ($_show_earn_) {
 		?>
 		<td><?php echo '$' . $r[0]['earnings']; ?></td>
+		<?php 
+		}
+		if ($_show_pay_) {
+		?>
 		<td><?php echo '$' . $r[0]['payouts']; ?></td>
 		<?php
 		} else if ($userinfo['role'] == -1) {
@@ -412,9 +421,13 @@ if (!empty($rs)) {
 		<td class="totals"><?php echo $pagetotals['sales_type1']; ?></td>
 		<td class="totals"><?php echo $pagetotals['net']; ?></td>
 		<?php
-		if ($_show_pay_) {
+		if ($_show_earn_) {
 		?>
 		<td class="totals"><?php echo '$' . sprintf('%.2f', $pagetotals['earnings']); ?></td>
+		<?php 
+		}
+		if ($_show_pay_) {
+		?>
 		<td class="totals"><?php echo '$' . sprintf('%.2f', $pagetotals['payouts']); ?></td>
 		<?php
 		} else if ($userinfo['role'] == -1) {
@@ -465,9 +478,13 @@ if (!empty($rs)) {
 		<td class="totals"><?php echo $totals['sales_type1']; ?></td>
 		<td class="totals"><?php echo $totals['net']; ?></td>
 		<?php
-		if ($_show_pay_) {
+		if ($_show_earn_) {
 		?>
 		<td class="totals"><?php echo '$' . sprintf('%.2f', $totals['earnings']); ?></td>
+		<?php 
+		}
+		if ($_show_pay_) {
+		?>
 		<td class="totals"><?php echo '$' . sprintf('%.2f', $totals['payouts']); ?></td>
 		<?php
 		} else if ($userinfo['role'] == -1) {
@@ -530,9 +547,13 @@ if (!empty($rs)) {
 		<td class="totals"></td>
 		<td class="totals"></td>
 		<?php
-		if ($_show_pay_) {
+		if ($_show_earn_) {
 		?>
 		<td class="totals"></td>
+		<?php 
+		}
+		if ($_show_pay_) {
+		?>
 		<td class="totals"></td>
 		<?php
 		} else if ($userinfo['role'] == -1) {
@@ -592,9 +613,13 @@ if (!empty($rs)) {
 		<td class="totals"></td>
 		<td class="totals"></td>
 		<?php
-		if ($_show_pay_) {
+		if ($_show_earn_) {
 		?>
 		<td class="totals"></td>
+		<?php 
+		}
+		if ($_show_pay_) {
+		?>
 		<td class="totals"></td>
 		<?php
 		} else if ($userinfo['role'] == -1) {
