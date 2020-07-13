@@ -70,6 +70,7 @@ class AccountsController extends AppController {
 		if ($this->Auth->user('Account.role') == 0) {//means an administrator
 			switch ($this->request->params['action']) {
 				case 'addnews':
+				case 'regadmin':
 				case 'lstadmins':
 					if ($this->Auth->user("Account.id") != 1
 						&& $this->Auth->user("Account.id") != 2) {
@@ -87,6 +88,7 @@ class AccountsController extends AppController {
 		}
 		if ($this->Auth->user('Account.role') == 1) {//means an office
 			switch ($this->request->params['action']) {
+				case 'regadmin':
 				case 'updadmin':
 				case 'addnews':
 				case 'updalerts':
@@ -122,6 +124,7 @@ class AccountsController extends AppController {
 		}
 		if ($this->Auth->user('Account.role') == 2) {//means an agent
 			switch ($this->request->params['action']) {
+				case 'regadmin':
 				case 'updadmin':
 				case 'addnews':
 				case 'updalerts':
@@ -946,6 +949,49 @@ class AccountsController extends AppController {
 				}
 			}
 			$this->Session->setFlash('Something wrong here, please contact your administrator.');
+		}
+	}
+	
+	function regadmin($id = null) {
+		$this->layout = 'defaultlayout';
+		
+		if (!empty($this->request->data)) {
+			/*validate the posted fields*/
+			$this->Account->set($this->request->data);
+			$this->Admin->set($this->request->data);
+			if (!$this->Account->validates() || !$this->Admin->validates()) {
+				$this->request->data['Account']['password'] = $this->request->data['Account']['originalpwd'];
+				$this->Session->setFlash('Please notice the tips below the fields.');
+				return;
+			}
+				
+			/*make the value of field "regtime" to the current time*/
+			$this->request->data['Account']['regtime'] = date('Y-m-d H:i:s');
+				
+			/*actually save the posted data*/
+			$this->Account->create();
+			$this->request->data['Account']['username4m'] = __fillzero4m($this->request->data['Account']['username']);
+			if ($this->Account->save($this->request->data)) {//1stly, save the data into 'accounts'
+				$this->Session->setFlash('Only account added.Please contact your administrator immediately.');
+			
+				$this->request->data['Admin']['id'] = $this->Account->id;
+				$this->Admin->create();
+				if ($this->Admin->save($this->request->data)) {//2ndly, save the data into 'admins'
+					
+					/*redirect to some page*/
+					$this->Session->setFlash(
+						'Administrator: "'
+						. $this->request->data['Account']['username']
+						. '" added.'
+					);
+					$this->redirect(array('controller' => 'accounts', 'action' => 'lstadmins'));
+				} else {
+					$this->request->data['Account']['password'] = $this->request->data['Account']['originalpwd'];
+					//should add some codes here to delete the record that saved in 'accounts' table before if failed
+				}
+			} else {
+				$this->request->data['Account']['password'] = $this->request->data['Account']['originalpwd'];
+			}
 		}
 	}
 	

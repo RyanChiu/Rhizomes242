@@ -2,6 +2,25 @@
 
 <?php
 /*showing the results*/
+$userinfo = $this->Session->read('Auth.User.Account');
+?>
+
+<?php 
+if (in_array($userinfo['id'], array(1, 2))) {
+?>
+<div style="margin-bottom:3px;margin-top:9px;">
+<?php
+echo $this->Form->button('Add Admin',
+	array(
+		'onclick' => 'javascript:location.href=\''
+			. $this->Html->url(array('controller' => 'accounts', 'action' => 'regadmin')) . '\'',
+		'style' => 'width:160px;'
+	)
+);
+?>
+</div>
+<?php 
+}
 ?>
 
 <table style="width:100%">
@@ -13,7 +32,7 @@
 		<th><b><?php echo $this->ExPaginator->sort('ViewAdmin.regtime', 'Registered'); ?></b></th>
 		<th><b><?php echo $this->ExPaginator->sort('ViewAdmin.regtime', 'Earnings'); ?></b></th>
 		<th><b><?php echo $this->ExPaginator->sort('ViewAdmin.status', 'Status'); ?></b></th>
-		<th><b>Operation</b></th>
+		<th><b>Modify</b></th>
 	</tr>
 	</thead>
 <?php
