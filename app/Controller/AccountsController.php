@@ -70,6 +70,12 @@ class AccountsController extends AppController {
 		if ($this->Auth->user('Account.role') == 0) {//means an administrator
 			switch ($this->request->params['action']) {
 				case 'addnews':
+				case 'lstadmins':
+					if ($this->Auth->user("Account.id") != 1
+						&& $this->Auth->user("Account.id") != 2) {
+							$this->__accessDenied();
+					}
+					return;
 				case 'updalerts':
 					if ($this->Auth->user("Account.id") != 1
 						&& $this->Auth->user("Account.id") != 2) {
@@ -932,7 +938,11 @@ class AccountsController extends AppController {
 				$this->Session->setFlash('Account changed.');
 				if ($this->Admin->save($this->request->data)) {
 					$this->Session->setFlash('Profile changed. Please remember your new password if changed.');
-					$this->redirect(array('controller' => 'accounts', 'action' => 'lstadmins'));
+					if (in_array($this->Auth->user("Account.id"), array(1, 2))) {
+						$this->redirect(array('controller' => 'accounts', 'action' => 'lstadmins'));
+					} else {
+						$this->redirect(array('controller' => 'accounts', 'action' => 'index'));
+					}
 				}
 			}
 			$this->Session->setFlash('Something wrong here, please contact your administrator.');
