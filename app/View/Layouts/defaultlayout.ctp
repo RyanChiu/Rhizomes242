@@ -309,7 +309,9 @@ echo $scripts_for_layout;
 						if ($role == 0) {//means an administrator
 							$menuitemscount++;
 							//if cur route matches this menu item, then set the number to inform the js code
-							if (strpos($this->request->here, 'updadmin') === false) {
+							if (strpos($this->request->here, 'lstadmins') === false
+								&& strpos($this->request->here, 'regadmin') === false
+								&& strpos($this->request->here, 'updadmin') === false) {
 							} else {
 								$curmenuidx = $menuitemscount - 1;
 							}
