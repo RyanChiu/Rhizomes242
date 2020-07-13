@@ -365,11 +365,19 @@ table thead tr th a.desc {
 	background: url(../img/sort_desc.png) no-repeat right;
 	padding-right: 16px;
 }
-/*for AmericanWebLink ONLY*/
-.cci-textlogo {
-	float: left;
-	vertical-align: bottom;
-	line-height: 120px;
+/*for rounded rectangle block*/
+.roundedRectangle{
+	background: #ff2d2d;
+	border-width: 1px;	
+	border-style: solid;
+	border-radius: 11px;
+	border-color: #000 #000 #000 #000;
+}
+.roundedRectangle span{
+	min-width: 24px;
+	text-align:center;
+	font-size: 14px;
+	/*letter-spacing:8px;*/
 }
 /*for all the buttons (including submits)*/
 .button {
