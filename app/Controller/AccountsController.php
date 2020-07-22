@@ -1970,6 +1970,73 @@ class AccountsController extends AppController {
 		$this->redirect(array('controller' => 'accounts', 'action' => $action));
 	}
 	
+	function deletem() {
+		/*prepare the parameters*/
+		$ids = null;
+		if (array_key_exists('ids', $this->passedArgs)) {
+			$ids = explode(',', $this->passedArgs['ids']);
+			$ids = array_filter($ids);
+		}
+		$role = -1;
+		if (array_key_exists('role', $this->passedArgs)) {
+			$role = intval($this->passedArgs['role']);
+		}
+		if ($ids == null || $role == -1) {
+			$this->Session->setFlash('1----$role----' . print_r($ids, true));
+			$this->redirect(array('controller' => 'accounts', 'action' => 'index'));
+			return;
+		}
+		if (!in_array($role, array(1, 2))) {
+			$this->Session->setFlash('2----$role----' . print_r($ids, true));
+			$this->redirect(array('controller' => 'accounts', 'action' => 'index'));
+			return;
+		}
+	
+		/*delete all the accounts, companies/agents, stats, then*/
+		$action = 'index';
+		$ids_str = implode(",", $ids);
+		$sql = "";
+		if ($role == 1) {
+			$action = 'lstcompanies';
+			$sql .= sprintf("insert into trash_accounts select * from accounts where id in (%s) and role = 1;", $ids_str);
+			$sql .= sprintf("insert into trash_companies select * from companies where id in (%s);", $ids_str);
+			$sql .= sprintf("insert into trash_accounts (select * from accounts where id in (select distinct(id) from agents where companyid in (%s)));", $ids_str);
+			$sql .= sprintf("insert into trash_stats (select * from stats where agentid in (select distinct(id) from agents where companyid in (%s)));", $ids_str);
+			$sql .= sprintf("insert into trash_agents select * from agents where companyid in (%s);", $ids_str);
+			$sql .= sprintf("delete from accounts where id in (%s) and role = 1;", $ids_str);
+			$sql .= sprintf("delete from companies where id in (%s);", $ids_str);
+			$sql .= sprintf("delete from accounts where id in (select distinct(id) from agents where companyid in (%s));", $ids_str);
+			$sql .= sprintf("delete from stats where agentid in (select distinct(id) from agents where companyid in (%s));", $ids_str);
+			$sql .= sprintf("delete from agents where companyid in (%s);", $ids_str);
+		} else if ($role == 2) {
+			$action = 'lstagents';
+			$sql .= sprintf("insert into trash_accounts select * from accounts where id in (%s) and role = 2;", $ids_str);
+			$sql .= sprintf("insert into trash_stats (select * from stats where agentid in (%s));", $ids_str);
+			$sql .= sprintf("insert into trash_agents select * from agents where id in (%s);", $ids_str);
+			$sql .= sprintf("delete from accounts where id in (%s) and role = 2;", $ids_str);
+			$sql .= sprintf("delete from stats where agentid in (%s);", $ids_str);
+			$sql .= sprintf("delete from agents where id in (%s);", $ids_str);
+		}
+		
+		$conn = new zmysqlConn();
+		$sqls = explode(';', $sql);
+		$sqls = array_filter($sqls);
+		$errs = [];
+		$s = 0;
+		foreach ($sqls as $sql) {
+			$result = mysql_query($sql, $conn->dblink);
+			if ($result == true) $s++;
+			else array_push($errs, mysql_error());
+		}
+		if ($s == count($sqls)) {
+			$this->Session->setFlash('All select ' . ($role == 1 ? 'comanies/agents ' : 'agents ') .  'and their stats are removed.');
+		} else {
+			$this->Session->setFlash('SQL ERRORS: ' . print_r($errs, true) . '');
+		}
+	
+		$this->redirect(array('controller' => 'accounts', 'action' => $action));
+	}
+	
 	function requestchg() {
 		$this->layout = 'defaultlayout';
 		

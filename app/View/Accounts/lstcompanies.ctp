@@ -45,7 +45,7 @@ echo $this->Form->end();
 /*showing the results*/
 ?>
 <script type="text/javascript">
-function __setActSusLink() {
+function __setActSusDelLink() {
 	var checkboxes;
 	checkboxes = document.getElementsByName("data[ViewCompany][selected]");
 	var ids = "";
@@ -58,6 +58,8 @@ function __setActSusLink() {
 		document.getElementById("linkActivateSelected_").href + "/ids:" + ids + "/status:1/from:0";
 	document.getElementById("linkSuspendSelected").href =
 		document.getElementById("linkSuspendSelected_").href + "/ids:" + ids + "/status:0/from:0";
+	document.getElementById("linkDeleteSelected").href =
+		document.getElementById("linkDeleteSelected_").href + "/ids:" + ids + "/role:1";
 }
 function __setCurSelectedToBeInformed() {
 	var checkboxes;
@@ -104,7 +106,7 @@ echo $this->Form->button('Add Office',
 	echo $this->Form->checkbox('',
 		array('id' => 'checkboxAll', 'value' => -1,
 			'style' => 'border:0px;width:16px;',
-			'onclick' => 'javascript:__checkAll();__setActSusLink();'
+			'onclick' => 'javascript:__checkAll();__setActSusDelLink();'
 		)
 	);
 	?>
@@ -129,7 +131,7 @@ foreach ($rs as $r):
 	echo $this->Form->checkbox('ViewCompany.selected',
 		array('value' => $r['ViewCompany']['companyid'],
 			'style' => 'border:0px;width:16px;',
-			'onclick' => 'javascript:__setActSusLink();'
+			'onclick' => 'javascript:__setActSusDelLink();'
 		)
 	);
 	?>
@@ -199,6 +201,12 @@ foreach ($rs as $r):
 		array('title' => 'Click to ' . $styleEye . ' the office.', 'escape' => false),
 		"Are you sure to " . $styleEye . " this one?"
 	);
+	echo $this->Html->link(
+		$this->Html->image('permanentlyDel.png', array('border' => 0, 'width' => 16, 'height' => 16)) . '&nbsp;',
+		array('controller' => 'accounts', 'action' => 'deletem', 'ids' => $r['ViewCompany']['companyid'], 'role' => 1),
+		array('title' => 'Click to suspend the user.', 'escape' => false),
+		"Are you sure to permanently delete it and all its data at all?"
+	);
 	?>
 	</td>
 </tr>
@@ -249,6 +257,18 @@ echo $this->Html->link(
 	false
 );
 */
+/*delete selected*/
+echo $this->Html->link(
+	$this->Html->image('permanentlyDel.png', array('border' => 0, 'width' => 16, 'height' => 16)) . '&nbsp;&nbsp;',
+	array('controller' => 'accounts', 'action' => 'deletem'),
+	array('id' => 'linkDeleteSelected', 'title' => 'Click to delete the selected companies.', 'escape' => false),
+	"Are you sure to permanently delete them and all their data at all?"
+);
+echo $this->Html->link(
+	'',
+	array('controller' => 'accounts', 'action' => 'deletem'),
+	array('id' => 'linkDeleteSelected_')
+);
 ?>
 </div>
 
