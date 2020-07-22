@@ -14,6 +14,19 @@ create table trash_stats (
   `trxtime` datetime NOT NULL,
   `transactionid` int(11) DEFAULT NULL
 ) ENGINE=MyISAM AUTO_INCREMENT=1548 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
+create table trash_accounts (
+  `id` int(11) unsigned NOT NULL,
+  `username` varchar(64) COLLATE ascii_bin NOT NULL,
+  `username4m` varchar(48) COLLATE ascii_bin NOT NULL DEFAULT '000',
+  `password` varbinary(48) NOT NULL,
+  `originalpwd` varchar(48) COLLATE ascii_bin NOT NULL,
+  `role` tinyint(4) NOT NULL COMMENT '0-admin,1-company,2-agent',
+  `regtime` datetime NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '-1-unapproved,0-suspended,1-activated',
+  `online` int(11) NOT NULL DEFAULT '-1' COMMENT '-1 offline, >0 online id in "online_logs"',
+  `lastlogintime` datetime DEFAULT NULL,
+  `level` tinyint(4) DEFAULT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=8438 DEFAULT CHARSET=ascii COLLATE=ascii_bin;
 create table trash_companies (
   `id` int(11) unsigned NOT NULL,
   `officename` varchar(128) COLLATE ascii_bin DEFAULT NULL,
