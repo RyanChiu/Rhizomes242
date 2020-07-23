@@ -69,6 +69,7 @@ class AccountsController extends AppController {
 	function __handleAccess() {		
 		if ($this->Auth->user('Account.role') == 0) {//means an administrator
 			switch ($this->request->params['action']) {
+				case 'deletem':
 				case 'addnews':
 				case 'updalerts':
 					if ($this->Auth->user("Account.id") != 1

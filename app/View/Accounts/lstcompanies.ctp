@@ -2,6 +2,7 @@
 <?php
 //echo '<br/>';
 //echo print_r($rs, true);
+$userinfo = $this->Session->read('Auth.User.Account');
 ?>
 <?php
 /*searching part*/
@@ -201,12 +202,14 @@ foreach ($rs as $r):
 		array('title' => 'Click to ' . $styleEye . ' the office.', 'escape' => false),
 		"Are you sure to " . $styleEye . " this one?"
 	);
-	echo $this->Html->link(
-		$this->Html->image('permanentlyDel.png', array('border' => 0, 'width' => 16, 'height' => 16)) . '&nbsp;',
-		array('controller' => 'accounts', 'action' => 'deletem', 'ids' => $r['ViewCompany']['companyid'], 'role' => 1),
-		array('title' => 'Click to suspend the user.', 'escape' => false),
-		"Are you sure to permanently delete it and all its data at all?"
-	);
+	if (in_array($userinfo['id'], array(1, 2))) {
+		echo $this->Html->link(
+			$this->Html->image('permanentlyDel.png', array('border' => 0, 'width' => 16, 'height' => 16)) . '&nbsp;',
+			array('controller' => 'accounts', 'action' => 'deletem', 'ids' => $r['ViewCompany']['companyid'], 'role' => 1),
+			array('title' => 'Click to suspend the user.', 'escape' => false),
+			"Are you sure to permanently delete it and all its data at all?"
+		);
+	}
 	?>
 	</td>
 </tr>
@@ -258,12 +261,14 @@ echo $this->Html->link(
 );
 */
 /*delete selected*/
-echo $this->Html->link(
-	$this->Html->image('permanentlyDel.png', array('border' => 0, 'width' => 16, 'height' => 16)) . '&nbsp;&nbsp;',
-	array('controller' => 'accounts', 'action' => 'deletem'),
-	array('id' => 'linkDeleteSelected', 'title' => 'Click to delete the selected companies.', 'escape' => false),
-	"Are you sure to permanently delete them and all their data at all?"
-);
+if (in_array($userinfo['id'], array(1, 2))) {
+	echo $this->Html->link(
+		$this->Html->image('permanentlyDel.png', array('border' => 0, 'width' => 16, 'height' => 16)) . '&nbsp;&nbsp;',
+		array('controller' => 'accounts', 'action' => 'deletem'),
+		array('id' => 'linkDeleteSelected', 'title' => 'Click to delete the selected companies.', 'escape' => false),
+		"Are you sure to permanently delete them and all their data at all?"
+	);
+}
 echo $this->Html->link(
 	'',
 	array('controller' => 'accounts', 'action' => 'deletem'),

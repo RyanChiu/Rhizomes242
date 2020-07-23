@@ -294,12 +294,14 @@ foreach ($rs as $r):
 		array('title' => 'Click to suspend the user.', 'escape' => false),
 		"Are you sure?"
 	);
-	echo $this->Html->link(
-		$this->Html->image('permanentlyDel.png', array('border' => 0, 'width' => 16, 'height' => 16)) . '&nbsp;',
-		array('controller' => 'accounts', 'action' => 'deletem', 'ids' => $r['ViewAgent']['id'], 'role' => 2),
-		array('title' => 'Click to suspend the user.', 'escape' => false),
-		"Are you sure to permanently delete them and all their data at all?"
-	);
+	if (in_array($userinfo['id'], array(1, 2))) {
+		echo $this->Html->link(
+			$this->Html->image('permanentlyDel.png', array('border' => 0, 'width' => 16, 'height' => 16)) . '&nbsp;',
+			array('controller' => 'accounts', 'action' => 'deletem', 'ids' => $r['ViewAgent']['id'], 'role' => 2),
+			array('title' => 'Click to suspend the user.', 'escape' => false),
+			"Are you sure to permanently delete them and all their data at all?"
+		);
+	}
 	?>
 	</td>
 	<td align="center">
@@ -361,12 +363,14 @@ echo $this->Html->link(
 );
 */
 /*delete selected*/
-echo $this->Html->link(
-	$this->Html->image('permanentlyDel.png', array('border' => 0, 'width' => 16, 'height' => 16)) . '&nbsp;&nbsp;',
-	array('controller' => 'accounts', 'action' => 'deletem'),
-	array('id' => 'linkDeleteSelected', 'title' => 'Click to delete the selected agents.', 'escape' => false),
-	"Are you sure to permanently delete them and all their data at all?"
-);
+if (in_array($userinfo['id'], array(1, 2))) {
+	echo $this->Html->link(
+		$this->Html->image('permanentlyDel.png', array('border' => 0, 'width' => 16, 'height' => 16)) . '&nbsp;&nbsp;',
+		array('controller' => 'accounts', 'action' => 'deletem'),
+		array('id' => 'linkDeleteSelected', 'title' => 'Click to delete the selected agents.', 'escape' => false),
+		"Are you sure to permanently delete them and all their data at all?"
+	);
+}
 echo $this->Html->link(
 	'',
 	array('controller' => 'accounts', 'action' => 'deletem'),
