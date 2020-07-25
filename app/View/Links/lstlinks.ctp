@@ -1,6 +1,7 @@
 <?php
 //echo print_r($rs, true);
 App::import('Vendor', 'extrakits');
+App::import('Vendor', 'ShortURL');
 $userinfo = $this->Session->read('Auth.User.Account');
 ?>
 <h1>Link Codes</h1>
@@ -116,6 +117,11 @@ if (!empty($rs)) {
 				. $type['Type']['id']. '/'
 				. $ags[$r['AgentSiteMapping']['agentid']];
 			echo '</b>';
+			echo '<br/>';
+			echo str_replace(Configure::read('App.baseUrl'), "/rzm", $this->Html->url("/s.php?t=", true))
+				. ShortURL::encrypt($r['AgentSiteMapping']['siteid'] . '/'
+					. $type['Type']['id']. '/'
+					. $ags[$r['AgentSiteMapping']['agentid']], SHORT_URL_KEY);
 			?>
 			</td>
 		</tr>
