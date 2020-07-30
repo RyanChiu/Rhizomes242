@@ -30,7 +30,7 @@ echo $this->Form->end();
 <script type="text/javascript">
 	CKEDITOR.replace('AdminNotes',
 		{
-	        filebrowserUploadUrl : '/CP/accounts/upload',
+	        filebrowserUploadUrl : '/SSS/accounts/upload',
 	        filebrowserWindowWidth : '640',
 	        filebrowserWindowHeight : '480'
 	    }
