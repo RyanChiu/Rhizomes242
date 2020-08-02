@@ -292,6 +292,55 @@
 		date_default_timezone_set($timezone); //set time zone back
 		return $dst;
 	}
+	
+	/*
+	 * shorten the $url into an auto_increment id by the table "short_urls" in DB
+	 */
+	function _shortenit($url) {
+		include_once("zmysqlConn.class.php");
+		$conn = new zmysqlConn();
+		$salt = "TheRhizomes";
+		$sm = md5($url . $salt);
+		$sql = sprintf("select * from short_urls where sn_md5 = '%s';", $sm);
+		$rs = mysql_query($sql, $conn->dblink);
+		$id = null;
+		if ($rs !== false) {
+			if (mysql_num_rows($rs) == 0) {
+				$sql = sprintf("insert into short_urls (sn_md5, url) values ('%s', '%s')", $sm, $url);
+				mysql_query($sql, $conn->dblink);
+				$id = mysql_insert_id($conn->dblink);
+			} else {
+				$r = mysql_fetch_assoc($rs);
+				$id = $r['id'];
+			}
+		}
+		return $id;
+	}
+	
+	function _short2realUrl() {
+		include_once("zmysqlConn.class.php");
+		$conn = new zmysqlConn();
+		$str = strstr($_SERVER['REQUEST_URI'], "?");
+		if ($str !== false) {
+			$str = trim($str);
+			$str = str_replace("?", "", $str);
+			$id = intval($str);
+			if ($id != 0) {
+				$sql = sprintf("select * from short_urls where id = %d", $id);
+				$rs = mysql_query($sql, $conn->dblink);
+				if ($rs !== false) {
+					if (mysql_num_rows($rs) != 0) {
+						$r = mysql_fetch_assoc($rs);
+						return $r['url'];
+					}
+					return 1;
+				}
+				return 2;
+			}
+			return 3;
+		}
+		return 4;
+	}
 
 	/*
 	 *postback function for all the sites from Jesse's

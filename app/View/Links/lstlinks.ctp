@@ -1,7 +1,6 @@
 <?php
 //echo print_r($rs, true);
 App::import('Vendor', 'extrakits');
-App::import('Vendor', 'ShortURL');
 $userinfo = $this->Session->read('Auth.User.Account');
 ?>
 <h1>Link Codes</h1>
@@ -112,16 +111,19 @@ if (!empty($rs)) {
 			echo $sites[$r['AgentSiteMapping']['siteid']] . '_' . $type['Type']['typealias'] 
 				. $typealias . ':&nbsp;&nbsp;&nbsp;';
 			echo '<b>';
-			echo $this->Html->url(array('controller' => 'accounts', 'action' => 'go'), true) . '/'
+			$link = $this->Html->url(array('controller' => 'accounts', 'action' => 'go'), true) . '/'
 				. $r['AgentSiteMapping']['siteid'] . '/'
 				. $type['Type']['id']. '/'
 				. $ags[$r['AgentSiteMapping']['agentid']];
-			echo '</b>';
-			echo '<br/>';
-			echo str_replace(Configure::read('App.baseUrl'), "/rzm", $this->Html->url("/s.php?t=", true))
-				. ShortURL::encrypt($r['AgentSiteMapping']['siteid'] . '/'
-					. $type['Type']['id']. '/'
-					. $ags[$r['AgentSiteMapping']['agentid']], SHORT_URL_KEY);
+			$parseurl = parse_url($link);
+			//debug($parseurl); echo ($_SERVER['HTTP_HOST']);
+			echo $link;
+			echo("<br/>(short link:");
+			$shortstr = _shortenit($link);
+			echo $parseurl['scheme'] . "://" . $_SERVER['HTTP_HOST']
+			. strtolower(Configure::read('App.base'))
+			. "/s.php?" . ($shortstr == null ? "err" : $shortstr);
+			echo(")<br/>");
 			?>
 			</td>
 		</tr>
