@@ -120,8 +120,8 @@ if (!empty($rs)) {
 			echo("<br/>(short link:");
 			$shortstr = _shortenit($link);
 			echo $parseurl['scheme'] . "://" . $_SERVER['HTTP_HOST']
-			. strtolower(Configure::read('App.base'))
-			. "/s.php?" . ($shortstr == null ? "err" : $shortstr);
+			. Configure::read('App.base')
+			. "/?" . ($shortstr == null ? "err" : $shortstr);
 			echo(")<br/>");
 			?>
 			</td>

@@ -372,7 +372,7 @@ class AccountsController extends AppController {
 		$s = _short2realUrl();
 		if (!in_array($s, array(1, 2, 3, 4))) {
 			$this->redirect($s);
-		} else {
+		} elseif ($s != 4) {
 			$this->Session->setFlash("Wrong with short link($s).");
 		}
 		/*
