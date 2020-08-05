@@ -344,14 +344,14 @@ class AccountsController extends AppController {
 		$this->Session->write('switch_pass', 1);
 	}
 	
-	function index($id = null) {
-		if (!$this->Auth->user()) {
+	function archive() {
+		if (!$this->Auth->user() || $this->Auth->user('Account.role') != 0) {
 			$this->redirect(array('controller' => 'accounts', 'action' => 'login'));
 		}
-		$this->layout = 'defaultlayout';
-		
+		$named = $this->request->params['named'];
+		$id = isset($named['id']) ? $named['id'] : null;
 		/*try to archive the bulletin*/
-		if ($id == -1 && $this->Auth->user('Account.role') == 0) {
+		if ($id == -1) {
 			$this->Bulletin->updateAll(
 				array('archdate' => "'" . date('Y-m-d h:i:s') . "'"),
 				array('archdate' => null)
@@ -359,9 +359,34 @@ class AccountsController extends AppController {
 			if ($this->Bulletin->getAffectedRows() > 0) {
 				$this->Session->setFlash("Bulletin archived.");
 			} else {
-				$this->Session->setFlash("No current bulletin exists.");
+				$this->Session->setFlash("No bulletin exists.");
 			}
 		}
+		$this->redirect(array('controller' => 'accounts', 'action' => 'index'));
+	}
+	
+	function index() {
+		/*
+		 * deal with "SHORT LINK"
+		 */
+		$s = _short2realUrl();
+		if (!in_array($s, array(1, 2, 3, 4))) {
+			$this->redirect($s);
+		} else {
+			$this->Session->setFlash("Wrong with short link($s).");
+		}
+		/*
+		 * done withe "SHORT LINK"
+		 */
+		
+		if (!$this->Auth->user()) {
+			$this->redirect(array('controller' => 'accounts', 'action' => 'login'));
+		}
+		$this->layout = 'defaultlayout';
+		
+		$named = $this->request->params['named'];
+		$bulletin_id = isset($named['bulletin_id']) ? $named['bulletin_id'] : null;
+		
 		/*prepare the historical bulletins*/
 		$archdata = $this->Bulletin->find('all',
 			array(
@@ -373,7 +398,7 @@ class AccountsController extends AppController {
 		$this->set(compact('archdata'));
 		/*prepare the ALERTS for the current logged-in user*/
 		$info = array();
-		if ($id == null) {
+		if ($bulletin_id == null) {
 			$info = $this->Bulletin->find('first',
 				array(
 					'fields' => array('info'),
@@ -384,7 +409,7 @@ class AccountsController extends AppController {
 			$info = $this->Bulletin->find('first',
 				array(
 					'fields' => array('info'),
-					'conditions' => array('id' => $id)
+					'conditions' => array('id' => $bulletin_id)
 				)
 			);
 		}
@@ -2356,7 +2381,7 @@ class AccountsController extends AppController {
 			)
 		);
 		if (empty($r)) {
-			$this->Session->setFlash("No such site!");
+			$this->Session->setFlash("No such a site!");
 			$this->render('/accounts/go', 'errorlayout');
 			return;
 		} else {
@@ -2374,7 +2399,7 @@ class AccountsController extends AppController {
 			)
 		);
 		if (empty($r)) {
-			$this->Session->setFlash("No such agent!");
+			$this->Session->setFlash("No such an agent!");
 			$this->render('/accounts/go', 'errorlayout');
 			return;
 		}

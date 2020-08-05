@@ -11,9 +11,9 @@ if ($userinfo['role'] == 0) {
 		/*$this->Html->image('archive.jpg',
 			array('border' => 0, 'width' => 25, 'height' => 25, 'alt' => 'Archive this bulletin.')
 		),// . */'<font size="1">(Archive)</font>',
-		array('controller' => 'accounts', 'action' => 'index', 'id' => -1),
+		array('controller' => 'accounts', 'action' => 'archive', 'id' => -1),
 		array('escape'=> false),
-		'Are you sure you wish to archive this bulletin?'
+		'Do you want to archive the current bulletin?'
 	);
 }
 ?>
@@ -26,7 +26,7 @@ if (!empty($archdata)) {
 	foreach ($archdata as $arch) {
 		echo $this->Html->link(
 			$arch['Bulletin']['archdate'],
-			array('controller' => 'accounts', 'action' => 'index', 'id' => $arch['Bulletin']['id']),
+			array('controller' => 'accounts', 'action' => 'index', 'bulletin_id' => $arch['Bulletin']['id']),
 			array('escape' => false),
 			false
 		);
