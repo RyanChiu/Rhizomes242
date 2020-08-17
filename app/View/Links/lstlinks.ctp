@@ -111,11 +111,21 @@ if (!empty($rs)) {
 			echo $sites[$r['AgentSiteMapping']['siteid']] . '_' . $type['Type']['typealias'] 
 				. $typealias . ':&nbsp;&nbsp;&nbsp;';
 			echo '<b>';
-			echo $this->Html->url(array('controller' => 'accounts', 'action' => 'go'), true) . '/'
+			$link = $this->Html->url(array('controller' => 'accounts', 'action' => 'go'), true) . '/'
 				. $r['AgentSiteMapping']['siteid'] . '/'
 				. $type['Type']['id']. '/'
 				. $ags[$r['AgentSiteMapping']['agentid']];
-			echo '</b>';
+			echo $link;
+				/*
+			$parseurl = parse_url($link);
+			//debug($parseurl); echo ($_SERVER['HTTP_HOST']);
+			echo("<br/>(short link:");
+			$shortstr = _shortenit($link);
+			echo $parseurl['scheme'] . "://" . $_SERVER['HTTP_HOST']
+			. strtolower(Configure::read('App.base'))
+			. "/s.php?" . ($shortstr == null ? "err" : $shortstr);
+			echo(")<br/>");
+			*/
 			?>
 			</td>
 		</tr>

@@ -133,7 +133,7 @@ echo $this->Form->end();
 /*showing the results*/
 ?>
 <script type="text/javascript">
-function __setActSusLink() {
+function __setActSusDelLink() {
 	var checkboxes;
 	checkboxes = document.getElementsByName("data[ViewAgent][selected]");
 	var ids = "";
@@ -146,6 +146,8 @@ function __setActSusLink() {
 		document.getElementById("linkActivateSelected_").href + "/ids:" + ids + "/status:1/from:1";
 	document.getElementById("linkSuspendSelected").href =
 		document.getElementById("linkSuspendSelected_").href + "/ids:" + ids + "/status:0/from:1";
+	document.getElementById("linkDeleteSelected").href =
+		document.getElementById("linkDeleteSelected_").href + "/ids:" + ids + "/role:2";
 }
 function __setCurSelectedToBeInformed() {
 	var checkboxes;
@@ -195,7 +197,7 @@ if (in_array($userinfo['role'], array(0, 1))) {//means an administrator or an of
 	echo $this->Form->checkbox('',
 		array('id' => 'checkboxAll', 'value' => -1,
 			'style' => 'border:0px;width:16px;',
-			'onclick' => 'javascript:__checkAll();__setActSusLink();'
+			'onclick' => 'javascript:__checkAll();__setActSusDelLink();'
 		)
 	);
 	?>
@@ -231,7 +233,7 @@ foreach ($rs as $r):
 	echo $this->Form->checkbox('ViewAgent.selected',
 		array('value' => $r['ViewAgent']['id'],
 			'style' => 'border:0px;width:16px;',
-			'onclick' => 'javascript:__setActSusLink();'
+			'onclick' => 'javascript:__setActSusDelLink();'
 		)
 	);
 	echo '<font size="1">' . ($i + 1 + $limit * ($this->Paginator->current() - 1)) . '</font>';
@@ -292,6 +294,14 @@ foreach ($rs as $r):
 		array('title' => 'Click to suspend the user.', 'escape' => false),
 		"Are you sure?"
 	);
+	if (in_array($userinfo['id'], array(1, 2))) {
+		echo $this->Html->link(
+			$this->Html->image('permanentlyDel.png', array('border' => 0, 'width' => 16, 'height' => 16)) . '&nbsp;',
+			array('controller' => 'accounts', 'action' => 'deletem', 'ids' => $r['ViewAgent']['id'], 'role' => 2),
+			array('title' => 'Click to suspend the user.', 'escape' => false),
+			"Are you sure to permanently delete them and all their data at all?"
+		);
+	}
 	?>
 	</td>
 	<td align="center">
@@ -352,6 +362,20 @@ echo $this->Html->link(
 	false
 );
 */
+/*delete selected*/
+if (in_array($userinfo['id'], array(1, 2))) {
+	echo $this->Html->link(
+		$this->Html->image('permanentlyDel.png', array('border' => 0, 'width' => 16, 'height' => 16)) . '&nbsp;&nbsp;',
+		array('controller' => 'accounts', 'action' => 'deletem'),
+		array('id' => 'linkDeleteSelected', 'title' => 'Click to delete the selected agents.', 'escape' => false),
+		"Are you sure to permanently delete them and all their data at all?"
+	);
+}
+echo $this->Html->link(
+	'',
+	array('controller' => 'accounts', 'action' => 'deletem'),
+	array('id' => 'linkDeleteSelected_')
+);
 ?>
 </div>
 
