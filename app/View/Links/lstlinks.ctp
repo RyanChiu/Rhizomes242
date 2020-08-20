@@ -117,12 +117,14 @@ if (!empty($rs)) {
 			$parseurl = parse_url($link);
 			//debug($parseurl); echo ($_SERVER['HTTP_HOST']);
 			echo $link;
-			echo("<br/>(short link:");
-			$shortstr = _shortenit($link);
-			echo $parseurl['scheme'] . "://" . $_SERVER['HTTP_HOST']
-			. Configure::read('App.base')
-			. "/?" . ($shortstr == null ? "err" : $shortstr);
-			echo(")<br/>");
+			if ($userinfo['role'] <= 1) {
+				echo("<br/>(short link:");
+				$shortstr = _shortenit($link);
+				echo $parseurl['scheme'] . "://" . $_SERVER['HTTP_HOST']
+				. Configure::read('App.base')
+				. "/?" . ($shortstr == null ? "err" : $shortstr);
+				echo(")<br/>");
+			}
 			?>
 			</td>
 		</tr>
