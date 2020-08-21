@@ -5,16 +5,6 @@ $userinfo = $this->Session->read('Auth.User.Account');
 ?>
 <h1>Link Codes</h1>
 <br/>
-<div style="float:right">
-<?php
-if ($userinfo['role'] == 0) {//means an administrator
-	echo $this->Html->link(
-		'Configure Sites...',
-		array('controller' => 'links', 'action' => 'lstsites')
-	);
-}
-?>
-</div>
 <!--  
 <small>(You're from:<?php //echo __getclientip(); ?>, and you'll be <?php //echo __isblocked(__getclientip()) ? 'blocked.' : 'passed.'; ?>)</small>
 -->
@@ -23,16 +13,49 @@ echo $this->Form->create(null, array('url' => array('controller' => 'links', 'ac
 ?>
 <table style="width:100%">
 <caption>
-	Please get your link(s)
-	<br/>
-	<font style="color:red;">
-	<?php
-	if (!empty($suspsites)) {
-		echo '>>Site "' . implode(",", $suspsites) . '"' . (count($suspsites) > 1 ? ' are' : ' is')
-			. ' suspended for now.';
-	}
-	?>
-	</font>
+	<div style="float:left;">
+		<br/>
+		<div>
+			Please get your link(s)
+			<br/>
+			<font style="color:red;">
+			<?php
+			if (!empty($suspsites)) {
+				echo '>>Site "' . implode(",", $suspsites) . '"' . (count($suspsites) > 1 ? ' are' : ' is')
+					. ' suspended for now.';
+			}
+			?>
+			</font>
+		</div>
+	</div>
+	
+	<div style="float:right">
+		<?php
+		if ($userinfo['role'] == 0) {//means an administrator
+			echo $this->Html->link(
+				'Configure Sites...',
+				array('controller' => 'links', 'action' => 'lstsites')
+			);
+		}
+		?>
+		<br/>
+		<div style="margin-top:6px;">
+			<div style="float:left;">
+			<?php 
+			echo $this->Html->image(
+				'new4shortlink.gif',
+				array(
+					'style' => 'border:0px;height:27px;'
+				)
+			);
+			?>
+			</div>
+			<div style="float:left;margin:3px 6px 0 3px;">
+			<a href="https://tinyurl.com" target="new_shortlink" style="font-weight:bold;color:red;">Link Shortner</a>
+			</div>
+		</div>
+	</div>
+	
 </caption>
 <tr>
 	<td width="31%" align="right">
