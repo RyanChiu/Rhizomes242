@@ -278,7 +278,8 @@ echo $scripts_for_layout;
 							if (strpos($this->request->here, 'addchatlogs') === false
 								&& strpos($this->request->here, 'lstchatlogs') === false
 								&& strpos($this->request->here, 'lstlogins') === false
-								&& strpos($this->request->here, 'lstclickouts') === false) {
+								&& strpos($this->request->here, 'lstclickouts') === false
+								&& strpos($this->request->here, 'lstsales') === false) {
 							} else {
 								$curmenuidx = $menuitemscount - 1;
 							}
@@ -579,6 +580,11 @@ echo $scripts_for_layout;
 							false
 						);
 					}
+					echo $this->Html->link('<font><b>Sale Log</b></font>',
+						array('controller' => 'stats', 'action' => 'lstsales', 'id' => -1),
+						array('escape' => false),
+						false
+					);
 					?>
 				</div>
 				<!--5th drop down menu -->

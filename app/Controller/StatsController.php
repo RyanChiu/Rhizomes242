@@ -9,7 +9,8 @@ class StatsController extends AppController {
 	var $uses = array(
 		'ViewCompany', 'ViewLiteAgent', 'Site', 'Type',
 		'Stats', 'Site', 'Type',
-		'ViewStats', 'TmpStats', 'RunStats', 'ViewTStats'
+		'ViewStats', 'TmpStats', 'RunStats', 'ViewTStats',
+		'ViewSaleLog'
 	);
 	var $components = array('RequestHandler');
 	var $helpers = array(
@@ -49,9 +50,37 @@ class StatsController extends AppController {
 			}
 		}
 		
+		/*check if the user could visit some actions*/
+		$this->__handleAccess();
+		
 		parent::beforeFilter();
 	}
 	
+	function __accessDenied() {
+		$this->Session->setFlash('Sorry, you are not authorized to visit that location, so you\'ve been relocated here.');
+		$this->redirect(array('controller' => 'accounts', 'action' => 'index'));
+	}
+	
+	function __handleAccess() {
+		if ($this->curuser == null) {
+			$this->__accessDenied();
+			return;
+		}
+	
+		if ($this->curuser['role'] == 0) {//means an administrator
+			
+			return;
+		}
+		if ($this->curuser['role'] != 0) {//means an office or an agent
+			switch ($this->request->params['action']) {
+				case '':
+				case '':
+					$this->__accessDenied();
+					return;
+			}
+		}
+	}
+		
 	function ___getcond_4statsby_only() {
 		$conditions = array('1' => '0');
 		if ($this->curuser) {}
@@ -839,6 +868,57 @@ class StatsController extends AppController {
 			
 		}
 		$this->set(compact('frauds'));
+	}
+	
+	function lstsales() {
+		$this->layout = "defaultlayout";
+		
+		$conditions = array('1' => '1');
+		if ($this->curuser['role'] == 0) {
+			
+		} else if ($this->curuser['role'] == 1) {
+			$conditions = array(
+				'comid' => $this->curuser['id']
+			);
+		} else if ($this->curuser['role'] == 2) {
+			$conditions = array(
+				'agid' => $this->curuser['id']
+			);
+		}
+		
+		$sales = $this->ViewSaleLog->find('all',
+			array(
+				'conditions' => $conditions,
+				'order' => 'date desc'
+			)
+		);
+		
+		$this->paginate = array(
+			'ViewSaleLog' => array(
+				'conditions' => $conditions,
+				'order' => 'date desc',
+				'limit' => ($this->__limit / 5)
+			)
+		);
+		
+		$rs = $this->paginate('ViewSaleLog');
+		$i = 0;
+		if ($this->curuser['role'] == 1) {
+			foreach ($rs as $r) {
+				$rs[$i]['ViewSaleLog']['comid'] = $r['companies']['comid'];
+				$rs[$i]['ViewSaleLog']['office'] = $r['companies']['office'];
+				$i++;
+			}
+		} else if ($this->curuser['role'] == 2) {
+			foreach ($rs as $r) {
+				$rs[$i]['ViewSaleLog']['agid'] = $r['agents']['agid'];
+				$rs[$i]['ViewSaleLog']['email'] = $r['agents']['email'];
+				$rs[$i]['ViewSaleLog']['agent'] = $r['agents']['agent'];
+				$i++;
+			}
+		}
+		
+		$this->set('rs', $rs);
 	}
 }
 ?>
