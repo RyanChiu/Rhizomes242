@@ -43,7 +43,7 @@ if ($userinfo['role'] == 1) {
 			echo $this->Form->input('Agent.companyshadow',
 				array(
 					'label' => '',
-					'style' => 'width:390px;border:0px;background:transparent;',
+					'style' => 'width:390px;border:0px;background:transparent;color:white;',
 					'readonly' => 'readonly',
 					'value' => $cps[$results['Agent']['companyid']]
 				)
@@ -64,7 +64,7 @@ if ($userinfo['role'] == 1) {
 		<div style="float:left">
 		<?php
 		if ($userinfo['role'] == 2) {//means an agent
-			echo $this->Form->input('Agent.ag1stname', array('label' => '', 'style' => 'width:390px;border:0px;background:transparent;', 'readonly' => 'readonly'));
+			echo $this->Form->input('Agent.ag1stname', array('label' => '', 'style' => 'width:390px;border:0px;background:transparent;color:white;', 'readonly' => 'readonly'));
 		} else {
 			echo $this->Form->input('Agent.ag1stname', array('label' => '', 'style' => 'width:390px;'));
 		}
@@ -79,7 +79,7 @@ if ($userinfo['role'] == 1) {
 		<div style="float:left">
 		<?php
 		if ($userinfo['role'] == 2) {//means an agent
-			echo $this->Form->input('Agent.aglastname', array('label' => '', 'style' => 'width:390px;border:0px;background:transparent;', 'readonly' => 'readonly'));
+			echo $this->Form->input('Agent.aglastname', array('label' => '', 'style' => 'width:390px;border:0px;background:transparent;color:white;', 'readonly' => 'readonly'));
 		} else {
 			echo $this->Form->input('Agent.aglastname', array('label' => '', 'style' => 'width:390px;'));
 		}
@@ -94,7 +94,7 @@ if ($userinfo['role'] == 1) {
 		<div style="float:left">
 		<?php
 		if ($userinfo['role'] == 2) {//means an agent
-			echo $this->Form->input('Agent.email', array('label' => '', 'style' => 'width:390px;border:0px;background:transparent;', 'readonly' => 'readonly'));
+			echo $this->Form->input('Agent.email', array('label' => '', 'style' => 'width:390px;border:0px;background:transparent;color:white;', 'readonly' => 'readonly'));
 		} else {
 			echo $this->Form->input('Agent.email', array('label' => '', 'style' => 'width:390px;'));
 		}
@@ -109,7 +109,7 @@ if ($userinfo['role'] == 1) {
 		<div style="float:left">
 		<?php
 		if ($userinfo['role'] == 2) {//means an agent
-			echo $this->Form->input('Account.username', array('label' => '', 'style' => 'width:390px;border:0px;background:transparent;', 'readonly' => 'readonly'));
+			echo $this->Form->input('Account.username', array('label' => '', 'style' => 'width:390px;border:0px;background:transparent;color:white;', 'readonly' => 'readonly'));
 		} else {
 			echo $this->Form->input('Account.username', array('label' => '', 'style' => 'width:390px;'));
 		}
