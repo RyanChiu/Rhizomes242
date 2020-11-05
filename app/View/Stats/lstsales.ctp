@@ -18,7 +18,7 @@ $userinfo = $this->Session->read('Auth.User.Account');
 <thead>
 <tr>
 	<th><b><?php echo $this->ExPaginator->sort('ViewSaleLog.date', 'Date'); ?></b></th>
-	<th><b><?php echo $this->ExPaginator->sort('ViewSaleLog.email', 'Email'); ?></b></th>
+	<th class="naClassHide"><b><?php echo $this->ExPaginator->sort('ViewSaleLog.email', 'Email'); ?></b></th>
 	<th><b><?php echo $this->ExPaginator->sort('ViewSaleLog.office', 'Office'); ?></b></th>
 	<th><b><?php echo $this->ExPaginator->sort('ViewSaleLog.agent', 'Agent'); ?></b></th>
 	<th><b><?php echo $this->ExPaginator->sort('ViewSaleLog.site', 'Site'); ?></b></th>
@@ -54,3 +54,16 @@ endforeach;
 echo $this->element('paginationblock');
 ?>
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	var obj;
+	obj = jQuery(".naClassHide");
+	tbl = obj.parent().parent().parent();
+	obj.each(function(i){
+		idx = jQuery("th", obj.parent()).index(this);
+		this.hide();
+		jQuery("td:eq(" + idx + ")", jQuery("tr", tbl)).hide();
+	});
+});
+</script>
