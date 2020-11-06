@@ -123,7 +123,7 @@ echo $scripts_for_layout;
 						?>
 						<li>
 						<?php
-						echo $this->Html->link('<span><font>NEWS</font></span>',
+						echo $this->Html->link('<span><font>NEWS</font></span>' . $this->Html->image('md.png', array('style' => 'border:0;width:16px;')),
 							array('controller' => 'accounts', 'action' => 'addnews'),
 							array('rel' => 'dropmenu_admin_news', 'escape' => false),
 							false
@@ -146,7 +146,7 @@ echo $scripts_for_layout;
 						?>
 						<li>
 						<?php
-						echo $this->Html->link('<span><font>OFFICE</font></span>',
+						echo $this->Html->link('<span><font>OFFICE</font></span>' . $this->Html->image('md.png', array('style' => 'border:0;width:16px;')),
 							array('controller' => 'accounts', 'action' => 'lstcompanies', 'id' => -1),
 							array('rel' => 'dropmenu_admin_company', 'escape' => false),
 							false
@@ -168,7 +168,7 @@ echo $scripts_for_layout;
 						?>
 						<li>
 						<?php
-						echo $this->Html->link('<span><font>AGENT</font></span>',
+						echo $this->Html->link('<span><font>AGENT</font></span>' . $this->Html->image('md.png', array('style' => 'border:0;width:16px;')),
 							array('controller' => 'accounts', 'action' => 'lstagents', 'id' => -1),
 							array('rel' => 'dropmenu_admin_agent', 'escape' => false),
 							false
@@ -239,7 +239,8 @@ echo $scripts_for_layout;
 						?>
 						<li>
 						<?php
-						echo $this->Html->link('<span><font>LINKS</font></span>',
+						echo $this->Html->link('<span><font>LINKS</font></span>' 
+								. ($role != 0 ? '' : $this->Html->image('md.png', array('style' => 'border:0;width:16px;'))),
 							array('controller' => 'links', 'action' => 'lstlinks'),
 							array('rel' => ($role == 0 ? 'dropmenu_links' : ''), 'escape' => false),
 							false
@@ -286,7 +287,7 @@ echo $scripts_for_layout;
 						?>
 						<li>
 						<?php
-						echo $this->Html->link('<span><font>LOGS</font></span>',
+						echo $this->Html->link('<span><font>LOGS</font></span>' . $this->Html->image('md.png', array('style' => 'border:0;width:16px;')),
 							"#",
 							array('rel' => 'dropmenu_logs', 'escape' => false),
 							false
