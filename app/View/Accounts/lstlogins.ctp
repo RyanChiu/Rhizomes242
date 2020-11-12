@@ -70,6 +70,24 @@ echo $this->Form->create(null, array('url' => array('controller' => 'accounts', 
 			<?php echo $this->Html->image('iconAttention.gif') . '&nbsp;Loading...'; ?>
 			</div>
 		</td>
+		<?php 
+		if (true) {
+		?>
+		<td colspan="6">
+			<?php
+			echo $this->Form->input('ViewOnlineLog.inip',
+				array(
+					'label' => '',
+					'value' => $inip,
+					'style' => 'width: 130px;display:none;',
+					'div' => array('id' => 'divInip')
+				)
+			);
+			?>
+		</td>
+		<?php 
+		} else {
+		?>
 		<td class="search-label" style="width:65px;">IP:</td>
 		<td colspan="3">
 			<?php
@@ -83,9 +101,12 @@ echo $this->Form->create(null, array('url' => array('controller' => 'accounts', 
 			);
 			?>
 		</td>
+		<?php 
+		}
+		?>
 	</tr>
 	<tr>
-				<td class="search-label" style="width:65px;">Date:</td>
+		<td class="search-label" style="width:65px;">Date:</td>
 		<td colspan="3">
 			<div style="float:left;width:50px;">
 				<b>Start:</b>
@@ -123,7 +144,13 @@ echo $this->Form->end();
 <thead>
 <tr>
 	<th><b><?php echo $this->ExPaginator->sort('ViewOnlineLog.username', 'Username'); ?></b></th>
+	<?php 
+	if (false) {
+	?>
 	<th><b><?php echo $this->ExPaginator->sort('ViewOnlineLog.inip', 'IP'); ?></b></th>
+	<?php 
+	}
+	?>
 	<th><b><?php echo $this->ExPaginator->sort('ViewOnlineLog.intime', 'Login'); ?></b></th>
 	<th><b><?php echo $this->ExPaginator->sort('ViewOnlineLog.outtime', 'Logout'); ?></b></th>
 </tr>
@@ -134,11 +161,17 @@ foreach ($rs as $r) {
 ?>
 <tr <?php echo $i % 2 == 0? '' : 'class="odd"'; ?>>
 	<td align="center"><?php echo $r['ViewOnlineLog']['username']; ?></td>
+	<?php 
+	if (false) {
+	?>
 	<td align="center">
 		<a href="http://whatismyipaddress.com/ip/<?php echo $r['ViewOnlineLog']['inip']; ?>" target="findip_window">
 			<?php echo $r['ViewOnlineLog']['inip']; ?>
 		</a>
 	</td>
+	<?php 
+	}
+	?>
 	<td align="center"><?php echo $r['ViewOnlineLog']['intime']; ?></td>
 	<td align="center"><?php echo $r['ViewOnlineLog']['outtime']; ?></td>
 </tr>
