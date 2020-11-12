@@ -401,6 +401,7 @@
 			$trxid = (isset($_GET['client_id']) ? trim($_GET['client_id']) : (isset($_POST['client_id']) ? trim($_POST['client_id']) : ''));
 			$trxid = intval($trxid);
 			$affid = (isset($_GET['affid']) ? trim($_GET['affid']) : (isset($_POST['affid']) ? trim($_POST['affid']) : ''));
+			$eid = (isset($_GET['eid']) ? trim($_GET['eid']) : (isset($_POST['eid']) ? trim($_POST['eid']) : ''));
 			if (!empty($trxid)) {
 				$type = 'sale';
 				//$agent = $affid;
@@ -460,8 +461,8 @@
 					}
 
 					if (!$donothing) {
-						$sql = "insert into stats (agentid, companyid, raws, uniques, chargebacks, signups, frauds, sales_number, typeid, siteid, campaignid, trxtime, transactionid)"
-							. " values ($agid, $comid, $clicks, $uniques, 0, 0, 0, $sales, $typeid, $siteid, '$campid', '$trxtime', $trxid)";
+						$sql = "insert into stats (agentid, companyid, raws, uniques, chargebacks, signups, frauds, sales_number, typeid, siteid, campaignid, trxtime, transactionid, eid)"
+							. " values ($agid, $comid, $clicks, $uniques, 0, 0, 0, $sales, $typeid, $siteid, '$campid', '$trxtime', $trxid, '$eid')";
 
 						if (mysql_query($sql, $conn->dblink) === false) {
 							$err = mysql_error();
