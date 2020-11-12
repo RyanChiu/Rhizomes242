@@ -103,6 +103,24 @@ echo $this->Form->create(null, array('url' => array('controller' => 'links', 'ac
 		);
 		?>
 	</td>
+	<?php 
+	if (true) {
+	?>
+	<td colspan="2">
+		<?php
+		echo $this->Form->input('ViewClickout.fromip',
+			array(
+				'label' => '',
+				'value' => $fromip,
+				'style' => 'width: 130px;display:none;',
+				'div' => array('id' => 'divIpfrom')
+			)
+		);
+		?>
+	</td>
+	<?php 
+	} else {
+	?>
 	<td class="search-label" style="width:65px;">IP From:</td>
 	<td>
 		<?php
@@ -116,6 +134,9 @@ echo $this->Form->create(null, array('url' => array('controller' => 'links', 'ac
 		);
 		?>
 	</td>
+	<?php 
+	}
+	?>
 </tr>
 <tr>
 	<td class="search-label" style="width:65px;">Date:</td>
@@ -168,7 +189,13 @@ Office:<?php echo $coms[$selcom]; ?>&nbsp;&nbsp;Agent:<?php echo $ags[$selagent]
 	<th><b><?php echo $this->ExPaginator->sort('ViewClickout.typename', 'Type'); ?></b></th>
 	<th><b>Link</b></th>
 	<th><b><?php echo $this->ExPaginator->sort('ViewClickout.clicktime', 'Click Time'); ?></b></th>
+	<?php 
+	if (false) {
+	?>
 	<th><b><?php echo $this->ExPaginator->sort('ViewClickout.fromip', 'IP From'); ?></b></th>
+	<?php 
+	}
+	?>
 	<th <?php echo $userinfo['role'] == 0 ? '' : 'class="naClassHide"'; // HARD CODES?>>
 		<b><?php echo $this->ExPaginator->sort('ViewClickout.referer', 'Referer'); ?></b>
 	</th>
@@ -197,11 +224,17 @@ foreach ($rs as $r):
 	?>
 	</td>
 	<td><?php echo $r['ViewClickout']['clicktime']; ?></td>
+	<?php 
+	if (false) {
+	?>
 	<td>
 		<a href="http://whatismyipaddress.com/ip/<?php echo $r['ViewClickout']['fromip']; ?>" target="findip_window">
 			<?php echo $r['ViewClickout']['fromip']; ?>
 		</a>
 	</td>
+	<?php 
+	}
+	?>
 	<td><?php echo $r['ViewClickout']['referer']; ?></td>
 </tr>
 <?php
